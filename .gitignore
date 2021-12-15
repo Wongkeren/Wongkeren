@@ -6,6 +6,7 @@
 /luci-app-samba4
 /luci-app-advancedsetting
 /luci-app-softethervpn5
+/luci-app-softether
 /luci-app-cifs
 /luci-app-cifsd
 /luci-app-smstool
