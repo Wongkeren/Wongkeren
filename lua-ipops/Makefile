@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lua-ipops
 PKG_VERSION:=0.0.1
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_VERSION:=$(PKG_VERSION)-$(PKG_RELEASE)
 PKG_MAINTAINER:=Chen Minqiang <ptpt52@gmail.com>
@@ -21,6 +21,7 @@ define Package/lua-ipops
   CATEGORY:=X
   SUBMENU:=Libs
   DEPENDS:=
+  PKGARCH:=all
   TITLE:=lua ipops lib
 endef
 
