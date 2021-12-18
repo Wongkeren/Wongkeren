@@ -8,8 +8,12 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=qbittorrent-nox for LuCI
 LUCI_DEPENDS:=+qBittorrent-Enhanced-Edition
 LUCI_PKGARCH:=all
+
 PKG_NAME:=luci-app-qbittorrent
-PKG_VERSION=1.0
+
+define Package/luci-app-qbittorrent/conffiles
+/etc/qBittorrent/
+endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
