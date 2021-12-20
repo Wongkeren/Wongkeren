@@ -184,7 +184,7 @@ jobs:
 
     - name: SSH connection to Actions
       uses: kiddin9/debugger-action@master
-      if: 1 == 0
+      if: 1 == 1
 
     - name: Modify
       run: |
