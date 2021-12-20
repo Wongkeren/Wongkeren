@@ -8,11 +8,14 @@ function index()
 	end
 	
 	local page
-	page = entry({"admin", "network", "appfilter"}, arcombine(cbi("appfilter/appfilter"), cbi("appfilter/dev_status", {hideapplybtn=true, hidesavebtn=true, hideresetbtn=true})), _("App Filter"), 100)
+	--hide save button
+	page = entry({"admin", "network", "appfilter"}, arcombine(cbi("appfilter/appfilter"), cbi("appfilter/dev_status", {hideapplybtn=true, hidesavebtn=true, hideresetbtn=true})), _("appfilter"), 100)
 
 	page.leaf   = true
 	page.subindex = true
-
+	page.acl_depends = { "luci-app-appfilter" }
+	--page.dependent = true
+	
 	page = entry({"admin", "network", "user_status"}, call("user_status"), nil)
 	page.leaf = true
 
@@ -111,6 +114,8 @@ function user_status()
 				hostname=get_hostname_by_mac(user_array[i].mac),
 				appid=visit_array[j].appid,
 				appname=get_app_name_by_id(visit_array[j].appid),
+				--total_num=visit_array[j].total_num,
+				--drop_num=visit_array[j].drop_num,
 				total_num=0,
 				drop_num=0,
 				latest_action=visit_array[j].latest_action,

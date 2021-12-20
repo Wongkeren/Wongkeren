@@ -13,7 +13,7 @@ local jsc = require "luci.jsonc"
 local m, s
 arg[1] = arg[1] or ""
 m = Map("appfilter",
-	translate("Data Statistics").."("..arg[1]..")",
+	translate("上网统计("..arg[1]..")"),
 	translate(""))
 	
 local v

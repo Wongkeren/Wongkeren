@@ -9,7 +9,7 @@ LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+luci-compat +luci-theme-argon
 
 define Package/$(PKG_NAME)/conffiles
-/etc/config/argon-config
+/etc/config/argon
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
