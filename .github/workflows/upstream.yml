@@ -10,6 +10,7 @@ on:
   push:
     paths:
       - '.github/workflows/upstream.yml'
+      - '.gitignore'
       - 'diy/**'
   schedule:
     - cron: 0 */12 * * *
