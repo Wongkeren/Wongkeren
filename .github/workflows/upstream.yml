@@ -178,13 +178,13 @@ jobs:
         rm -Rf */.git
         mv -f mt/drivers mt-drivers && cp -rf mt/* ./ && rm -Rf mt
 
-    - name: Apply patches
-      run: |
-        find "diy/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 -E --forward --no-backup-if-mismatch"
-
     - name: SSH connection to Actions
       uses: kiddin9/debugger-action@master
       if: 1 == 1
+
+    - name: Apply patches
+      run: |
+        find "diy/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 -E --forward --no-backup-if-mismatch"
 
     - name: Modify
       run: |
