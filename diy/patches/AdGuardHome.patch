@@ -9,9 +9,7 @@
  	done
  	uci delete dhcp.@dnsmasq[0].resolvfile 2>/dev/null
  	uci set dhcp.@dnsmasq[0].noresolv=1
- 
- get_filesystem()
-@@ -499,12 +500,23 @@ start_service() {
+@@ -499,12 +499,23 @@ start_service() {
  	echo "AdGuardHome service enabled"
  	echo "luci enable switch=$enabled"
  	(sleep 10 && [ -z "$(pgrep $binpath)" ] && logger "AdGuardHome" "no process in 10s cancel redirect" && _do_redirect 0 )&
@@ -35,7 +33,7 @@
  	start
  }
  
-@@ -539,11 +551,12 @@ stop_service()
+@@ -539,11 +550,12 @@ stop_service()
  	fi
  	echo "AdGuardHome service disabled"
  	touch /var/run/AdGserverdis
