@@ -11,6 +11,7 @@
 /luci-app-cifsd
 /luci-app-smstool
 /luci-app-mosquitto
+/luci-app-appfilter
 /ddns-scripts_aliyun
 /ddns-scripts_dnspod
 /subweb
