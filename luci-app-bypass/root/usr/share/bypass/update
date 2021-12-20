@@ -61,7 +61,7 @@ if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 			sleep 2
 		done
 	else
-		curl -Lfso /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -Lfso /tmp/gfw.b64 https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
+		curl -Lfso /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -Lfso /tmp/gfw.b64 https://op.supes.top/gfwlist.txt
 	fi
 	$DIR/by-gfw
 	if ! cmp -s /tmp/gfwnew.txt $TMP/gfw.list;then
