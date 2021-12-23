@@ -5,11 +5,12 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI SNMPD Interface
-LUCI_DEPENDS:=+snmpd +snmptrapd +snmp-utils +snmp-mibs
+LUCI_TITLE:=LuCI Mail Configuration
+LUCI_DEPENDS:=+msmtp-mta
 
 PKG_LICENSE:=GPLv3
 
 #include ../luci/luci.mk
 include $(TOPDIR)/feeds/luci/luci.mk
+
 # call BuildPackage - OpenWrt buildroot signature
