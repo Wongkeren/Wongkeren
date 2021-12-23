@@ -158,7 +158,7 @@ jobs:
         package/kernel/rtl8188eu package/kernel/rtl8812au-ac package/kernel/rtl8192eu \
         package/kernel/rtl8821cu package/kernel/rtl88x2bu
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
-        luci-app-packet-capture luci-app-mail
+        luci-app-packet-capture luci-app-mail msmtp
         ) &
         
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol net/nps net/verysync \
