@@ -9,42 +9,27 @@
  	done
  	uci delete dhcp.@dnsmasq[0].resolvfile 2>/dev/null
  	uci set dhcp.@dnsmasq[0].noresolv=1
-@@ -499,12 +499,21 @@ start_service() {
+@@ -186,7 +186,7 @@ rm_port53()
+ 	config_editor "dns.port" "$dnsmasq_port" "$configpath"
+ 	uci set dhcp.@dnsmasq[0].port="53"
+ 	uci commit dhcp
+-	/etc/init.d/dnsmasq reload
++	/etc/init.d/dnsmasq restart
+ }
+ 
+ use_port53()
+@@ -499,6 +499,11 @@ start_service() {
  	echo "AdGuardHome service enabled"
  	echo "luci enable switch=$enabled"
  	(sleep 10 && [ -z "$(pgrep $binpath)" ] && logger "AdGuardHome" "no process in 10s cancel redirect" && _do_redirect 0 )&
-+	if [[ "`uci get bypass.@global[0].global_server 2>/dev/null`" && "`uci get bypass.@global[0].adguardhome 2>/dev/null`" == 1 && "$(uci get dhcp.@dnsmasq[0].port)" == "53" && -z $done ]]; then
-+	 done=1
++	if [[ "`uci get bypass.@global[0].global_server 2>/dev/null`" && "`uci get bypass.@global[0].adguardhome 2>/dev/null`" == 1 && "$(uci get dhcp.@dnsmasq[0].port)" == "53" ]]; then
 +	 uci -q set AdGuardHome.AdGuardHome.redirect='exchange'
 +	 uci commit AdGuardHome
-+	 /etc/init.d/AdGuardHome restart
-+	else
-+	 return 1
++	 _do_redirect 1
 +	fi
  }
  
  reload_service()
- {
- 	rm /var/run/AdGlucitest >/dev/null 2>&1
- 	echo "AdGuardHome reloading"
-+	stop
- 	start
- }
- 
-@@ -539,11 +550,12 @@ stop_service()
- 	fi
- 	echo "AdGuardHome service disabled"
- 	touch /var/run/AdGserverdis
-+	/etc/init.d/dnsmasq restart
- }
- 
- boot() {
- 	rc_procd boot_service "$@"
--	if eval "type service_started" 2>/dev/null >/dev/null; then
-+	if eval "type service_started" 2>/dev/null; then
- 		service_started
- 	fi
- }
 
 --- a/adguardhome/Makefile
 +++ b/adguardhome/Makefile
