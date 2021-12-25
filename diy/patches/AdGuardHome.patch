@@ -9,16 +9,18 @@
  	done
  	uci delete dhcp.@dnsmasq[0].resolvfile 2>/dev/null
  	uci set dhcp.@dnsmasq[0].noresolv=1
-@@ -186,7 +186,7 @@ rm_port53()
+@@ -186,7 +186,9 @@ rm_port53()
  	config_editor "dns.port" "$dnsmasq_port" "$configpath"
  	uci set dhcp.@dnsmasq[0].port="53"
  	uci commit dhcp
 -	/etc/init.d/dnsmasq reload
++	config_get binpath $CONFIGURATION binpath "/usr/bin/AdGuardHome"
++	killall -9 $binpath
 +	/etc/init.d/dnsmasq restart
  }
  
  use_port53()
-@@ -499,6 +499,11 @@ start_service() {
+@@ -499,6 +501,11 @@ start_service() {
  	echo "AdGuardHome service enabled"
  	echo "luci enable switch=$enabled"
  	(sleep 10 && [ -z "$(pgrep $binpath)" ] && logger "AdGuardHome" "no process in 10s cancel redirect" && _do_redirect 0 )&
