@@ -244,6 +244,7 @@ jobs:
         sed -i 's/+vsftpd$/+vsftpd-alt/' luci-app-vsftpd/Makefile
         sed -i 's/ +luci-ssl-openssl$//' luci-app-nginx-manager/Makefile
         sed -i 's/@TARGET_x86 //' r8152/Makefile
+        sed -i 's/ +uhttpd-mod-ubus//' luci-app-packet-capture/Makefile
         
         sed -i \
           -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
