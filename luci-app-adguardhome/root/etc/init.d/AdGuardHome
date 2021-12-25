@@ -186,6 +186,8 @@ rm_port53()
 	config_editor "dns.port" "$dnsmasq_port" "$configpath"
 	uci set dhcp.@dnsmasq[0].port="53"
 	uci commit dhcp
+	config_get binpath $CONFIGURATION binpath "/usr/bin/AdGuardHome"
+	killall -9 $binpath
 	/etc/init.d/dnsmasq restart
 }
 
