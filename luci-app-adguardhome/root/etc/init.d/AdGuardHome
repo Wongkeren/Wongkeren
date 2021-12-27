@@ -231,6 +231,9 @@ _do_redirect()
 	fi
 	config_get configpath $CONFIGURATION configpath "/etc/AdGuardHome.yaml"
 	AdGuardHome_PORT=$(config_editor "dns.port" "" "$configpath" "1")
+	if [ ! -s "$configpath" ]; then
+		cp -f /usr/share/AdGuardHome/AdGuardHome_template.yaml $configpath
+	fi
 	if [ -z "$AdGuardHome_PORT" ]; then
 		AdGuardHome_PORT="0"
 	fi
