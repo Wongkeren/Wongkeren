@@ -20,7 +20,17 @@
  }
  
  use_port53()
-@@ -499,6 +501,11 @@ start_service() {
+@@ -229,6 +231,9 @@ _do_redirect()
+ 	fi
+ 	config_get configpath $CONFIGURATION configpath "/etc/AdGuardHome.yaml"
+ 	AdGuardHome_PORT=$(config_editor "dns.port" "" "$configpath" "1")
++	if [ ! -s "$configpath" ]; then
++		cp -f /usr/share/AdGuardHome/AdGuardHome_template.yaml $configpath
++	fi
+ 	if [ -z "$AdGuardHome_PORT" ]; then
+ 		AdGuardHome_PORT="0"
+ 	fi
+@@ -499,6 +504,11 @@ start_service() {
  	echo "AdGuardHome service enabled"
  	echo "luci enable switch=$enabled"
  	(sleep 10 && [ -z "$(pgrep $binpath)" ] && logger "AdGuardHome" "no process in 10s cancel redirect" && _do_redirect 0 )&
