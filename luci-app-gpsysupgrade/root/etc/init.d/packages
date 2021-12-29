@@ -19,10 +19,10 @@ while [[ -f $BKOPKG/failed.txt && $c4 -le 4 ]]; do
 		[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
 			sed -i "/^$ipk$/d" $BKOPKG/failed.txt
 			sed -i "\$a $ipk" $BKOPKG/user_installed.opkg
+			if [[ "$ipk" == luci-app-* ]]; then
+				opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+			fi
 		}
-		if [[ "$ipk" == luci-app-* ]]; then
-			opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-		fi
 	done
 	[ -n "$(cat $BKOPKG/failed.txt)" ] || rm -f $BKOPKG/failed.txt
 		let c4++
@@ -37,12 +37,17 @@ function opkginstall() {
 	if [ ! -f /etc/inited ]; then
 		insed="$(cat $BKOPKG/user_installed.opkg)"
 	fi
-	upopkg="$insed $def"
+	upopkg="$insed
+	$def"
+	[ "$(echo "$upopkg" | grep "luci-app-adguardhome")" ] && sed -i -e "/luci-app-adguardhome/d" -e '$a luci-app-adguardhome' $BKOPKG/user_installed.opkg
 	if [ "$upopkg" != " " ]; then
 		for ipk in $upopkg; do
 		while :; do
 			opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
 			[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
+				if [[ "$ipk" == luci-app-* ]]; then
+					opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+				fi
 				break
 			}
 			[ $c2 -eq 3 ] && {
@@ -53,9 +58,6 @@ function opkginstall() {
 			sleep 1
 			rm -f /var/lock/opkg.lock
 			done
-			if [[ "$ipk" == luci-app-* ]]; then
-				opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-			fi
 		done
 		rm -f /etc/config/*-opkg
 	fi
