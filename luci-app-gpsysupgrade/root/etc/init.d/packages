@@ -12,6 +12,55 @@ if [ ! -f "$BKOPKG/user_installed.opkg" ]; then
 	touch /etc/inited
 fi
 
+function failedinstall() {
+while [[ -f $BKOPKG/failed.txt && $c4 -le 4 ]]; do
+	for ipk in $(cat $BKOPKG/failed.txt); do
+		opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+		[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
+			sed -i "/^$ipk$/d" $BKOPKG/failed.txt
+			sed -i "\$a $ipk" $BKOPKG/user_installed.opkg
+		}
+		if [[ "$ipk" == luci-app-* ]]; then
+			opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+		fi
+	done
+	[ -n "$(cat $BKOPKG/failed.txt)" ] || rm -f $BKOPKG/failed.txt
+		let c4++
+		sleep 1
+		rm -f /var/lock/opkg.lock
+	done
+	
+}
+
+function opkginstall() {
+	def="$(opkg list-upgradable | cut -f 1 -d ' ' | grep -vE 'opkg|luci-lib-fs|firewall|base-files|luci-base|busybox|^?nginx($|-)|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system')"
+	if [ ! -f /etc/inited ]; then
+		insed="$(cat $BKOPKG/user_installed.opkg)"
+	fi
+	upopkg="$insed $def"
+	if [ "$upopkg" != " " ]; then
+		for ipk in $upopkg; do
+		while :; do
+			opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+			[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
+				break
+			}
+			[ $c2 -eq 3 ] && {
+				echo $ipk >> $BKOPKG/failed.txt
+				sed -i "/^$ipk$/d" $BKOPKG/user_installed.opkg
+					break
+				} || let c2++
+			sleep 1
+			rm -f /var/lock/opkg.lock
+			done
+			if [[ "$ipk" == luci-app-* ]]; then
+				opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
+			fi
+		done
+		rm -f /etc/config/*-opkg
+	fi
+}
+
 function opkgupgrade() {
 mkdir -p $BKOPKG
 if [ ! -f /etc/inited ]; then
@@ -32,50 +81,12 @@ fi
 		sleep 5
 	done
 			while :; do
-			opkg update | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1
+				opkg update | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1
 				if [ "$?" == "0" ]; then
-					def="$(opkg list-upgradable | cut -f 1 -d ' ' | grep -vE 'opkg|luci-lib-fs|firewall|base-files|luci-base|busybox|^?nginx($|-)|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system')"
-					if [ ! -f /etc/inited ]; then
-						insed="$(cat $BKOPKG/user_installed.opkg)"
-					fi
-					upopkg="$insed $def"
-					if [ "$upopkg" != " " ]; then
-							for ipk in $upopkg; do
-								while :; do
-									opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-									[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
-										break
-									}
-									[ $c2 -eq 3 ] && {
-										echo $ipk >> $BKOPKG/failed.txt
-										sed -i "/^$ipk$/d" $BKOPKG/user_installed.opkg
-										break
-									} || let c2++
-									sleep 1
-									rm -f /var/lock/opkg.lock
-								done
-								if [[ $ipk == luci-app-* ]]; then
-									opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-								fi
-							done
-							rm -f /etc/config/*-opkg
-					fi
-					while [[ -f $BKOPKG/failed.txt && -f /etc/inited && $c4 -le 5 ]]; do
-						for ipk in $(cat $BKOPKG/failed.txt); do
-							opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-							[[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $ipk)" ]] && {
-								sed -i "/^$ipk$/d" $BKOPKG/failed.txt
-								[ -n "$(cat $BKOPKG/failed.txt)" ] || rm -f $BKOPKG/failed.txt
-							}
-						done
-						let c4++
-						sleep 1
-						rm -f /var/lock/opkg.lock
-					done
-					if [[ $ipk == luci-app-* ]]; then
-						opkg install --force-overwrite --force-checksum luci-i18n-"$(echo $ipk | cut -d - -f 3-)"-zh-cn 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
-					fi
-					mv $BKOPKG/failed.txt $BKOPKG/failed_.txt >/dev/null 2>&1
+					failedinstall
+					mv -f $BKOPKG/failed.txt $BKOPKG/failed_.txt >/dev/null 2>&1
+					opkginstall
+					failedinstall
 					touch /etc/inited
 					rm -f /var/lock/opkg.lock
 					break
