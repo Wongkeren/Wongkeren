@@ -123,13 +123,11 @@ jobs:
         git clone https://github.com/QiuSimons/openwrt-mos && mvdir openwrt-mos
         git clone https://github.com/sundaqiang/openwrt-packages && mv -n openwrt-packages/luci-* ./; rm -rf openwrt-packages
         ) &
-        svn export https://github.com/coolsnowwolf/lede/trunk/package/lean ledelean &
         (
         svn export https://github.com/Lienol/openwrt-package/branches/other/lean/luci-app-autoreboot
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns/trunk/tencentcloud_ddns luci-app-tencentddns
         svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-cos/trunk/tencentcloud_cos luci-app-tencentcloud-cos
-        svn export https://github.com/coolsnowwolf/lede/trunk/package/network/services/shellsync
         svn export https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd
         svn export https://github.com/coolsnowwolf/packages/trunk/net/mwan3
         svn export https://github.com/x-wrt/packages/trunk/net/nft-qos
@@ -144,7 +142,6 @@ jobs:
         svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt aliyundrive && mvdir aliyundrive
         svn export https://github.com/linkease/istore/trunk/luci/luci-app-store
         svn export https://github.com/linkease/istore-ui/trunk/app-store-ui
-        svn export https://github.com/coolsnowwolf/lede/trunk/package/network/utils/dpdk
         svn export https://github.com/linkease/nas-packages/trunk/network/services && mvdir services
         svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
         ) &
@@ -161,14 +158,17 @@ jobs:
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
         ) &
-        
+        (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol net/nps net/verysync \
         net/sub-web net/smartdns net/dnsproxy \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav net/uugamebooster \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
         utils/cpulimit utils/filebrowser multimedia/gmediarender multimedia/UnblockNeteaseMusic-Go
+        ) &
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
+        
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync package/network/utils/dpdk
 
         for ipk in $(ls applications); do
         	if [[ $(ls -l applications/$ipk/po | wc -l) -gt 3 ]]; then
@@ -181,7 +181,7 @@ jobs:
         shopt -s extglob
         mv -n openwrt-passwall/* ./ ; rm -Rf openwrt-passwall
         mv -n applications/!(luci-app-turboacc|luci-app-vlmcsd) ./ ; rm -Rf applications
-        mv -n ledelean/* ./ ; rm -Rf ledelean
+        mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
