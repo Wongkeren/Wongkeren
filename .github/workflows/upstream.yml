@@ -152,6 +152,7 @@ jobs:
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages" \
         net/openvpn utils/cgroupfs-mount net/xray-core
         git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
+        git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" softethervpn5 homeredirect luci-app-homeredirect luci-app-homeconnect luci-app-beamInDocker
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/immortalwrt/immortalwrt" "immwrt" package/kernel/mt7601u-ap \
@@ -227,7 +228,7 @@ jobs:
         done
         touch /tmp/ok
         ) &
-        (
+
         bash diy/create_acl_for_luci.sh -a >/dev/null 2>&1 || true
         bash diy/convert_translation.sh -a >/dev/null 2>&1 || true
         
@@ -252,7 +253,6 @@ jobs:
           -e 's?\.\./\.\./luci.mk?$(TOPDIR)/feeds/luci/luci.mk?' \
           -e 's/ca-certificates/ca-bundle/' \
           */Makefile
-        ) &
         
         for pkg in $(find -maxdepth 1 -type d -name "luci-*" ! -name "luci-app-dockerman" ! -name "luci-app-frpc" ! -name "luci-app-frps"); do
           if [ "$(grep "luci.mk" $pkg/Makefile)" ]; then
