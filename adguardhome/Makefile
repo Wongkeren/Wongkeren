@@ -6,11 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=adguardhome
-PKG_VERSION:=0.107.2
-PKG_RELEASE:=21
+PKG_VERSION:=0.108.0-b.1
+PKG_RELEASE:=22
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=d50fd0ba91e6457ab9d0dd5dc1039191e57e173a
+PKG_SOURCE_VERSION:=e9c59b098e1c432b7612bedae55a26feb047e23a
 PKG_SOURCE_URL:=https://github.com/AdguardTeam/AdGuardHome
 PKG_MIRROR_HASH:=skip
 
@@ -75,14 +75,14 @@ define Build/Compile
 	)
 endef
 
-#define Package/adguardhome/install
-#	$(call GoPackage/Package/Install/Bin,$(1))
-#	$(INSTALL_DIR) $(1)/etc/init.d
-#	$(INSTALL_BIN) ./files/adguardhome.init $(1)/etc/init.d/adguardhome
-#
-#	$(INSTALL_DIR) $(1)/etc/config
-#	$(INSTALL_DATA) ./files/adguardhome.config $(1)/etc/config/adguardhome
-#endef
+define Package/adguardhome/install
+	$(call GoPackage/Package/Install/Bin,$(1))
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/adguardhome.init $(1)/etc/init.d/adguardhome
+
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/adguardhome.config $(1)/etc/config/adguardhome
+endef
 
 $(eval $(call GoBinPackage,adguardhome))
 $(eval $(call BuildPackage,adguardhome))
