@@ -6,7 +6,7 @@
  		sed -i 's/WebUI\\Port=[0-9]*/WebUI\\Port='"$port"'/g' "$2/qBittorrent/config/qBittorrent.conf"
 -		sed -i 's,^\(\s*/Downloads\\SavePath\s*=\s*\).*\$,\1'"$download_dir,"'' "$2/qBittorrent/config/qBittorrent.conf"
 -		echo "Downloads\SavePath=$download_dir" >> "$2/qBittorrent/config/qBittorrent.conf"
-+		sed -i "/Downloads\\\SavePath/c\Downloads\\\SavePath=$download_dir" "/etc/qBittorrent/config/qBittorrent.conf"
++		sed -i "/Downloads\\\SavePath/c\Downloads\\\SavePath=$download_dir" "$2/qBittorrent/config/qBittorrent.conf"
  	else
  		cat >"$2/qBittorrent/config/qBittorrent.conf"<<EOF
  [AutoRun]
