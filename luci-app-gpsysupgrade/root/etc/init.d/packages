@@ -33,7 +33,7 @@ while [[ -f $BKOPKG/failed.txt && $c4 -le 4 ]]; do
 }
 
 function opkginstall() {
-	def="$(opkg list-upgradable | cut -f 1 -d ' ' | grep -vE 'opkg|luci-lib-fs|firewall|base-files|luci-base|busybox|^?nginx($|-)|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system')"
+	def="$(opkg list-upgradable | cut -f 1 -d ' ' | grep -vE 'opkg|kmod-|luci-lib-fs|firewall|base-files|luci-base|busybox|^?nginx($|-)|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system')"
 	if [ ! -f /etc/inited ]; then
 		insed="$(cat $BKOPKG/user_installed.opkg)"
 	fi
