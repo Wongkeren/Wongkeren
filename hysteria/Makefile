@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hysteria
 PKG_VERSION:=0.9.2
-PKG_RELEASE:=13
+PKG_RELEASE:=14
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/HyNetwork/hysteria/tar.gz/v$(PKG_VERSION)?
@@ -55,7 +55,7 @@ config HYSTERIA_COMPRESS_GOPROXY
 config HYSTERIA_COMPRESS_UPX
 	bool "Compress executable files with UPX"
 	depends on !mips64
-	default y	
+	default n	
 endef
 
 ifeq ($(CONFIG_HYSTERIA_COMPRESS_GOPROXY),y)
