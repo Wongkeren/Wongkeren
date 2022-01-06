@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ntfs3-mount
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -22,7 +22,7 @@ endef
 
 define Package/ntfs3-mount/install
 	$(INSTALL_DIR) $(1)/sbin
-	$(INSTALL_BIN) ./files/mount.ntfs3 $(1)/sbin
+	$(INSTALL_BIN) ./files/mount.ntfs $(1)/sbin
 endef
 
 $(eval $(call BuildPackage,ntfs3-mount))
