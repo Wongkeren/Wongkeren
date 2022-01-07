@@ -12,6 +12,7 @@ LUCI_PKGARCH:=all
 PKG_NAME:=luci-app-qbittorrent
 
 define Package/luci-app-qbittorrent/conffiles
+/etc/config/qbittorrent
 /etc/qBittorrent/
 endef
 
