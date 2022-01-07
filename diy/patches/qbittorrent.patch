@@ -24,6 +24,17 @@
  
  $(eval $(call BuildPackage,qbittorrent))
 
+--- a/luci-app-qbittorrent/Makefile
++++ b/luci-app-qbittorrent/Makefile
+@@ -12,6 +12,7 @@ LUCI_PKGARCH:=all
+ PKG_NAME:=luci-app-qbittorrent
+ 
+ define Package/luci-app-qbittorrent/conffiles
++/etc/config/qbittorrent
+ /etc/qBittorrent/
+ endef
+ 
+
 --- /dev/null
 +++ b/qBittorrent/files/ipfilter.dat
 @@ -0,0 +1,293 @@
