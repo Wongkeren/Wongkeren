@@ -66,7 +66,7 @@ function opkginstall() {
 function opkgupgrade() {
 mkdir -p $BKOPKG
 if [ ! -f /etc/inited ]; then
-	[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" ] && {
+	[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 ] && {
 		uci -q del dhcp.@dnsmasq[0].noresolv
 		uci commit dhcp
 		/etc/init.d/dnsmasq reload
