@@ -181,7 +181,7 @@ jobs:
       run: |
         shopt -s extglob
         mv -n openwrt-passwall/* ./ ; rm -Rf openwrt-passwall
-        mv -n applications/!(luci-app-turboacc|luci-app-vlmcsd) ./ ; rm -Rf applications
+        mv -n applications/!(luci-app-turboacc|luci-app-vlmcsd|luci-app-uugamebooster) ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
