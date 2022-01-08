@@ -98,9 +98,7 @@ fi
 
 start() {
 (
-	if [[ ! -f /etc/inited || -f $BKOPKG/failed.txt ]]; then
-		opkgupgrade || true
-	elif [[ -f /etc/inited && "$(uci -q get wizard.default.autoupgrade_pkg)" != '0' ]]; then
+	if [[ ! -f /etc/inited || -f $BKOPKG/failed.txt || "$(uci -q get wizard.default.autoupgrade_pkg)" != '0' ]]; then
 		opkgupgrade || true
 	fi
 	rm -f /var/lock/opkg.lock
@@ -123,5 +121,6 @@ killall -9 $(ps -w | grep /etc/init.d/packages | grep -v grep | awk '{print$1}')
 
 restart() {
 stop
+rm -f /etc/inited
 start
 }
