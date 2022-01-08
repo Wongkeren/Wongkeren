@@ -1,18 +1,16 @@
-#!/bin/sh
+#!/bin/sh /etc/rc.common
 
 START=99
 
-LOCK=/var/lock/opkgupgrade.lock
 BKOPKG="/etc/backup"
-# 防止重复启动
-[ -f $LOCK ] && exit 1
-touch $LOCK
+
+sed -i "s/ttyS0::respawn/ttyS0::askfirst/g" /etc/inittab
 
 if [ ! -f "$BKOPKG/user_installed.opkg" ]; then
 	touch /etc/inited
 fi
 
-function failedinstall() {
+failedinstall() {
 while [[ -f $BKOPKG/failed.txt && $c4 -le 4 ]]; do
 	for ipk in $(cat $BKOPKG/failed.txt); do
 		opkg install --force-overwrite --force-checksum --force-depends $ipk 2>&1 | sed -e "s/^/$(date +%Y-%m-%d" "%H:%M:%S) /" >>/tmp/opkgupdate.log 2>&1 || true
@@ -32,7 +30,7 @@ while [[ -f $BKOPKG/failed.txt && $c4 -le 4 ]]; do
 	
 }
 
-function opkginstall() {
+opkginstall() {
 	def="$(opkg list-upgradable | cut -f 1 -d ' ' | grep -vE 'opkg|kmod-|luci-lib-fs|firewall|base-files|luci-base|busybox|^?nginx($|-)|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system')"
 	if [ ! -f /etc/inited ]; then
 		insed="$(cat $BKOPKG/user_installed.opkg)"
@@ -63,7 +61,7 @@ function opkginstall() {
 	fi
 }
 
-function opkgupgrade() {
+opkgupgrade() {
 mkdir -p $BKOPKG
 if [ ! -f /etc/inited ]; then
 	[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 ] && {
@@ -97,6 +95,8 @@ fi
 			done
 			rm -f /var/lock/opkg.lock
 }
+
+start() {
 (
 	if [[ ! -f /etc/inited || -f $BKOPKG/failed.txt ]]; then
 		opkgupgrade || true
@@ -115,3 +115,13 @@ fi
 
 rm -f $LOCK
 ) &
+}
+
+stop() {
+killall -9 $(ps -w | grep /etc/init.d/packages | grep -v grep | awk '{print$1}') 2>/dev/null
+}
+
+restart() {
+stop
+start
+}
