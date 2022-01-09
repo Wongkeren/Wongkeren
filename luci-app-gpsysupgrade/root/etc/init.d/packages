@@ -37,7 +37,10 @@ opkginstall() {
 	fi
 	upopkg="$insed
 	$def"
-	[ "$(echo "$upopkg" | grep "luci-app-adguardhome")" ] && sed -i -e "/luci-app-adguardhome/d" -e '$a luci-app-adguardhome' $BKOPKG/user_installed.opkg
+	[ "$(echo "$upopkg" | grep "luci-app-adguardhome")" ] && {
+		sed -i "/luci-app-adguardhome/d" /etc/backup/user_installed.opkg
+		sed -i '$a luci-app-adguardhome' /etc/backup/user_installed.opkg
+	}
 	if [ "$upopkg" != " " ]; then
 		for ipk in $upopkg; do
 		while :; do
