@@ -20,8 +20,7 @@ PKG_CONFIG_DEPENDS:= \
 	
 LUCI_TITLE:=LuCI support for Flow Offload / Shortcut-FE
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+pdnsd-alt \
-	+PACKAGE_$(PKG_NAME)_INCLUDE_BBR_CCA:kmod-tcp-bbr \
+LUCI_DEPENDS:=+PACKAGE_$(PKG_NAME)_INCLUDE_BBR_CCA:kmod-tcp-bbr \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_DNSFORWARDER:dnsforwarder \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_DNSPROXY:dnsproxy \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_OFFLOADING:kmod-ipt-offload \
@@ -31,7 +30,6 @@ LUCI_DEPENDS:=+pdnsd-alt \
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_OFFLOADING
 	bool "Include Flow Offload"
-	depends on (PACKAGE_$(PKG_NAME)_INCLUDE_SHORTCUT_FE=n && PACKAGE_$(PKG_NAME)_INCLUDE_SHORTCUT_FE_DRV=n)
 	default y if i386||x86_64||TARGET_ramips
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_SHORTCUT_FE_DRV
