@@ -24,7 +24,7 @@ um.template="cbi/oaf_dvalue"
 local fullcone=SYS.exec("uci get firewall.@defaults[0].fullcone");
 local bbr=SYS.exec("uci get flowoffload.@flow[0].bbr");
 local flow_offloading=SYS.exec("uci get flowoffload.@flow[0].flow_offloading");
-if string.match(fullcone, "1")  or string.match(bbr, "1") or string.match(flow_offloading, "1") then
+if string.match(flow_offloading, "1") then
     um.value="运行环境检测失败，请先关闭ACC加速模块!"
 end
 s.anonymous = true
