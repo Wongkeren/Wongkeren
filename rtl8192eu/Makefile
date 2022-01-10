@@ -1,18 +1,15 @@
+# SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2021 ImmortalWrt
-#
-# This is free software, licensed under the GNU General Public License v3.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2021 ImmortalWrt.org
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtl8192eu
-PKG_RELEASE:=10
+PKG_RELEASE:=11
 
 PKG_SOURCE_URL:=https://github.com/Mange/rtl8192eu-linux-driver.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2021-05-12
+PKG_SOURCE_DATE:=2021-10-23
 PKG_SOURCE_VERSION:=744bbe52976e51895fce2c1d4075f97a98dca2b2
 PKG_MIRROR_HASH:=skip
 
