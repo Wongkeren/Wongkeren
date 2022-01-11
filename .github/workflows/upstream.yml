@@ -235,7 +235,7 @@ jobs:
           if [ "$(grep "luci.mk" $pkg/Makefile)" ]; then
             sed -i '/\(PKG_VERSION\|PKG_RELEASE\):=/d' $pkg/Makefile
           fi
-          grep -q '"nas",' $pkg/usr/lib/lua/luci/controller/*.lua && ! grep -q '_("NAS")' $pkg/usr/lib/lua/luci/controller/*.lua &&
+          grep -q '"nas",' $pkg/luasrc/controller/*.lua && ! grep -q '_("NAS")' $pkg/luasrc/controller/*.lua &&
             sed -i 's/index()/index()\n\tentry({"admin", "nas"}, firstchild(), _("NAS") , 45).dependent = false/' $pkg/luasrc/controller/*.lua
         done
         (
