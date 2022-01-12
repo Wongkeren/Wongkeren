@@ -44,7 +44,7 @@ end
 s = m:section(SimpleSection, translate("NGINX配置"),translate("本页是配置/etc/config/nginx, 应用保存后自动重启生效."))
 s.anonymous=true
 if nixio.fs.access("/etc/config/nginx")then
-conf=s:option(Value,"nginxconf",nil,translate("开头的数字符号（＃）。"))
+conf=s:option(Value,"nginxconf",nil,translate("开头的数字符号（＃）被视为注释。"))
 conf.template="cbi/tvalue"
 conf.rows=20
 conf.wrap="off"
