@@ -40,27 +40,4 @@ end
 function file.write(self, section, value)
 	sync_value_to_file(value, self.map:get(section, "filepath"))
 end
-
-s = m:section(SimpleSection, translate("NGINX配置"),translate("本页是配置/etc/config/nginx, 应用保存后自动重启生效."))
-s.anonymous=true
-if nixio.fs.access("/etc/config/nginx")then
-conf=s:option(Value,"nginxconf",nil,translate("开头的数字符号（＃）被视为注释。"))
-conf.template="cbi/tvalue"
-conf.rows=20
-conf.wrap="off"
-conf.cfgvalue=function(t,t)
-return fs.readfile("/etc/config/nginx")or""
-end
-conf.write=function(a,a,t)
-if t then
-t=t:gsub("\r\n?","\n")
-fs.writefile("/tmp/nginx",t)
-if(luci.sys.call("cmp -s /tmp/nginx /etc/config/nginx")==1)then
-fs.writefile("/etc/config/nginx",t)
-luci.sys.call("/etc/init.d/nginx restart >/dev/null")
-end
-fs.remove("/tmp/nginx")
-end
-end
-end
 return m
