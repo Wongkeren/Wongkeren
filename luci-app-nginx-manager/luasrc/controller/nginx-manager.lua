@@ -14,6 +14,8 @@ function index()
     end
     nixio.fs.writefile("/etc/config/nginx-manager", "")
     x = luci.model.uci.cursor()
+    x:set("nginx-manager", "config", "nginx")
+    x:set("nginx-manager", "config", "name", "config")
     x:set("nginx-manager", "main", "nginx")
     x:set("nginx-manager", "main", "name", "main")
     x:set("nginx-manager", "main", "filepath", "/etc/nginx/nginx.conf")
