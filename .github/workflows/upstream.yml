@@ -261,7 +261,6 @@ jobs:
         sed -i 's/+libcap /+libcap +libcap-bin /' luci-app-openclash/Makefile
         sed -i 's/\(+luci-compat\)/\1 +luci-theme-argon/' luci-app-argon-config/Makefile
         sed -i 's/+vsftpd$/+vsftpd-alt/' luci-app-vsftpd/Makefile
-        sed -i 's/ +luci-ssl-openssl$//' luci-app-nginx-manager/Makefile
         sed -i 's/@TARGET_x86 //' r8152/Makefile
         sed -i 's/ +uhttpd-mod-ubus//' luci-app-packet-capture/Makefile
         
