@@ -41,10 +41,3 @@
  		<fieldset class="cbi-section-node<% if self.tabs then %> cbi-section-node-tabbed<% end %>" id="cbi-<%=self.config%>-<%=section%>" style="border-bottom: 1px solid #ddd;border-radius: 0px">
  			<%+cbi/ucisection%>
  		</fieldset>
-@@ -62,4 +59,4 @@
-         tb.disabled = false;
-     });
- }
--</script>
-\ No newline at end of file
-+</script>
