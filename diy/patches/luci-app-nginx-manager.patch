@@ -1,0 +1,50 @@
+--- a/luci-app-nginx-manager/luasrc/model/cbi/nginx-manager.lua
++++ b/luci-app-nginx-manager/luasrc/model/cbi/nginx-manager.lua
+@@ -40,4 +40,27 @@ end
+ function file.write(self, section, value)
+ 	sync_value_to_file(value, self.map:get(section, "filepath"))
+ end
++
++s = m:section(SimpleSection, translate("NGINX配置"),translate("本页是配置/etc/config/nginx, 应用保存后自动重启生效."))
++s.anonymous=true
++if nixio.fs.access("/etc/config/nginx")then
++conf=s:option(Value,"nginxconf",nil,translate("开头的数字符号（＃）。"))
++conf.template="cbi/tvalue"
++conf.rows=20
++conf.wrap="off"
++conf.cfgvalue=function(t,t)
++return fs.readfile("/etc/config/nginx")or""
++end
++conf.write=function(a,a,t)
++if t then
++t=t:gsub("\r\n?","\n")
++fs.writefile("/tmp/nginx",t)
++if(luci.sys.call("cmp -s /tmp/nginx /etc/config/nginx")==1)then
++fs.writefile("/etc/config/nginx",t)
++luci.sys.call("/etc/init.d/nginx restart >/dev/null")
++end
++fs.remove("/tmp/nginx")
++end
++end
++end
+ return m
+
+--- a/luci-app-nginx-manager/luasrc/view/nginx-manager/index.htm
++++ b/luci-app-nginx-manager/luasrc/view/nginx-manager/index.htm
+@@ -24,9 +24,6 @@
+ 				<input type="submit" name="cbi.rts.<%=self.config%>.<%=k%>" onclick="this.form.cbi_state='del-section'; return true" value="<%:Delete%>" class="cbi-button" />
+ 			</div>
+ 		<%- end %>
+-
+-		<%+cbi/tabmenu%>
+-
+ 		<fieldset class="cbi-section-node<% if self.tabs then %> cbi-section-node-tabbed<% end %>" id="cbi-<%=self.config%>-<%=section%>" style="border-bottom: 1px solid #ddd;border-radius: 0px">
+ 			<%+cbi/ucisection%>
+ 		</fieldset>
+@@ -62,4 +59,4 @@
+         tb.disabled = false;
+     });
+ }
+-</script>
+\ No newline at end of file
++</script>
