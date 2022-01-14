@@ -1,5 +1,5 @@
 OPKG_CONF="auto"
-OPKG_AU="$(opkg export AU)"
+OPKG_AU="$(opkg export au)"
 if [ "$(uci -q get wizard.default.autoupgrade_pkg)" != '0' ] \
 && lock -n /var/lock/opkg-upgrade && [ -s "${OPKG_AU}" ]
 c1=0;c2=0
