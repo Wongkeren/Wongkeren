@@ -21,6 +21,22 @@ set opkg.defaults.export='ai'
 set opkg.defaults.proc='--force-overwrite --force-checksum --force-depends'
 set opkg.defaults.reinstall='--force-reinstall --force-overwrite --force-checksum --force-depends'
 set opkg.defaults.newconf='/etc'
+
+set opkg.ignore="opkg"
+add_list opkg.ignore.ipkg="opkg"
+add_list opkg.ignore.ipkg="kmod-"
+add_list opkg.ignore.ipkg="luci-lib-fs"
+add_list opkg.ignore.ipkg="firewall"
+add_list opkg.ignore.ipkg="base-files"
+add_list opkg.ignore.ipkg="luci-base"
+add_list opkg.ignore.ipkg="busybox"
+add_list opkg.ignore.ipkg="nginx"
+add_list opkg.ignore.ipkg="dnsmasq-full"
+add_list opkg.ignore.ipkg="coremark"
+add_list opkg.ignore.ipkg="miniupnpd"
+add_list opkg.ignore.ipkg="luci-mod-network"
+add_list opkg.ignore.ipkg="luci-mod-status"
+add_list opkg.ignore.ipkg="luci-mod-system"
 EOI
 }
 
@@ -108,10 +124,12 @@ esac | opkg proc upgrade
 
 opkg_upgr_type() {
 local OPKG_AI="$(grep -vE 'opkg|kmod-|luci-lib-fs|firewall|base-files|luci-base|busybox|nginx|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system' "$(opkg export ai)")"
+local OPKG_AI="$(opkg export ai)"
 local OPKG_OI="$(opkg export oi)"
 local OPKG_AU="$(opkg export au)"
+local OPKG_IG="$(opkg export ig)"
 case "${OPKG_OPT::1}" in
-(a) grep -x -f "${OPKG_AI}" "${OPKG_AU}" ;;
+(a) grep -v -f "${OPKG_IG}" "${OPKG_AU}" | grep -x -f "${OPKG_AI}" ;;
 (o) grep -x -f "${OPKG_OI}" "${OPKG_AU}" ;;
 esac
 rm -f "${OPKG_AI}" "${OPKG_OI}" "${OPKG_AU}"
@@ -124,7 +142,7 @@ case "${OPKG_OPT}" in
 (ai|au) opkg_"${OPKG_CMD}"_cmd ;;
 (ri|wr|wi|or|oi) opkg_"${OPKG_CMD}"_type ;;
 (ur|ui) opkg_"${OPKG_CMD}"_run ;;
-(pr|pi) opkg_"${OPKG_CMD}"_uci ;;
+(pr|pi|ig) opkg_"${OPKG_CMD}"_uci ;;
 esac > "${OPKG_TEMP}"
 echo "${OPKG_TEMP}"
 }
@@ -171,6 +189,7 @@ local OPKG_TYPE
 case "${OPKG_OPT:1}" in
 (r) OPKG_TYPE="rpkg" ;;
 (i) OPKG_TYPE="ipkg" ;;
+(g) OPKG_TYPE="ipkg"; OPKG_CONF="ignore" ;;
 esac
 uci -q get opkg."${OPKG_CONF}"."${OPKG_TYPE}" \
 | sed -e "s/\s/\n/g"
