@@ -1,0 +1,13 @@
+OPKG_CONF="auto"
+for OPKG_CONF in ${OPKG_CONF}
+do if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
+&& lock -n /var/lock/opkg-restore \
+&& opkg update
+then . /etc/profile.d/opkg.sh
+opkg restore "${OPKG_CONF}" 2>&1 \
+| logger -t opkg
+touch /etc/opkg-restore-"${OPKG_CONF}"
+lock -u /var/lock/opkg-restore
+break
+fi
+done
