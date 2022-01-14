@@ -6,8 +6,12 @@ c1=0;c2=0
 while ! curl --retry 3 -m 5 https://op.supes.top >/dev/null;do
 [[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c1 == 0 ]] && {
 		uci -q del dhcp.@dnsmasq[0].noresolv
-		uci -q del dhcp.@dnsmasq[0].server
 		uci commit dhcp
+		uci -q get network.lan.dns || {
+			uci -q set network.lan.dns='223.5.5.5'
+			uci commit network
+			/etc/init.d/network reload
+			}
 		/etc/init.d/dnsmasq reload
 }
 echo "无法连接仓库服务器,请检查网络." | logger -t opkg
