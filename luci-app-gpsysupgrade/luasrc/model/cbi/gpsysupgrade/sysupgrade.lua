@@ -123,15 +123,14 @@ function to_flash(file,retain)
     if not file or file == "" or not fs.access(file) then
         return {code = 1, error = i18n.translate("Firmware file is required.")}
     end
+sys.call("uci -q del opkg.auto;uci commit opkg")
 if not retain or retain == "" then
 	local result = api.exec("/sbin/sysupgrade", {file}, nil, api.command_timeout) == 0
 else
 	if retain:match(".*-q .*") then
-		luci.sys.exec(". /etc/profile.d/opkg.sh;opkg save")
-	else
-		luci.sys.exec("uci -q del opkg.auto;uci commit opkg")
+		sys.call(". /etc/profile.d/opkg.sh;opkg save;")
 	end
-	sys.exec("/sbin/sysupgrade " ..retain.. " " ..file.. "")
+	sys.call("/sbin/sysupgrade " ..retain.. " " ..file.. "")
 end
 
     return {code = 0}

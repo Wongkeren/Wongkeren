@@ -1,31 +1,28 @@
+. /etc/profile.d/opkg.sh
 OPKG_CONF="auto"
-OPKG_UI="$(opkg export ui)"
+OPKG_PI="$(opkg export pi)"
 if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
-&& lock -n /var/lock/opkg-restore && [ -s "${OPKG_UI}" ]; then
-c1=0;c2=0
-while ! curl --retry 3 -m 5 https://op.supes.top >/dev/null;do
-[[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c1 == 0 ]] && {
-		uci -q del dhcp.@dnsmasq[0].noresolv
-		uci commit dhcp
-		uci -q get network.lan.dns || {
-			uci -q set network.lan.dns='223.5.5.5'
-			uci commit network
-			/etc/init.d/network reload
-			}
-		/etc/init.d/dnsmasq reload
+&& lock -n /var/lock/opkg-restore && [ -s "${OPKG_PI}" ]; then
+c=0
+while ! curl https://op.supes.top >/dev/null; do
+while ! opkg update >/dev/null; do
+echo "Network error." | logger -t opkg
+[[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c == 0 ]] && {
+	uci -q del dhcp.@dnsmasq[0].noresolv
+	uci commit dhcp
+	uci -q get network.lan.dns || {
+		uci -q set network.lan.dns='223.5.5.5'
+		uci commit network
+		/etc/init.d/network reload
+		}
+	/etc/init.d/dnsmasq reload
 }
-echo "无法连接仓库服务器,请检查网络." | logger -t opkg
-[ $c1 -eq 200 ] && lock -u /var/lock/opkg-restore;exit 0 || let c1++
+[ $c -eq 200 ] && lock -u /var/lock/opkg-restore;exit 0 || let c++
 sleep 3
 done
-while ! opkg update; do
-[ $c2 -eq 10 ] && lock -u /var/lock/opkg-restore;exit 0 || let c2++
-sleep 1
 done
-. /etc/profile.d/opkg.sh
 opkg restore "${OPKG_CONF}" 2>&1 \
 | logger -t opkg
 touch /etc/opkg-restore-"${OPKG_CONF}"
-lock -u /var/lock/opkg-restore
 fi
-
+lock -u /var/lock/opkg-restore
