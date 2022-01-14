@@ -21,23 +21,9 @@ set opkg.defaults.export='ai'
 set opkg.defaults.proc='--force-overwrite --force-checksum --force-depends'
 set opkg.defaults.reinstall='--force-reinstall --force-overwrite --force-checksum --force-depends'
 set opkg.defaults.newconf='/etc'
-
-set opkg.ignore="opkg"
-add_list opkg.ignore.ipkg="opkg"
-add_list opkg.ignore.ipkg="kmod-"
-add_list opkg.ignore.ipkg="luci-lib-fs"
-add_list opkg.ignore.ipkg="firewall"
-add_list opkg.ignore.ipkg="base-files"
-add_list opkg.ignore.ipkg="luci-base"
-add_list opkg.ignore.ipkg="busybox"
-add_list opkg.ignore.ipkg="nginx"
-add_list opkg.ignore.ipkg="dnsmasq-full"
-add_list opkg.ignore.ipkg="coremark"
-add_list opkg.ignore.ipkg="miniupnpd"
-add_list opkg.ignore.ipkg="luci-mod-network"
-add_list opkg.ignore.ipkg="luci-mod-status"
-add_list opkg.ignore.ipkg="luci-mod-system"
 EOI
+echo "opkg kmod luci-lib-fs firewall base-files luci-base busybox nginx dnsmasq-full coremark miniupnpd luci-mod-network luci-mod-status luci-mod-system " \
+| sed -e "s/\s/ ipkg\n/g" | opkg uci ignore
 }
 
 opkg_uci() {
@@ -149,8 +135,8 @@ opkg_export_cmd() {
 local OPKG_TYPE
 local OPKG_IG="$(opkg export ig)"
 case "${OPKG_OPT:1}" in
-(i) OPKG_TYPE="installed";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" | grep -v -f "${OPKG_IG}" ;;
-(u) OPKG_TYPE="upgradable";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" ;;
+(i) OPKG_TYPE="installed";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" ;;
+(u) OPKG_TYPE="upgradable";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" | grep -v -f "${OPKG_IG}" ;;
 esac
 }
 

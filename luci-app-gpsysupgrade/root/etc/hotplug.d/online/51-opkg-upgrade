@@ -1,7 +1,7 @@
 OPKG_CONF="auto"
 OPKG_AU="$(opkg export au)"
 if [ "$(uci -q get wizard.default.autoupgrade_pkg)" != '0' ] \
-&& lock -n /var/lock/opkg-upgrade && [ -s "${OPKG_AU}" ]
+&& lock -n /var/lock/opkg-upgrade && [ -s "${OPKG_AU}" ]; then
 c1=0;c2=0
 while ! curl --retry 3 -m 5 https://op.supes.top >/dev/null;do
 echo "无法连接仓库服务器,请检查网络." | logger -t opkg
@@ -12,7 +12,7 @@ while ! opkg update; do
 [ $c2 -eq 10 ] && lock -u /var/lock/opkg-upgrade;exit 0 || let c2++
 sleep 1
 done
-then . /etc/profile.d/opkg.sh
+. /etc/profile.d/opkg.sh
 opkg upgr 2>&1 \
 | logger -t opkg
 lock -u /var/lock/opkg-upgrade

@@ -1,7 +1,7 @@
 OPKG_CONF="auto"
 OPKG_UI="$(opkg export ui)"
 if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
-&& lock -n /var/lock/opkg-restore && [ -s "${OPKG_UI}" ]
+&& lock -n /var/lock/opkg-restore && [ -s "${OPKG_UI}" ]; then
 c1=0;c2=0
 while ! curl --retry 3 -m 5 https://op.supes.top >/dev/null;do
 [[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c1 == 0 ]] && {
@@ -18,7 +18,7 @@ while ! opkg update; do
 [ $c2 -eq 10 ] && lock -u /var/lock/opkg-restore;exit 0 || let c2++
 sleep 1
 done
-then . /etc/profile.d/opkg.sh
+. /etc/profile.d/opkg.sh
 opkg restore "${OPKG_CONF}" 2>&1 \
 | logger -t opkg
 touch /etc/opkg-restore-"${OPKG_CONF}"
