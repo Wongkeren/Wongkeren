@@ -128,6 +128,8 @@ if not retain or retain == "" then
 else
 	if retain:match(".*-q .*") then
 		luci.sys.exec(". /etc/profile.d/opkg.sh;opkg save")
+	else
+		luci.sys.exec("uci -q del opkg.auto;uci commit opkg")
 	end
 	sys.exec("/sbin/sysupgrade " ..retain.. " " ..file.. "")
 end

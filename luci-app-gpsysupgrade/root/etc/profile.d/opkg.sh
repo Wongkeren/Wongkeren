@@ -123,13 +123,11 @@ esac | opkg proc upgrade
 }
 
 opkg_upgr_type() {
-local OPKG_AI="$(grep -vE 'opkg|kmod-|luci-lib-fs|firewall|base-files|luci-base|busybox|nginx|dnsmasq-full|coremark|miniupnpd|luci-mod-network|luci-mod-status|luci-mod-system' "$(opkg export ai)")"
 local OPKG_AI="$(opkg export ai)"
 local OPKG_OI="$(opkg export oi)"
 local OPKG_AU="$(opkg export au)"
-local OPKG_IG="$(opkg export ig)"
 case "${OPKG_OPT::1}" in
-(a) grep -v -f "${OPKG_IG}" "${OPKG_AU}" | grep -x -f "${OPKG_AI}" ;;
+(a) grep -x -f "${OPKG_AI}" "${OPKG_AU}" ;;
 (o) grep -x -f "${OPKG_OI}" "${OPKG_AU}" ;;
 esac
 rm -f "${OPKG_AI}" "${OPKG_OI}" "${OPKG_AU}"
@@ -149,12 +147,11 @@ echo "${OPKG_TEMP}"
 
 opkg_export_cmd() {
 local OPKG_TYPE
+local OPKG_IG="$(opkg export ig)"
 case "${OPKG_OPT:1}" in
-(i) OPKG_TYPE="installed" ;;
-(u) OPKG_TYPE="upgradable" ;;
+(i) OPKG_TYPE="installed";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" | grep -v -f "${OPKG_IG}" ;;
+(u) OPKG_TYPE="upgradable";opkg list-"${OPKG_TYPE}" | sed -e "s/\s.*$//" ;;
 esac
-opkg list-"${OPKG_TYPE}" \
-| sed -e "s/\s.*$//"
 }
 
 opkg_export_type() {

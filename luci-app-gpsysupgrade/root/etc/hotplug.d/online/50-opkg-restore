@@ -1,13 +1,27 @@
 OPKG_CONF="auto"
-for OPKG_CONF in ${OPKG_CONF}
-do if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
-&& lock -n /var/lock/opkg-restore \
-&& opkg update
+OPKG_UI="$(opkg export ui)"
+if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
+&& lock -n /var/lock/opkg-restore && [ -s "${OPKG_UI}" ]
+c1=0;c2=0
+while ! curl --retry 3 -m 5 https://op.supes.top >/dev/null;do
+[[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c1 == 0 ]] && {
+		uci -q del dhcp.@dnsmasq[0].noresolv
+		uci -q del dhcp.@dnsmasq[0].server
+		uci commit dhcp
+		/etc/init.d/dnsmasq reload
+}
+echo "无法连接仓库服务器,请检查网络." | logger -t opkg
+[ $c1 -eq 200 ] && lock -u /var/lock/opkg-restore;exit 0 || let c1++
+sleep 3
+done
+while ! opkg update; do
+[ $c2 -eq 10 ] && lock -u /var/lock/opkg-restore;exit 0 || let c2++
+sleep 1
+done
 then . /etc/profile.d/opkg.sh
 opkg restore "${OPKG_CONF}" 2>&1 \
 | logger -t opkg
 touch /etc/opkg-restore-"${OPKG_CONF}"
 lock -u /var/lock/opkg-restore
-break
 fi
-done
+
