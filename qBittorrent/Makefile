@@ -37,6 +37,7 @@ define Package/qbittorrent
 		+libopenssl \
 		+qt5-core \
 		+qt5-network \
+		+qt5-sql \
 		+qt5-xml \
 		+qt5-sql \
 		+zlib
