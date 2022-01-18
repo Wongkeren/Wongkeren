@@ -1,11 +1,9 @@
 . /etc/profile.d/opkg.sh
-OPKG_CONF="auto"
 OPKG_PI="$(opkg export pi)"
-if [ ! -e /etc/opkg-restore-"${OPKG_CONF}" ] \
+if [ ! -e /etc/opkg-restore-auto ] \
 && lock -n /var/lock/opkg-restore && [ -s "${OPKG_PI}" ]; then
 c=0
-while ! curl https://op.supes.top >/dev/null; do
-while ! opkg update >/dev/null; do
+while ! curl https://op.supes.top >/dev/null || ! opkg update >/dev/null; do
 echo "Network error." | logger -t opkg
 [[ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" == 1 && c == 0 ]] && {
 	uci -q del dhcp.@dnsmasq[0].noresolv
@@ -17,12 +15,25 @@ echo "Network error." | logger -t opkg
 		}
 	/etc/init.d/dnsmasq reload
 }
-[ $c -eq 200 ] && lock -u /var/lock/opkg-restore;exit 0 || let c++
+[ $c -eq 200 ] && {
+	lock -u /var/lock/opkg-restore
+	exit 0
+} || let c++
 sleep 3
 done
+
+c1=0
+logs="opkg_install_cmd"
+while echo $logs | grep "opkg_install_cmd"; do
+logs="$(opkg restore)"
+echo "${logs}" | logger -t opkg
+[ $c1 -eq 5 ] && {
+	lock -u /var/lock/opkg-restore
+	exit 0
+	} || let c1++
+sleep 2
 done
-opkg restore "${OPKG_CONF}" 2>&1 \
-| logger -t opkg
-touch /etc/opkg-restore-"${OPKG_CONF}"
+touch /etc/opkg-restore-auto
+
 fi
 lock -u /var/lock/opkg-restore

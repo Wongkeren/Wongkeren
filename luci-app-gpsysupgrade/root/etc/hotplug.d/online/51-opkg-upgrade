@@ -1,4 +1,3 @@
-OPKG_CONF="auto"
 if [ "$(uci -q get wizard.default.autoupgrade_pkg)" != '0' ] \
 && lock -n /var/lock/opkg-upgrade && opkg update; then
 . /etc/profile.d/opkg.sh
