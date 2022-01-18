@@ -23,8 +23,8 @@ sleep 3
 done
 
 c1=0
-logs="opkg_install_cmd"
-while echo $logs | grep "opkg_install_cmd"; do
+logs="1"
+while [ "$logs" != "" ]; do
 logs="$(opkg restore)"
 echo "${logs}" | logger -t opkg
 [ $c1 -eq 5 ] && {
