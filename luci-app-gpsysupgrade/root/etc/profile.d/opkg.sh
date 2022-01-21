@@ -170,8 +170,8 @@ rm -f "${OPKG_AI}" "${OPKG_RI}"
 opkg_export_uci() {
 local OPKG_TYPE
 case "${OPKG_OPT:1}" in
-(r) OPKG_TYPE="rpkg" ;;
-(i) OPKG_TYPE="ipkg" ;;
+(r) OPKG_TYPE="rpkg"; OPKG_CONF="auto" ;;
+(i) OPKG_TYPE="ipkg"; OPKG_CONF="auto" ;;
 (g) OPKG_TYPE="ipkg"; OPKG_CONF="ignore" ;;
 esac
 uci -q get opkg."${OPKG_CONF}"."${OPKG_TYPE}" \
