@@ -269,7 +269,7 @@ function request_sysupgrade(server_url, data) {
 	});
 }
 
-async function check_sysupgrade(server_url, system_board, packages) {
+async function check_sysupgrade(server_url, system_board, packages, force) {
 	var {board_name} = system_board;
 	var {target, version, revision} = system_board.release;
 	var current_branch = get_branch(version);
@@ -290,7 +290,7 @@ async function check_sysupgrade(server_url, system_board, packages) {
 		}
 
 		const remote_revision = response.json().revision;
-		if (revision < remote_revision) {
+		if (revision < remote_revision || force) {
 			candidates.push(version);
 		}
 
@@ -359,6 +359,12 @@ async function check_sysupgrade(server_url, system_board, packages) {
 			click: ui.hideModal,
 		},
 			_('Close')),
+		' ',
+		E('div', {
+				class: 'btn cbi-button-action',
+				click: function() { check_sysupgrade(server_url, system_board, packages, 1); },
+			},
+				_('Force Sysupgrade')),
 	]),
 		]);
 	}
