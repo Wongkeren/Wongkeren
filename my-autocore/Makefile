@@ -9,11 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-autocore
 PKG_VERSION:=1
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/my-autocore-arm
+  SECTION:=libs
+  CATEGORY:=Libraries
   TITLE:=ARM auto core script.
   MAINTAINER:=CN_SZTL
   DEPENDS:=@(arm||aarch64) \
@@ -24,6 +26,8 @@ define Package/my-autocore-arm
 endef
 
 define Package/my-autocore-x86
+  SECTION:=libs
+  CATEGORY:=Libraries
   TITLE:=x86/x64 auto core loadbalance script.
   MAINTAINER:=Lean / CN_SZTL
   DEPENDS:=@TARGET_x86 +bc +lm-sensors +ethtool
