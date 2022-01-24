@@ -194,3 +194,24 @@ msgstr "Версия"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:87
 msgid "Wrong checksum"
 msgstr "Неверная контрольная сумма"
+
+#~ msgid "Request in build queue position %d"
+#~ msgstr "Запрос в очереди сборки на позиции %d"
+
+#~ msgid "Searching for an available sysupgrade"
+#~ msgstr "Поиск доступного обновления системы"
+
+#~ msgid "The device runs the latest firmware version"
+#~ msgstr "Устройство работает на последней версии прошивки"
+
+#~ msgid "Building the sysupgrade image"
+#~ msgstr "Создание образа обновления системы"
+
+#~ msgid "Request in build queue"
+#~ msgstr "Запрос в очереди на сборку"
+
+#~ msgid "Advances Mode"
+#~ msgstr "Расширенный режим"
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "выполните sysupgrade через rpcd и luci"

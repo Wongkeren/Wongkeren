@@ -193,3 +193,21 @@ msgstr "Version"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:87
 msgid "Wrong checksum"
 msgstr "Falsche Prüfsumme"
+
+#~ msgid "Searching for an available sysupgrade"
+#~ msgstr "Suche nach verfügbaren System-Upgrades"
+
+#~ msgid "The device runs the latest firmware version"
+#~ msgstr "Dieses Gerät läuft mit der neuesten Firmware-Version"
+
+#~ msgid "Building the sysupgrade image"
+#~ msgstr "Sysupgrade-Image wird gebaut"
+
+#~ msgid "Request in build queue"
+#~ msgstr "Anfrage in Build-Warteschlange"
+
+#~ msgid "Advances Mode"
+#~ msgstr "Erweiterter Modus"
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "beaufsichtigtes System-Upgrade mittels rpcd und luci"
