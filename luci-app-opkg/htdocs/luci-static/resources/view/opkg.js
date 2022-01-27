@@ -232,7 +232,7 @@ function display(pattern)
 			var avail = packages.available.pkgs[name],
 			    inst  = packages.installed.pkgs[name];
 
-			if (!inst || !inst.installed)
+			if (!inst || !inst.installed || pkg.name.includes('opkg') || pkg.name.includes('kmod-') || pkg.name.includes('luci-lib-fs') || pkg.name.includes('base-files') || pkg.name.includes('luci-base') || pkg.name.includes('busybox') || pkg.name.includes('nginx-') || pkg.name == "nginx" || pkg.name.includes('dnsmasq-full') || pkg.name.includes('firewall') || pkg.name.includes('miniupnpd') || pkg.name.includes('coremark') || pkg.name.includes('luci-mod-network') || pkg.name.includes('luci-mod-status') || pkg.name.includes('luci-mod-system'))
 				continue;
 
 			if (!avail || compareVersion(avail.version, pkg.version) <= 0)
@@ -245,6 +245,7 @@ function display(pattern)
 			btn = E('div', {
 				'class': 'btn cbi-button-positive',
 				'data-package': name,
+				'action': 'upgrade',
 				'click': handleInstall
 			}, _('Upgrade…'));
 		}
@@ -260,6 +261,9 @@ function display(pattern)
 			}, _('Remove…'));
 		}
 		else {
+			if (pkg.name.includes('luci-i18n'))
+			   continue;
+
 			var inst = packages.installed.pkgs[name];
 
 			ver = truncateVersion(pkg.version || '-');
@@ -268,12 +272,14 @@ function display(pattern)
 				btn = E('div', {
 					'class': 'btn cbi-button-action',
 					'data-package': name,
+					'action': 'install',
 					'click': handleInstall
 				}, _('Install…'));
-			else if (inst.installed && inst.version != pkg.version)
+			else if (inst.installed && compareVersion(pkg.version, inst.version) > 0)
 				btn = E('div', {
 					'class': 'btn cbi-button-positive',
 					'data-package': name,
+					'action': 'upgrade',
 					'click': handleInstall
 				}, _('Upgrade…'));
 			else
@@ -369,6 +375,12 @@ function handleMode(ev)
 	tab.classList.add('cbi-tab');
 
 	currentDisplayMode = tab.getAttribute('data-mode');
+
+	if (currentDisplayMode == "updates"){
+	var filterv = document.querySelector('input[name="filter"]')
+	if ( filterv.value == "luci-app-")
+		filterv.value = ""
+	}
 
 	display(document.querySelector('input[name="filter"]').value);
 
@@ -631,6 +643,7 @@ function handleReset(ev)
 function handleInstall(ev)
 {
 	var name = ev.target.getAttribute('data-package'),
+		action = ev.target.getAttribute('action'),
 	    pkg = packages.available.pkgs[name],
 	    depcache = {},
 	    size;
@@ -687,7 +700,7 @@ function handleInstall(ev)
 		errs || inst || '',
 		E('div', { 'class': 'right' }, [
 			E('label', { 'class': 'cbi-checkbox', 'style': 'float:left' }, [
-				E('input', { 'id': 'overwrite-cb', 'type': 'checkbox', 'name': 'overwrite', 'disabled': isReadonlyView }), ' ',
+				E('input', { 'id': 'overwrite-cb', 'type': 'checkbox', 'name': 'overwrite', 'checked': 'checked', 'disabled': isReadonlyView }), ' ',
 				E('label', { 'for': 'overwrite-cb' }), ' ',
 				_('Overwrite files from other package(s)')
 			]),
@@ -697,7 +710,7 @@ function handleInstall(ev)
 			}, _('Cancel')),
 			' ',
 			E('div', {
-				'data-command': 'install',
+				'data-command': action,
 				'data-package': name,
 				'class': 'btn cbi-button-action',
 				'click': handleOpkg,
@@ -881,6 +894,10 @@ function handleOpkg(ev)
 		]);
 
 		var argv = [ cmd, '--force-removal-of-dependent-packages' ];
+		
+		argv.push('--force-checksum');
+		
+		argv.push('--force-depends');
 
 		if (rem && rem.checked)
 			argv.push('--autoremove');
@@ -1027,7 +1044,7 @@ return view.extend({
 				E('div', {}, [
 					E('label', {}, _('Filter') + ':'),
 					E('span', { 'class': 'control-group' }, [
-						E('input', { 'type': 'text', 'name': 'filter', 'placeholder': _('Type to filter…'), 'value': query, 'keyup': handleKeyUp }),
+						E('input', { 'type': 'text', 'name': 'filter', 'placeholder': _('Type to filter…'), 'value': 'luci-app-', 'keyup': handleKeyUp }),
 						E('button', { 'class': 'btn cbi-button', 'click': handleReset }, [ _('Clear') ])
 					])
 				]),
@@ -1056,14 +1073,6 @@ return view.extend({
 				E('li', { 'data-mode': 'updates', 'class': 'installed cbi-tab-disabled', 'click': handleMode }, E('a', { 'href': '#' }, [ _('Updates') ]))
 			]),
 
-			E('div', { 'class': 'controls', 'style': 'display:none' }, [
-				E('div', { 'id': 'pager', 'class': 'center' }, [
-					E('button', { 'class': 'btn cbi-button-neutral prev', 'aria-label': _('Previous page'), 'click': handlePage }, [ '«' ]),
-					E('div', { 'class': 'text' }, [ 'dummy' ]),
-					E('button', { 'class': 'btn cbi-button-neutral next', 'aria-label': _('Next page'), 'click': handlePage }, [ '»' ])
-				])
-			]),
-
 			E('table', { 'id': 'packages', 'class': 'table' }, [
 				E('tr', { 'class': 'tr cbi-section-table-titles' }, [
 					E('th', { 'class': 'th col-2 left' }, [ _('Package name') ]),
@@ -1071,6 +1080,14 @@ return view.extend({
 					E('th', { 'class': 'th col-1 center size'}, [ _('Size (.ipk)') ]),
 					E('th', { 'class': 'th col-10 left' }, [ _('Description') ]),
 					E('th', { 'class': 'th right cbi-section-actions' }, [ '\u00a0' ])
+				])
+			]),
+			
+			E('div', { 'class': 'controls', 'style': 'display:none' }, [
+				E('div', { 'id': 'pager', 'class': 'center' }, [
+					E('button', { 'class': 'btn cbi-button-neutral prev', 'aria-label': _('Previous page'), 'click': handlePage }, [ '«' ]),
+					E('div', { 'class': 'text' }, [ 'dummy' ]),
+					E('button', { 'class': 'btn cbi-button-neutral next', 'aria-label': _('Next page'), 'click': handlePage }, [ '»' ])
 				])
 			])
 		]);

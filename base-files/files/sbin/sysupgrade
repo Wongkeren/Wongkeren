@@ -232,6 +232,7 @@ do_save_conffiles() {
 
 	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
 		echo "${INSTALLED_PACKAGES}" >> "$CONFFILES"
+		. /etc/profile.d/opkg.sh; opkg save
 		mkdir -p "$ETCBACKUP_DIR"
 		# Avoid touching filesystem on each backup
 		RAMFS="$(mktemp -d -t sysupgrade.XXXXXX)"

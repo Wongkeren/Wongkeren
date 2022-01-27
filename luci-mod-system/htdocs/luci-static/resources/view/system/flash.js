@@ -261,6 +261,7 @@ return view.extend({
 					body.push(E('p', {}, E('label', { 'class': 'btn' }, [
 						opts.backup_pkgs[0], ' ', _('Include in backup a list of current installed packages at /etc/backup/installed_packages.txt')
 					])));
+					opts.backup_pkgs[0].checked = true;
 				};
 
 				var cntbtn = E('button', {
