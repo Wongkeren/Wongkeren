@@ -149,13 +149,15 @@ jobs:
         svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
         svn export --force https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/network/services/dnsmasq
         ) &
+        (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
-        net/openvpn utils/cgroupfs-mount net/xray-core net/nginx net/coremark
+        net/openvpn utils/cgroupfs-mount net/xray-core net/nginx utils/coremark
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme  applications/luci-app-transmission modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
+        ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immwrt" package/kernel/mt7601u-ap \
         package/kernel/rtl8188eu package/kernel/rtl8812au-ac package/kernel/rtl8192eu \
