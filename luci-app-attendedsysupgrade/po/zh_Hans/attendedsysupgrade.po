@@ -193,24 +193,3 @@ msgstr "版本"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:87
 msgid "Wrong checksum"
 msgstr "错误的校验和"
-
-#~ msgid "Request in build queue position %d"
-#~ msgstr "位于构建队列位置 %d 的请求"
-
-#~ msgid "Searching for an available sysupgrade"
-#~ msgstr "正搜索可用的系统升级"
-
-#~ msgid "The device runs the latest firmware version"
-#~ msgstr "设备运行最新的固件版本"
-
-#~ msgid "Building the sysupgrade image"
-#~ msgstr "正在构建系统升级镜像"
-
-#~ msgid "Request in build queue"
-#~ msgstr "请求位于构建队列中"
-
-#~ msgid "Advances Mode"
-#~ msgstr "高级模式"
-
-#~ msgid "attended sysupgrade via rpcd and luci"
-#~ msgstr "通过 rpcd 和 luci 参与系统升级"

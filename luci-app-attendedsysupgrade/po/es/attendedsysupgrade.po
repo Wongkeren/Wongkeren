@@ -204,25 +204,3 @@ msgstr "Versión"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:87
 msgid "Wrong checksum"
 msgstr "Suma de comprobación incorrecta"
-
-#, fuzzy
-#~ msgid "Request in build queue position %d"
-#~ msgstr "Solicitud en la posición de la cola de compilación %d"
-
-#~ msgid "Searching for an available sysupgrade"
-#~ msgstr "Buscando una actualización del sistema disponible"
-
-#~ msgid "The device runs the latest firmware version"
-#~ msgstr "El dispositivo ejecuta la última versión de firmware"
-
-#~ msgid "Building the sysupgrade image"
-#~ msgstr "Compilando la imagen de sysupgrade"
-
-#~ msgid "Request in build queue"
-#~ msgstr "Solicitud en cola de compilación"
-
-#~ msgid "Advances Mode"
-#~ msgstr "Modo avanzado"
-
-#~ msgid "attended sysupgrade via rpcd and luci"
-#~ msgstr "sysupgrade asistido vía rpcd y luci"

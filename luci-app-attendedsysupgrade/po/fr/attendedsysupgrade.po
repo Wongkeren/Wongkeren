@@ -190,6 +190,3 @@ msgstr "Version"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:87
 msgid "Wrong checksum"
 msgstr ""
-
-#~ msgid "attended sysupgrade via rpcd and luci"
-#~ msgstr "Mise à niveau système via rpcd et luci"
