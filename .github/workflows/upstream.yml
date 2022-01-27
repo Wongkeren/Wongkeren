@@ -150,7 +150,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages" \
-        net/openvpn utils/cgroupfs-mount net/xray-core net/nginx net/coremark net/miniupnpd
+        net/openvpn utils/cgroupfs-mount net/xray-core net/nginx net/coremark
         git_sparse_clone master "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/services/dnsmasq
         git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
