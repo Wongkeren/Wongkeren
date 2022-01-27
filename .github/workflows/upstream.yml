@@ -147,17 +147,16 @@ jobs:
         svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
         svn export https://github.com/sbilly/netmaker-openwrt/trunk/netmaker
         svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
+        svn export --force https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/network/services/dnsmasq
         ) &
         (
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages" \
         net/openvpn utils/cgroupfs-mount net/xray-core net/nginx net/coremark
         git_sparse_clone master "https://github.com/openwrt/openwrt" "openwrt" \
-        package/base-files package/network/services/dnsmasq package/network/config/firewall
-        git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
+        package/base-files package/network/config/firewall
         git_sparse_clone master "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme  applications/luci-app-transmission modules/luci-base modules/luci-mod-network \
-        modules/luci-mod-status modules/luci-mod-system 
-        git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
+        modules/luci-mod-status modules/luci-mod-system
         ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immwrt" package/kernel/mt7601u-ap \
@@ -165,6 +164,7 @@ jobs:
         package/kernel/rtl8821cu package/kernel/rtl88x2bu
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
+        git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
         ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol net/nps net/verysync \
@@ -172,6 +172,7 @@ jobs:
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
         utils/cpulimit utils/filebrowser multimedia/gmediarender multimedia/UnblockNeteaseMusic-Go
+        git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
