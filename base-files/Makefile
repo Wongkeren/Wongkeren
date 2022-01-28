@@ -13,7 +13,7 @@ include $(INCLUDE_DIR)/feeds.mk
 
 PKG_NAME:=base-files
 PKG_FLAGS:=nonshared
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 PKG_FILE_DEPENDS:=$(PLATFORM_DIR)/ $(GENERIC_PLATFORM_DIR)/base-files/
 PKG_BUILD_DEPENDS:=usign/host ucert/host
@@ -56,14 +56,11 @@ define Package/base-files/conffiles
 /etc/iproute2/rt_protos
 /etc/iproute2/rt_tables
 /etc/passwd
-/etc/profile
-/etc/profile.d
 /etc/protocols
 /etc/rc.local
 /etc/services
 /etc/shadow
 /etc/shells
-/etc/shinit
 /etc/sysctl.conf
 /etc/sysupgrade.conf
 $(call $(TARGET)/conffiles)

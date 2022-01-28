@@ -3,9 +3,8 @@
 /etc/inittab
 /etc/group
 /etc/passwd
-/etc/profile
 /etc/shadow
 /etc/shells
-/etc/shinit
 /etc/sysctl.conf
 /etc/rc.local
+/etc/bench.log
