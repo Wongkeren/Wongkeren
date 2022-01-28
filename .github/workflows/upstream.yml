@@ -147,7 +147,6 @@ jobs:
         svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
         svn export https://github.com/sbilly/netmaker-openwrt/trunk/netmaker
         svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
-        svn export --force https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/network/services/dnsmasq
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
@@ -161,7 +160,7 @@ jobs:
         (
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immwrt" package/kernel/mt7601u-ap \
         package/kernel/rtl8188eu package/kernel/rtl8812au-ac package/kernel/rtl8192eu \
-        package/kernel/rtl8821cu package/kernel/rtl88x2bu package/network/services/ppp
+        package/kernel/rtl8821cu package/kernel/rtl88x2bu package/network/services/ppp package/network/services/dnsmasq
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
         git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
