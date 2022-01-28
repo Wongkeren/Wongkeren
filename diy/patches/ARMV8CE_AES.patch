@@ -1,5 +1,5 @@
---- a/package/libs/mbedtls/Makefile
-+++ b/package/libs/mbedtls/Makefile
+--- a/mbedtls/Makefile
++++ b/mbedtls/Makefile
 @@ -23,6 +23,8 @@ PKG_CPE_ID:=cpe:/a:arm:mbed_tls
  
  PKG_CONFIG_DEPENDS := \
