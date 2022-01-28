@@ -151,7 +151,7 @@ jobs:
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
-        net/openvpn utils/cgroupfs-mount net/xray-core net/nginx utils/coremark
+        net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall package/system/opkg package/libs/mbedtls
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
@@ -195,10 +195,6 @@ jobs:
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
         mv -f mt/drivers mt-drivers && cp -rf mt/* ./ && rm -Rf mt
-
-    - name: SSH connection to Actions
-      uses: kiddin9/debugger-action@master
-      if: github.event.inputs.ssh == 'true'
 
     - name: Apply patches
       run: |
@@ -285,6 +281,10 @@ jobs:
           sleep 1
         done
       
+    - name: SSH connection to Actions
+      uses: kiddin9/debugger-action@master
+      if: github.event.inputs.ssh == 'true'
+
     - name: Apply
       run: |
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
