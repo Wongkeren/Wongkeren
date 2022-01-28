@@ -8,4 +8,3 @@
 /etc/sysctl.conf
 /etc/rc.local
 /etc/bench.log
-/etc/uwsgi/
