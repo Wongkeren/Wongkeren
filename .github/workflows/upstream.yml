@@ -150,7 +150,7 @@ jobs:
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
-        net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx
+        net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx net/uwsgi
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall package/system/opkg package/libs/mbedtls
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
@@ -268,13 +268,14 @@ jobs:
         sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D %C by Kiddin'\"" base-files/files/etc/openwrt_release
         sed -i 's?admin/status/channel_analysis??' luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
         sed -i -e '$a /etc/bench.log' \
-        -e '$a /etc/uwsgi/' \
         -e '/\/etc\/profile/d' \
         -e '/\/etc\/shinit/d' \
         base-files/files/lib/upgrade/keep.d/base-files-essential
         sed -i -e '/^\/etc\/profile/d' \
         -e '/^\/etc\/shinit/d' \
         base-files/Makefile
+        sed -i '$a cgi-timeout = 300' uwsgi/files-luci-support/luci-*.ini
+        sed -i '/limit-as/c\limit-as = 5000' uwsgi/files-luci-support/luci-webui.ini
         
         sed -i \
           -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
