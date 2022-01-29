@@ -1001,8 +1001,8 @@ function updateLists(data)
 		    mount = L.toArray(data[0].filter(function(m) { return m.mount == '/' || m.mount == '/overlay' }))
 		    	.sort(function(a, b) { return a.mount > b.mount })[0] || { size: 0, free: 0 };
 
-		pg.firstElementChild.style.width = Math.floor(mount.size ? ((100 / mount.size) * mount.free) : 100) + '%';
-		pg.setAttribute('title', '%s (%.1024mB)'.format(pg.firstElementChild.style.width, mount.free));
+		pg.firstElementChild.style.width = Math.floor(mount.size ? ((100 / mount.size) * (mount.size-mount.free)) : 100) + '%';
+		pg.setAttribute('title', '%s (%.1024mB)'.format(pg.firstElementChild.style.width, (mount.size-mount.free)));
 
 		parseList(data[1], packages.available);
 		parseList(data[2], packages.installed);
@@ -1037,7 +1037,7 @@ return view.extend({
 
 			E('div', { 'class': 'controls' }, [
 				E('div', {}, [
-					E('label', {}, _('Free space') + ':'),
+					E('label', {}, _('Used space') + ':'),
 					E('div', { 'class': 'cbi-progressbar', 'title': _('unknown') }, E('div', {}, [ '\u00a0' ]))
 				]),
 
