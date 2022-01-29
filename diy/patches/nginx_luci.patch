@@ -20,12 +20,13 @@
 
 --- a/dnsmasq/files/dnsmasq.init
 +++ b/dnsmasq/files/dnsmasq.init
-@@ -403,6 +403,20 @@ dhcp_this_host_add() {
+@@ -403,6 +403,21 @@ dhcp_this_host_add() {
  	local routerstub routername ifdashname
  	local lanaddr lanaddr6 lanaddrs6 ulaprefix
  
 +network_get_ipaddr lanaddr "lan"
 +if [ -n $lanaddr ]; then
++ lanaddr="$(echo "$lanaddr" | sed -e "s/\/24//")"
 +	echo "
 +$lanaddr op" >/tmp/hosts/shortcuts
 +if [ -f /etc/nginx/conf.d/shortcuts.conf ]; then
