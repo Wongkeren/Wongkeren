@@ -414,6 +414,7 @@ dhcp_this_host_add() {
 
 network_get_ipaddr lanaddr "lan"
 if [ -n $lanaddr ]; then
+ lanaddr="$(echo "$lanaddr" | sed -e "s/\/24//")"
 	echo "
 $lanaddr op" >/tmp/hosts/shortcuts
 if [ -f /etc/nginx/conf.d/shortcuts.conf ]; then
