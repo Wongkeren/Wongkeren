@@ -232,7 +232,7 @@ function display(pattern)
 			var avail = packages.available.pkgs[name],
 			    inst  = packages.installed.pkgs[name];
 
-			if (!inst || !inst.installed || pkg.name.includes('opkg') || pkg.name.includes('kmod-') || pkg.name.includes('luci-lib-fs') || pkg.name.includes('base-files') || pkg.name.includes('luci-base') || pkg.name.includes('busybox') || pkg.name.includes('nginx-') || pkg.name == "nginx" || pkg.name.includes('dnsmasq-full') || pkg.name.includes('firewall') || pkg.name.includes('miniupnpd') || pkg.name.includes('coremark') || pkg.name.includes('luci-mod-network') || pkg.name.includes('luci-mod-status') || pkg.name.includes('luci-mod-system'))
+			if (!inst || !inst.installed || pkg.name.includes('kmod-') || pkg.name.includes('busybox'))
 				continue;
 
 			if (!avail || compareVersion(avail.version, pkg.version) <= 0)
