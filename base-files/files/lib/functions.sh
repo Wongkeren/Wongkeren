@@ -199,6 +199,7 @@ default_prerm() {
 		fi
 	done
 
+	/etc/init.d/ucitrack reload
 	return $ret
 }
 
