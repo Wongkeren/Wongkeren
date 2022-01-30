@@ -9,3 +9,14 @@
  		$(. $a)
  	done
  }
+
+--- a/base-files/files/lib/functions.sh
++++ b/base-files/files/lib/functions.sh
+@@ -199,6 +199,7 @@ default_prerm() {
+ 		fi
+ 	done
+ 
++	/etc/init.d/ucitrack reload
+ 	return $ret
+ }
+ 
