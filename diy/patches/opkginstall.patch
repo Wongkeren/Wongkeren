@@ -216,19 +216,6 @@
  				"/etc/opkg/*.conf": [ "write" ],
  				"/tmp/upload.ipk": [ "write" ]
 
---- a/base-files/files/sbin/sysupgrade
-+++ b/base-files/files/sbin/sysupgrade
-@@ -232,6 +232,7 @@ do_save_conffiles() {
- 
- 	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
- 		echo "${INSTALLED_PACKAGES}" >> "$CONFFILES"
-+		. /etc/profile.d/opkg.sh; opkg save
- 		mkdir -p "$ETCBACKUP_DIR"
- 		# Avoid touching filesystem on each backup
- 		RAMFS="$(mktemp -d -t sysupgrade.XXXXXX)"
- 
- 	v "Saving config files..."
-
 --- a/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js
 +++ b/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js
 @@ -261,6 +261,7 @@ return view.extend({
