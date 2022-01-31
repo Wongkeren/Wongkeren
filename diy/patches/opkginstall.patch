@@ -5,7 +5,7 @@
  			    inst  = packages.installed.pkgs[name];
  
 -			if (!inst || !inst.installed)
-+			if (!inst || !inst.installed || pkg.name.includes('kmod-') || pkg.name.includes('busybox'))
++			if (!inst || !inst.installed || pkg.name.includes('kmod-') || pkg.name.includes('busybox') || pkg.name.includes('base-files'))
  				continue;
  
  			if (!avail || compareVersion(avail.version, pkg.version) <= 0)
