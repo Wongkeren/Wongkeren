@@ -199,7 +199,6 @@ default_prerm() {
 		fi
 	done
 
-	/etc/init.d/ucitrack reload 2>/dev/null || true
 	return $ret
 }
 
@@ -290,6 +289,7 @@ default_postinst() {
 		fi
 	done
 
+	[ -x /etc/init.d/ucitrack ] && /etc/init.d/ucitrack reload
 	return $ret
 }
 
