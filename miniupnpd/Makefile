@@ -9,10 +9,10 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd
 PKG_VERSION:=3.0.20180503
-PKG_RELEASE:=9
+PKG_RELEASE:=10
 
 PKG_SOURCE_URL:=http://miniupnp.free.fr/files
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-2.0.20180503.tar.gz
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Markus Stenberg <fingon@iki.fi>
