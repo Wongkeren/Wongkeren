@@ -74,7 +74,7 @@ jobs:
         git_clone https://github.com/kiddin9/openwrt-openvpn && mvdir openwrt-openvpn
         git_clone https://github.com/kiddin9/luci-app-xlnetacc
         git_clone https://github.com/kiddin9/openwrt-amule-dlp && mvdir openwrt-amule-dlp
-        git clone https://github.com/kiddin9/luci-app-wizard
+        git_clone https://github.com/kiddin9/luci-app-wizard
         ) &
         (
         git_clone https://github.com/xiaorouji/openwrt-passwall
@@ -107,7 +107,7 @@ jobs:
         git_clone https://github.com/wolandmaster/luci-app-rtorrent
         git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
         git_clone https://github.com/NateLol/luci-app-oled
-        git clone https://github.com/lloyd18/luci-app-npc
+        git_clone https://github.com/lloyd18/luci-app-npc
         ) &
         (
         git_clone https://github.com/destan19/OpenAppFilter && mvdir OpenAppFilter
@@ -121,10 +121,10 @@ jobs:
         git_clone https://github.com/sensec/luci-app-udp2raw
         git_clone https://github.com/LGA1150/openwrt-sysuh3c && mvdir openwrt-sysuh3c
         git_clone https://github.com/gdck/luci-app-cupsd cupsd1 && mv -n cupsd1/luci-app-cupsd cupsd1/cups/cups ./ ; rm -rf cupsd1
-        git clone https://github.com/QiuSimons/openwrt-mos && mvdir openwrt-mos
-        git clone https://github.com/sundaqiang/openwrt-packages && mv -n openwrt-packages/luci-* ./; rm -rf openwrt-packages
-        git clone https://github.com/esirplayground/LingTiGameAcc
-        git clone https://github.com/esirplayground/luci-app-LingTiGameAcc
+        git_clone https://github.com/QiuSimons/openwrt-mos && mvdir openwrt-mos
+        git_clone https://github.com/sundaqiang/openwrt-packages && mv -n openwrt-packages/luci-* ./; rm -rf openwrt-packages
+        git_clone https://github.com/esirplayground/LingTiGameAcc
+        git_clone https://github.com/esirplayground/luci-app-LingTiGameAcc
         ) &
         (
         svn export https://github.com/Lienol/openwrt-package/branches/other/lean/luci-app-autoreboot
