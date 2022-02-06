@@ -2,8 +2,9 @@
 +++ b/nginx/files-luci-support/luci.locations
 @@ -1,12 +1,14 @@
 -location /cgi-bin/luci {
+-		index  index.html;
 +location /luci {
- 		index  index.html;
++		index  ng_index.html;
  		include uwsgi_params;
 +		uwsgi_read_timeout 300s;
  		uwsgi_param SERVER_ADDR $server_addr;
