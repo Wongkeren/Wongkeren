@@ -1,5 +1,5 @@
 location /luci {
-		index  ng_index.html;
+		index  index.html;
 		include uwsgi_params;
 		uwsgi_read_timeout 300s;
 		uwsgi_param SERVER_ADDR $server_addr;
