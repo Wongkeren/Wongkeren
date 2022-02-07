@@ -149,7 +149,6 @@ jobs:
         svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
         svn export https://github.com/sbilly/netmaker-openwrt/trunk/netmaker
         svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
-        svn export https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
@@ -171,7 +170,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol net/nps net/verysync \
-        net/sub-web net/smartdns net/dnsproxy net/haproxy \
+        net/sub-web net/smartdns net/dnsproxy net/haproxy net/v2raya \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
         utils/cpulimit utils/filebrowser multimedia/gmediarender multimedia/UnblockNeteaseMusic-Go
