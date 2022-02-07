@@ -149,6 +149,7 @@ jobs:
         svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
         svn export https://github.com/sbilly/netmaker-openwrt/trunk/netmaker
         svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
+        svn export https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
