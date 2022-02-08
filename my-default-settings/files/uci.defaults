@@ -4,7 +4,7 @@ grep -q ng_index.html /etc/config/nginx || {
 	uci -q set nginx._lan.index="ng_index.html"
 	uci -q set nginx._ssl.index="ng_index.html"
 	uci commit nginx
-	/etc/init.d/nginx reload
+	service nginx reload
 }
 
 # [[ "$(df | grep overlay)" && ! "$(df | grep /rom/overlay)" ]] && firstboot
