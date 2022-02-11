@@ -9,7 +9,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtl88x2bu
-PKG_RELEASE:=26
+PKG_RELEASE:=27
 
 PKG_SOURCE_URL:=https://github.com/morrownr/88x2bu.git
 PKG_SOURCE_PROTO:=git
