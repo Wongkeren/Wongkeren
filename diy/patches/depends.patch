@@ -43,5 +43,28 @@
 -LUCI_DEPENDS:=+transmission-daemon
 +LUCI_DEPENDS:=+transmission-daemon +transmission-web-control
  
- include $(TOPDIR)/feeds/luci/luci.mk
+ include ../../luci.mk
+ 
+
+--- a/luci-app-samba4/Makefile
++++ b//luci-app-samba4/Makefile
+@@ -3,7 +3,7 @@
+ include $(TOPDIR)/rules.mk
+ 
+ LUCI_TITLE:=Network Shares - Samba 4 SMB/CIFS fileserver
+-LUCI_DEPENDS:=+samba4-server
++LUCI_DEPENDS:=+samba4-server +autoshare-samba
+ 
+ include ../../luci.mk
+ 
+--- a/luci-app-ksmbd/Makefile
++++ b/luci-app-ksmbd/Makefile
+@@ -3,7 +3,7 @@
+ include $(TOPDIR)/rules.mk
+ 
+ LUCI_TITLE:=Network Shares - Ksmbd the SMB kernel fileserver
+-LUCI_DEPENDS:=+ksmbd-server
++LUCI_DEPENDS:=+ksmbd-server +autoshare-ksmbd
+ 
+ include ../../luci.mk
  
