@@ -274,7 +274,7 @@ jobs:
         sed -i '/boot()/,+2d' ddns-scripts/files/etc/init.d/ddns
         sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D %C by Kiddin'\"" base-files/files/etc/openwrt_release
         sed -i 's?admin/status/channel_analysis??' luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
-        sedi -i "/CONFLICTS:=kmod-r8169//" r8168/Makefile
+        sedi -i "s/CONFLICTS:=kmod-r8169//" r8168/Makefile
         sed -i -e '$a /etc/bench.log' \
         -e '/\/etc\/profile/d' \
         -e '/\/etc\/shinit/d' \
