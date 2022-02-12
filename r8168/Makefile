@@ -8,7 +8,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=r8168
 PKG_VERSION:=8.049.02
-PKG_RELEASE:=17
+PKG_RELEASE:=18
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/BROBIRD/openwrt-r8168.git
@@ -28,7 +28,7 @@ define KernelPackage/r8168
   VERSION:=$(LINUX_VERSION)+$(PKG_VERSION)-$(BOARD)-$(PKG_RELEASE)
   FILES:= $(PKG_BUILD_DIR)/src/r8168.ko
   AUTOLOAD:=$(call AutoProbe,r8168)
-  CONFLICTS:=kmod-r8169
+  
 endef
 
 define Package/r8168/description
