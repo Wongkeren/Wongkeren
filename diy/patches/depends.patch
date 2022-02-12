@@ -20,7 +20,7 @@
 +LUCI_DEPENDS:=+luci-lib-ipkg +luci-mod-admin-full +ddns-scripts +ddns-scripts-aliyun +ddns-scripts-dnspod +ddns-scripts-cloudflare
  LUCI_PKGARCH:=all
  
- include $(TOPDIR)/feeds/luci/luci.mk
+ include ../../luci.mk
 
 --- a/luci-app-aria2/Makefile
 +++ b/luci-app-aria2/Makefile
@@ -57,6 +57,7 @@
  
  include ../../luci.mk
  
+
 --- a/luci-app-ksmbd/Makefile
 +++ b/luci-app-ksmbd/Makefile
 @@ -3,7 +3,7 @@
