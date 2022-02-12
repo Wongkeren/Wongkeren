@@ -159,7 +159,8 @@ jobs:
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall package/system/opkg package/libs/mbedtls
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
-        applications/luci-app-ddns applications/luci-app-acme applications/luci-app-transmission applications/luci-app-opkg applications/luci-app-firewall modules/luci-base modules/luci-mod-network \
+        applications/luci-app-ddns applications/luci-app-acme applications/luci-app-transmission applications/luci-app-opkg applications/luci-app-firewall \
+        applications/luci-app-ksmbd applications/luci-app-samba4 modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
         ) &
         (
