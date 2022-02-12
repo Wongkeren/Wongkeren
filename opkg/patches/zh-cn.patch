@@ -57,3 +57,13 @@
 +				 "请更新列表后重试\n",
  				 pkg->name);
  			return -1;
+
+--- a/libopkg/opkg_conf.c
++++ b/libopkg/opkg_conf.c
+@@ -497,5 +497,5 @@
+ 	lock_fd = creat(lock_file, S_IRUSR | S_IWUSR | S_IRGRP);
+ 	if (lock_fd == -1) {
+-		opkg_perror(ERROR, "Could not create lock file %s", lock_file);
++		opkg_perror(ERROR, "任务执行中,请稍后再试.", lock_file);
+ 		goto err2;
+ 	}
