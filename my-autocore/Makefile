@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-autocore
 PKG_VERSION:=1
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -58,6 +58,8 @@ define Package/my-autocore-arm/install
 	$(INSTALL_BIN) ./files/common/ethinfo $(1)/sbin/ethinfo
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
 	$(INSTALL_DATA) ./files/common/29_eth.js $(1)/www/luci-static/resources/view/status/include/
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/admin_status/index
+	$(INSTALL_DATA) ./files/common/disc_status.htm $(1)/usr/lib/lua/luci/view/admin_status/index/
 endef
 
 define Package/my-autocore-x86/install
@@ -70,6 +72,8 @@ define Package/my-autocore-x86/install
 	$(INSTALL_DATA) ./files/common/29_eth.js $(1)/www/luci-static/resources/view/status/include/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/admin_status/index/
 	$(INSTALL_DATA) ./files/x86/nvme_status.htm $(1)/usr/lib/lua/luci/view/admin_status/index/
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/admin_status/index
+	$(INSTALL_DATA) ./files/common/disc_status.htm $(1)/usr/lib/lua/luci/view/admin_status/index/
 endef
 
 $(eval $(call Download,armcpuinfo))
