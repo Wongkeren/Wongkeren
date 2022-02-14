@@ -180,7 +180,7 @@ jobs:
         ) &
         
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
-        multimedia/UnblockNeteaseMusic net/aliyundrive-webdav net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
+        multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent libs/qtbase libs/qttools libs/rblibtorrent libs/wxbase \
         net/rclone-ng net/rclone-webui-react net/rclone net/uugamebooster net/verysync net/vlmcsd
 
@@ -263,7 +263,7 @@ jobs:
         bash diy/convert_translation.sh -a >/dev/null 2>&1 || true
         
         #sed -i 's?"http://" + window.location.hostname?window.location.protocol + "//" + window.location.hostname?g' `find luci-app*/luasrc/view/ -maxdepth 2 -name "*.htm"`
-        rm -f miniupnpd/patches/106-spam-syslog* go-aliyundrive-webdav/patches/100-fix-read*
+        rm -f miniupnpd/patches/106-spam-syslog*
         sed -i "/minisign:minisign/d" luci-app-dnscrypt-proxy2/Makefile
         sed -i 's/+libstdcpp/+libstdcpp +zlib/' ngrokc/Makefile
         sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' luci-app-docker*/Makefile
