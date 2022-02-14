@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=baidupcs-web
 PKG_VERSION:=3.7.4-nnew
-PKG_RELEASE:=18
+PKG_RELEASE:=19
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/Erope/BaiduPCS-Go.git
@@ -45,7 +45,7 @@ define Package/baidupcs-web
 endef
 
 define Package/baidupcs-web/description
-BaiduPCS-Web is a web controller for BaiduPCS-Go
+  BaiduPCS-Web is a web controller for BaiduPCS-Go
 endef
 
 define Package/baidupcs-web/config

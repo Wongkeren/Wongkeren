@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vlmcsd
 PKG_VERSION:=svn1113
-PKG_RELEASE:=18
+PKG_RELEASE:=19
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Wind4/vlmcsd/tar.gz/$(PKG_VERSION)?
@@ -17,15 +17,15 @@ PKG_BUILD_PARALLEL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/vlmcsd
-	SECTION:=net
-	CATEGORY:=Network
-	TITLE:=vlmcsd for OpenWRT
-	URL:=http://forums.mydigitallife.info/threads/50234
-	DEPENDS:=+libpthread
+  SECTION:=net
+  CATEGORY:=Network
+  TITLE:=vlmcsd for OpenWRT
+  URL:=http://forums.mydigitallife.info/threads/50234
+  DEPENDS:=+libpthread
 endef
 
 define Package/vlmcsd/description
-	vlmcsd is a KMS Emulator in C.
+  vlmcsd is a KMS Emulator in C.
 endef
 
 MAKE_FLAGS += \
