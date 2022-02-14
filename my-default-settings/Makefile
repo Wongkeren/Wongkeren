@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-default-settings
 PKG_VERSION:=1
-PKG_RELEASE:=37
+PKG_RELEASE:=38
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -27,7 +27,7 @@ define Package/$(PKG_NAME)/conffiles
 endef
 
 define Build/Prepare
-	chmod +x ./files/bin/* ./files/sbin/* ./files/etc/profile.d/* ./files/usr/share/* >/dev/null
+	chmod +x ./files/bin/* ./files/sbin/* ./files/etc/profile.d/* ./files/usr/share/* >/dev/null || true
 endef
 
 define Build/Compile
