@@ -134,8 +134,6 @@ jobs:
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns/trunk/tencentcloud_ddns luci-app-tencentddns
         svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-cos/trunk/tencentcloud_cos luci-app-tencentcloud-cos
-        svn export https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd
-        svn export https://github.com/coolsnowwolf/packages/trunk/net/mwan3
         svn export https://github.com/x-wrt/packages/trunk/net/nft-qos
         svn export https://github.com/x-wrt/luci/trunk/applications/luci-app-nft-qos
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
@@ -173,13 +171,18 @@ jobs:
         git_sparse_clone master "https://github.com/x-wrt/com.x-wrt" "x-wrt" natflow lua-ipops luci-app-macvlan
         ) &
         (
-        git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol net/nps net/verysync \
+        git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol \
         net/sub-web net/smartdns net/dnsproxy net/haproxy net/v2raya \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
-        utils/cpulimit utils/filebrowser multimedia/gmediarender multimedia/UnblockNeteaseMusic-Go
+        utils/cpulimit utils/filebrowser
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
+        
+        git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
+        multimedia/UnblockNeteaseMusic net/aliyundrive-webdav net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
+        net/qBittorrent-static net/qBittorrent libs/qtbase libs/qttools libs/rblibtorrent libs/wxbase \
+        net/rclone-ng net/rclone-webui-react net/rclone net/uugamebooster net/verysync net/vlmcsd
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
         
