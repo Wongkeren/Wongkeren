@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-default-settings
 PKG_VERSION:=1
-PKG_RELEASE:=39
+PKG_RELEASE:=40
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -27,7 +27,7 @@ define Package/$(PKG_NAME)/conffiles
 endef
 
 define Build/Prepare
-	chmod +x ./files/bin/* ./files/sbin/* ./files/etc/profile.d/* ./files/usr/share/* >/dev/null || true
+	chmod +x ./files/bin/* ./files/sbin/* ./files/etc/profile.d/* ./files/usr/share/* target/linux/*/*/base-files/{etc/init.d/*,usr/bin/*} >/dev/null || true
 endef
 
 define Build/Compile
@@ -35,6 +35,14 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(CP) ./files/* $(1)/
+	if [ -d $(PLATFORM_DIR)/base-files/. ]; then \
+		$(CP) $(PLATFORM_DIR)/base-files/* $(1)/; \
+	fi
+	$(if $(filter-out $(PLATFORM_DIR),$(PLATFORM_SUBDIR)), \
+		if [ -d $(PLATFORM_SUBDIR)/base-files/. ]; then \
+			$(CP) $(PLATFORM_SUBDIR)/base-files/* $(1)/; \
+		fi; \
+	)
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	po2lmo ./po/zh_Hans/default.po $(1)/usr/lib/lua/luci/i18n/default.zh-cn.lmo
 
