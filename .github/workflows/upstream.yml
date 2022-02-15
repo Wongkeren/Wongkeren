@@ -189,6 +189,7 @@ jobs:
         ) &
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
+        rm -rf applications/{luci-app-turboacc,luci-app-vlmcsd,luci-app-uugamebooster}
         svn co https://github.com/coolsnowwolf/luci/trunk/applications
         
         git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync package/network/utils/dpdk
@@ -203,7 +204,7 @@ jobs:
       run: |
         shopt -s extglob
         mv -n openwrt-passwall/* ./ ; rm -Rf openwrt-passwall
-        mv -n applications/!(luci-app-turboacc|luci-app-vlmcsd|luci-app-uugamebooster) ./ ; rm -Rf applications
+        mv -n applications/* ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
