@@ -60,10 +60,16 @@
 
 --- a/libopkg/opkg_conf.c
 +++ b/libopkg/opkg_conf.c
-@@ -497,5 +497,5 @@
+@@ -497,10 +497,10 @@
  	lock_fd = creat(lock_file, S_IRUSR | S_IWUSR | S_IRGRP);
  	if (lock_fd == -1) {
 -		opkg_perror(ERROR, "Could not create lock file %s", lock_file);
-+		opkg_perror(ERROR, "任务执行中,请稍后再试.", lock_file);
++		opkg_perror(ERROR, "有任务在执行中, 请稍后再试.", lock_file);
  		goto err2;
  	}
+ 
+ 	if (lockf(lock_fd, F_TLOCK, (off_t) 0) == -1) {
+-		opkg_perror(ERROR, "Could not lock %s", lock_file);
++		opkg_perror(ERROR, "有任务在执行中, 请稍后再试.", lock_file);
+ 		if (close(lock_fd) == -1)
+ 			opkg_perror(ERROR, "Couldn't close descriptor %d (%s)",
