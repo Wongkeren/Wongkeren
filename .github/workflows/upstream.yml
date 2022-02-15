@@ -128,6 +128,7 @@ jobs:
         git_clone https://github.com/esirplayground/LingTiGameAcc
         git_clone https://github.com/esirplayground/luci-app-LingTiGameAcc
         git_clone https://github.com/zxlhhyccc/luci-app-v2raya
+        git_clone https://github.com/jerrykuku/luci-app-go-aliyundrive-webdav
         ) &
         (
         svn export https://github.com/Lienol/openwrt-package/branches/other/lean/luci-app-autoreboot
