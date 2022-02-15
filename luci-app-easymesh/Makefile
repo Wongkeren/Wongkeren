@@ -5,7 +5,10 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for easymesh
-LUCI_DEPENDS:= +kmod-cfg80211 +batctl-default +kmod-batman-adv +wpad-openssl +dawn
+LUCI_DEPENDS:=+kmod-cfg80211 +batctl-default +kmod-batman-adv +wpad-openssl +dawn
+LUCI_PKGARCH:=all
+
+PKG_NAME:=luci-app-easymesh
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
