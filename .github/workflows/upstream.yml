@@ -189,7 +189,7 @@ jobs:
         ) &
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
-        rm -rf applications/{luci-app-turboacc,luci-app-vlmcsd,luci-app-uugamebooster}
+        rm -rf applications/{luci-app-turboacc,luci-app-vlmcsd,luci-app-uugamebooster,luci-app-frpc,luci-app-frps}
         svn co https://github.com/coolsnowwolf/luci/trunk/applications
         
         git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync package/network/utils/dpdk
