@@ -185,7 +185,7 @@ jobs:
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
         multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent libs/qtbase libs/qttools libs/rblibtorrent \
-        net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping
+        net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2
         ) &
 
         svn export --force https://github.com/immortalwrt/luci/trunk/applications
