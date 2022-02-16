@@ -7,6 +7,7 @@
 'require poll';
 'require request';
 'require dom';
+'require fs';
 
 var callPackagelist = rpc.declare({
 	object: 'rpc-sys',
@@ -133,6 +134,9 @@ function request_sysupgrade(server_url, data) {
 			var image;
 			for (image of res.images) {
 	if (image.type == 'sysupgrade') {
+		break;
+	}
+	if (image.type == 'combined-efi' && fs.read("/sys/firmware/efi")){
 		break;
 	}
 			}

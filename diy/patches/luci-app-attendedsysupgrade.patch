@@ -1,6 +1,24 @@
 --- a/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
 +++ b/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
-@@ -269,7 +269,7 @@ function request_sysupgrade(server_url, data) {
+@@ -7,6 +7,7 @@
+ 'require poll';
+ 'require request';
+ 'require dom';
++'require fs';
+ 
+ var callPackagelist = rpc.declare({
+ 	object: 'rpc-sys',
+@@ -134,6 +135,9 @@ function request_sysupgrade(server_url, data) {
+ 			for (image of res.images) {
+ 	if (image.type == 'sysupgrade') {
+ 		break;
++	}
++	if (image.type == 'combined-efi' && fs.read("/sys/firmware/efi")){
++		break;
+ 	}
+ 			}
+ 			if (image.name != undefined) {
+@@ -269,7 +273,7 @@ function request_sysupgrade(server_url, data) {
  	});
  }
  
@@ -9,7 +27,7 @@
  	var {board_name} = system_board;
  	var {target, version, revision} = system_board.release;
  	var current_branch = get_branch(version);
-@@ -282,7 +282,6 @@ async function check_sysupgrade(server_url, system_board, packages) {
+@@ -282,7 +286,6 @@ async function check_sysupgrade(server_url, system_board, packages) {
  		E('p', _('Searching for an available sysupgrade of %s - %s')
  				 .format(version, revision)));
  
@@ -17,7 +35,7 @@
  		response =
  	await request.get(`${server_url}/api/v1/revision/${version}/${target}`);
  		if (!response.ok) {
-@@ -291,43 +290,9 @@ async function check_sysupgrade(server_url, system_board, packages) {
+@@ -291,43 +294,9 @@ async function check_sysupgrade(server_url, system_board, packages) {
  		}
  
  		const remote_revision = response.json().revision;
@@ -62,7 +80,7 @@
  
  	if (candidates.length) {
  		var m, s, o;
-@@ -394,6 +359,12 @@ async function check_sysupgrade(server_url, system_board, packages) {
+@@ -394,6 +363,12 @@ async function check_sysupgrade(server_url, system_board, packages) {
  			click: ui.hideModal,
  		},
  			_('Close')),
@@ -75,18 +93,3 @@
  	]),
  		]);
  	}
-
---- a/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
-+++ b/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
-@@ -26,7 +26,10 @@ msgstr "高级模式"
- #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:432
- #: applications/luci-app-attendedsysupgrade/root/usr/share/luci/menu.d/luci-app-attendedsysupgrade.json:3
- msgid "Attended Sysupgrade"
--msgstr "参与式系统升级"
-+msgstr "定制系统升级"
-+
-+msgid "Force Sysupgrade"
-+msgstr "强制重刷"
- 
- #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/configuration.js:10
- msgid "Attendedsysupgrade Configuration."

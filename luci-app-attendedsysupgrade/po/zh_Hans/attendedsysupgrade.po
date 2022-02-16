@@ -26,10 +26,7 @@ msgstr "高级模式"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:432
 #: applications/luci-app-attendedsysupgrade/root/usr/share/luci/menu.d/luci-app-attendedsysupgrade.json:3
 msgid "Attended Sysupgrade"
-msgstr "定制系统升级"
-
-msgid "Force Sysupgrade"
-msgstr "强制重刷"
+msgstr "参与式系统升级"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/configuration.js:10
 msgid "Attendedsysupgrade Configuration."
