@@ -26,7 +26,10 @@ msgstr "高级模式"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:432
 #: applications/luci-app-attendedsysupgrade/root/usr/share/luci/menu.d/luci-app-attendedsysupgrade.json:3
 msgid "Attended Sysupgrade"
-msgstr "参与式系统升级"
+msgstr "定制系统升级"
+
+msgid "Force Sysupgrade"
+msgstr "强制重刷"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/configuration.js:10
 msgid "Attendedsysupgrade Configuration."
@@ -70,7 +73,7 @@ msgstr "正从服务器下载固件到浏览器"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:266
 msgid "Error building the sysupgrade"
-msgstr "构建 sysupgrade 时出错"
+msgstr "构建固件时出错"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:41
 msgid "Error connecting to upgrade server"
@@ -78,7 +81,7 @@ msgstr "连接升级服务器出错"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:89
 msgid "Error during download of firmware. Please try again"
-msgstr "固件下载出错。请重试"
+msgstr "固件下载出错, 请重试"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:150
 msgid "File"
@@ -94,7 +97,7 @@ msgstr "安装系统升级"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:100
 msgid "Installing the sysupgrade. Do not unpower device!"
-msgstr "正在安装 sysupgrade。不要切断电源！"
+msgstr "正在刷入固件。不要切断电源！"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:192
 msgid "Keep settings and retain the current configuration"
@@ -122,7 +125,7 @@ msgstr "请求进行系统升级"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:225
 msgid "Request in build queue position %s"
-msgstr "构建队列位置 %s 中的请求"
+msgstr "排队中...预计还需等待 %s 分钟"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:240
 msgid "Request to server:"
@@ -168,7 +171,7 @@ msgstr "目标"
 msgid ""
 "The attended sysupgrade service allows to easily upgrade vanilla and custom "
 "firmware images."
-msgstr "attended 系统升级服务允许轻松升级 vanilla 和自定义固件镜像。"
+msgstr "定制和更新适用于您设备的OpenWrt固件。"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:386
 msgid "The device runs the latest firmware version %s - %s"
