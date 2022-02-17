@@ -43,6 +43,7 @@ jobs:
 
     - name: Syn upstream
       run: |
+        shopt -s extglob
         git rm -r --cache * >/dev/null 2>&1 &
         rm -rf `find ./* -maxdepth 0 -type d ! -name "diy"` >/dev/null 2>&1
         function git_clone() (
@@ -188,28 +189,32 @@ jobs:
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2
         ) &
 
-        svn export --force https://github.com/immortalwrt/luci/trunk/applications
-        rm -rf applications/{luci-app-turboacc,luci-app-vlmcsd,luci-app-uugamebooster,luci-app-frpc,luci-app-frps}
-        svn co https://github.com/coolsnowwolf/luci/trunk/applications
-        
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync package/network/utils/dpdk
+        svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
+        rm -rf applications/luci-app-qbittorrent
+        svn co https://github.com/immortalwrt/luci/trunk/applications
 
-        for ipk in $(ls applications); do
-        	if [[ $(ls -l applications/$ipk/po | wc -l) -gt 3 ]]; then
-        		rm -rf applications/$ipk
+        for ipk in $(ls -d applications/!(luci-app-rclone)/); do
+        	if [[ $(ls $ipk/po | wc -l) -gt 3 ]]; then
+            rm -rf $ipk
         	fi
         done
+
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync package/network/utils/dpdk
 
     - name: Delete duplicated packages
       run: |
         shopt -s extglob
         mv -n openwrt-passwall/* ./ ; rm -Rf openwrt-passwall
-        mv -n applications/* ./ ; rm -Rf applications
+        mv -n applications/!(luci-app-noddos) ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
         mv -f mt/drivers mt-drivers && cp -rf mt/* ./ && rm -Rf mt
+
+    - name: SSH connection to Actions
+      uses: kiddin9/debugger-action@master
+      if: github.event.inputs.ssh == 'true'
 
     - name: Apply patches
       run: |
@@ -293,7 +298,7 @@ jobs:
         -e '/^\/etc\/shinit/d' \
         base-files/Makefile
         sed -i '$a cgi-timeout = 300' uwsgi/files-luci-support/luci-webui.ini
-        sed -i '$a cgi-timeout = 40' uwsgi/files-luci-support/luci-cgi_io.ini
+        sed -i '$a cgi-timeout = 45' uwsgi/files-luci-support/luci-cgi_io.ini
         sed -i '/limit-as/c\limit-as = 5000' uwsgi/files-luci-support/luci-webui.ini
         sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/' uwsgi/files/uwsgi.init
         
@@ -308,10 +313,6 @@ jobs:
             echo "wait"
           sleep 1
         done
-      
-    - name: SSH connection to Actions
-      uses: kiddin9/debugger-action@master
-      if: github.event.inputs.ssh == 'true'
 
     - name: Apply
       run: |
