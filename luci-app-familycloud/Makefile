@@ -6,11 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for FamilyCloudSpeeder
-LUCI_DEPENDS:=+coreutils +coreutils-nohup +libreadline +libcurl +libopenssl +bash +curl +wget-ssl +openssl-util +ca-bundle +ca-bundle
+LUCI_DEPENDS:=+coreutils +coreutils-nohup +libreadline +libcurl +libopenssl +bash +curl +wget +openssl-util +ca-bundle +ca-bundle
 LUCI_PKGARCH:=all
+
 PKG_NAME:=luci-app-familycloud
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-

@@ -8,9 +8,10 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI page for Web Admin
 LUCI_DEPENDS:=+uhttpd
+LUCI_PKGARCH:=all
+
+PKG_NAME:=luci-app-webadmin
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-
-

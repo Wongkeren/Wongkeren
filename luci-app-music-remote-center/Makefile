@@ -10,7 +10,8 @@ LUCI_TITLE:=Luci for Music Remote Center
 LUCI_DEPENDS:=+alsa-utils +forked-daapd
 LUCI_PKGARCH:=all
 
+PKG_NAME:=luci-app-music-remote-center
+
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-
