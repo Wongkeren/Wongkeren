@@ -933,14 +933,11 @@ dnsmasq_start()
 	append_bool "$cfg" sequential_ip "--dhcp-sequential-ip"
 	append_bool "$cfg" allservers "--all-servers"
 	append_bool "$cfg" noping "--no-ping"
+	append_bool "$cfg" filteraaaa "--filter-aaaa"
 	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
 	append_bool "$cfg" scriptarp "--script-arp"
 
-	append_bool "$cfg" filter_aaaa "--filter-aaaa"
-
 	append_parm "$cfg" logfacility "--log-facility"
-
-	append_parm "$cfg" mini_ttl "--min-ttl"
 
 	append_parm "$cfg" cachesize "--cache-size"
 	append_parm "$cfg" dnsforwardmax "--dns-forward-max"
@@ -1167,10 +1164,12 @@ dnsmasq_start()
 
 	config_get_bool dns_redirect "$cfg" dns_redirect 0
 	config_get dns_port "$cfg" port 53
-	if [ "$dns_redirect" = 1 ]; then
-		iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
-		[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
-	fi
+	[ $dns_redirect = 1 ] && {
+	 iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
+	 iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p tcp --dport 53 -j REDIRECT --to-ports $dns_port
+	 ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
+	 ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p tcp --dport 53 -j REDIRECT --to-ports $dns_port
+	}
 }
 
 dnsmasq_stop()
@@ -1190,9 +1189,19 @@ dnsmasq_stop()
 
 iptables_clear()
 {
-	config_get dns_port "$cfg" port 53
-	iptables -t nat -D PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port 2>"/dev/null"
-	[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -D PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port 2>"/dev/null"
+	nums=$(iptables -t nat -n -L PREROUTING 2>/dev/null | grep -c "DNSMASQ")
+	if [ -n "$nums" ]; then
+		until [ "$nums" = 0 ]
+		do
+			rules=$(iptables -t nat -n -L PREROUTING --line-num 2>/dev/null | grep "DNSMASQ" | awk '{print $1}')
+			for rule in $rules
+			do
+				iptables -t nat -D PREROUTING $rule 2> /dev/null
+				break
+			done
+			nums=$(expr $nums - 1)
+		done
+	fi
 }
 
 add_interface_trigger()
