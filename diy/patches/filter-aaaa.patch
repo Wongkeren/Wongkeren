@@ -1,14 +1,3 @@
---- a/dnsmasq/files/dnsmasq.init
-+++ b/dnsmasq/files/dnsmasq.init
-@@ -865,6 +865,7 @@ dnsmasq_start()
- 	append_bool "$cfg" sequential_ip "--dhcp-sequential-ip"
- 	append_bool "$cfg" allservers "--all-servers"
- 	append_bool "$cfg" noping "--no-ping"
-+	append_bool "$cfg" filteraaaa "--filter-aaaa"
- 	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
- 	append_bool "$cfg" scriptarp "--script-arp"
- 
-
 --- a/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 @@ -199,6 +199,11 @@ return view.extend({
