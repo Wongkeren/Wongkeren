@@ -1,15 +1,14 @@
-From d5714003b9ba288b45e6866472315a99230292f5 Mon Sep 17 00:00:00 2001
-From: Chuck <fanck0605@qq.com>
-Date: Wed, 3 Jun 2020 16:37:41 +0800
-Subject: [PATCH] dnsmasq: add filter-aaaa option
+--- a/dnsmasq/files/dnsmasq.init
++++ b/dnsmasq/files/dnsmasq.init
+@@ -865,6 +865,7 @@ dnsmasq_start()
+ 	append_bool "$cfg" sequential_ip "--dhcp-sequential-ip"
+ 	append_bool "$cfg" allservers "--all-servers"
+ 	append_bool "$cfg" noping "--no-ping"
++	append_bool "$cfg" filteraaaa "--filter-aaaa"
+ 	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
+ 	append_bool "$cfg" scriptarp "--script-arp"
+ 
 
-Signed-off-by: Chuck <fanck0605@qq.com>
----
- .../luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js        | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js b/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-index 6693dc0eac..1c8f943758 100644
 --- a/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 @@ -199,6 +199,11 @@ return view.extend({
