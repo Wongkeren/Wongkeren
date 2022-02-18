@@ -933,11 +933,14 @@ dnsmasq_start()
 	append_bool "$cfg" sequential_ip "--dhcp-sequential-ip"
 	append_bool "$cfg" allservers "--all-servers"
 	append_bool "$cfg" noping "--no-ping"
-	append_bool "$cfg" filteraaaa "--filter-aaaa"
 	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
 	append_bool "$cfg" scriptarp "--script-arp"
 
+	append_bool "$cfg" filter_aaaa "--filter-aaaa"
+
 	append_parm "$cfg" logfacility "--log-facility"
+
+	append_parm "$cfg" mini_ttl "--min-ttl"
 
 	append_parm "$cfg" cachesize "--cache-size"
 	append_parm "$cfg" dnsforwardmax "--dns-forward-max"
@@ -1164,12 +1167,10 @@ dnsmasq_start()
 
 	config_get_bool dns_redirect "$cfg" dns_redirect 0
 	config_get dns_port "$cfg" port 53
-	[ $dns_redirect = 1 ] && {
-	 iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
-	 iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p tcp --dport 53 -j REDIRECT --to-ports $dns_port
-	 ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
-	 ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p tcp --dport 53 -j REDIRECT --to-ports $dns_port
-	}
+	if [ "$dns_redirect" = 1 ]; then
+		iptables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
+		[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port
+	fi
 }
 
 dnsmasq_stop()
@@ -1185,6 +1186,13 @@ dnsmasq_stop()
 	[ "$localuse" -gt 0 ] && ln -sf "/tmp/resolv.conf.d/resolv.conf.auto" /tmp/resolv.conf
 
 	rm -f ${BASEDHCPSTAMPFILE}.${cfg}.*.dhcp
+}
+
+iptables_clear()
+{
+	config_get dns_port "$cfg" port 53
+	iptables -t nat -D PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port 2>"/dev/null"
+	[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -D PREROUTING -m comment --comment "DNSMASQ" -p udp --dport 53 -j REDIRECT --to-ports $dns_port 2>"/dev/null"
 }
 
 add_interface_trigger()
@@ -1257,6 +1265,7 @@ start_service() {
 }
 
 reload_service() {
+	iptables_clear
 	rc_procd start_service "$@"
 	procd_send_signal dnsmasq "$@"
 }
@@ -1283,4 +1292,5 @@ stop_service() {
 	else
 		config_foreach dnsmasq_stop dnsmasq
 	fi
+	iptables_clear
 }
