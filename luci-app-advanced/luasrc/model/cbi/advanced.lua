@@ -169,7 +169,7 @@ e.remove("/tmp/firewall")
 end
 end
 end
-if nixio.fs.access("/etc/config/config")then
+if nixio.fs.access("/etc/config/nginx")then
 s:tab("nginxconf",translate("NGINX"),translate("本页是配置/etc/config/nginx包含NGINX配置文档内容。应用保存后自动重启生效"))
 conf=s:taboption("nginxconf",Value,"nginxconf",nil,translate("开头的数字符号（＃）或分号的每一行（;）被视为注释；删除（;）启用指定选项。"))
 conf.template="cbi/tvalue"
