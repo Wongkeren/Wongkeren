@@ -3,7 +3,6 @@
 /create_acl_for_luci.err
 /luci-app-godproxy/rulesupdate.log
 /qt5
-/luci-app-samba4
 /luci-app-advancedsetting
 /luci-app-softethervpn5
 /luci-app-softether
