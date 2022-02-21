@@ -1,0 +1,11 @@
+{
+	"luci-app-socatg": {
+		"description": "Grant UCI access for luci-app-socatg",
+		"read": {
+			"uci": [ "socatg" ]
+		},
+		"write": {
+			"uci": [ "socatg" ]
+		}
+	}
+}
