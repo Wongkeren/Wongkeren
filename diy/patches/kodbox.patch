@@ -16,7 +16,7 @@
  CONFIG="kodexplorer"
  
  TEMP_PATH="/var/etc/$CONFIG"
-+service nginx enabled && {
++[ -f /etc/nginx/conf.d/luci.locations ] && {
 +NGINX_CONFIG="/etc/nginx/conf.d/$CONFIG.conf"
 +NGINX_TEMPLATE="nginx.server.conf.template"
 +} || {
@@ -41,12 +41,12 @@
  	/usr/bin/php8-fpm -c $PHP_CONFIG -R -y $PHP_FPM_CONFIG
  	gen_nginx_config $NGINX_CONFIG
 -	/usr/sbin/nginx -c $NGINX_CONFIG >/dev/null 2>&1 &
-+	service nginx enabled && /etc/init.d/nginx reload || /usr/sbin/nginx -c $NGINX_CONFIG >/dev/null 2>&1 &
++	[ -f /etc/nginx/conf.d/luci.locations ] && /etc/init.d/nginx reload || /usr/sbin/nginx -c $NGINX_CONFIG >/dev/null 2>&1 &
  }
  
  stop() {
 -	/usr/sbin/nginx -c $NGINX_CONFIG -s stop >/dev/null 2>&1
-+	service nginx enabled && (rm -f NGINX_CONFIG; /etc/init.d/nginx reload) || /usr/sbin/nginx -c $NGINX_CONFIG -s stop >/dev/null 2>&1
++	[ -f /etc/nginx/conf.d/luci.locations ] && (rm -f NGINX_CONFIG; /etc/init.d/nginx reload) || /usr/sbin/nginx -c $NGINX_CONFIG -s stop >/dev/null 2>&1
  	[ -f "$TEMP_PATH/php-fpm.pid" ] && kill -2 $(cat $TEMP_PATH/php-fpm.pid) >/dev/null 2>&1
  	rm -rf $TEMP_PATH
  }
