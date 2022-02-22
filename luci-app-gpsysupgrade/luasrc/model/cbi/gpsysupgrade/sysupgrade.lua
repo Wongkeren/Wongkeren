@@ -126,7 +126,7 @@ sys.call("uci -q del opkg.auto;uci commit opkg")
 if not retain or retain == "" then
 	local result = api.exec("/sbin/sysupgrade", {file}, nil, api.command_timeout) == 0
 else
-	if retain:match(".*-q .*") then
+	if retain:match(".*-k .*") then
 		sys.call(". /etc/profile.d/opkg.sh;opkg save;")
 	end
 	sys.call("/sbin/sysupgrade " ..retain.. " " ..file.. "")
