@@ -208,7 +208,6 @@ jobs:
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
-        mv -f mt/drivers mt-drivers && cp -rf mt/* ./ && rm -Rf mt
 
     - name: SSH connection to Actions
       uses: kiddin9/debugger-action@master
