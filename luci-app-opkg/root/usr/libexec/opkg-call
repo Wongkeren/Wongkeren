@@ -45,7 +45,6 @@ case "$action" in
 						}
 					;;
 					remove)
-						. /etc/profile.d/opkg.sh; opkg save
 						[ ! "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $@)" ] && {
 							rm -f /tmp/opkg.err
 						}
