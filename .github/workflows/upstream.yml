@@ -300,7 +300,7 @@ jobs:
         sed -i '$a cgi-timeout = 60' uwsgi/files-luci-support/luci-cgi_io.ini
         sed -i '/limit-as/c\limit-as = 5000' uwsgi/files-luci-support/luci-webui.ini
         sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/' uwsgi/files/uwsgi.init
-        #cp -rf base-files/files/{bin,sbin} my-default-settings/files/
+        cp -rf base-files/files/sbin my-default-settings/files/
         
         sed -i \
           -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
