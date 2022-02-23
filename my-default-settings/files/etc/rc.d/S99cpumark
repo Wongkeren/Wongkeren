@@ -1,5 +1,7 @@
-(
+#!/bin/sh /etc/rc.common
+
 [[ -f "/bin/coremark" && ! -f "/etc/bench.log" && "$(uci -q get wizard.default.coremark)" == '1' ]] && {
+(
 	sleep 5
 	while :; do
  		[ -f /var/lock/opkg.lock ] || {
@@ -8,5 +10,5 @@
 		}
 		sleep 1
 	done
-}
 ) &
+}
