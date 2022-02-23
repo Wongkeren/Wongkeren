@@ -223,12 +223,5 @@ echo vm.swappiness=0 >>$SYSCTL_LOCAL
 cp -pR /www/cgi-bin/* /www/
 rm -rf /tmp/luci-*
 
-(
-sleep 1
-grep -q "ifname 'br-lan'" /etc/config/network || {
-sed -i "s/\(option device '\(.*\)'\)/\1\n\toption ifname '\2'/" /etc/config/network
-}
-) &
-
 uci -q set base_config.@status[0].version=$version
 uci commit base_config
