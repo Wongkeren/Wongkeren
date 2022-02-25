@@ -123,6 +123,7 @@ function request_sysupgrade(server_url, data) {
 			target: data.target,
 			version: data.version,
 			packages: data.packages,
+			partsize: data.partsize,
 			diff_packages: true,
 		});
 	}
@@ -275,7 +276,7 @@ function request_sysupgrade(server_url, data) {
 
 async function check_sysupgrade(server_url, system_board, packages, force) {
 	var {board_name} = system_board;
-	var {target, version, revision} = system_board.release;
+	var {target, version, revision, distribution} = system_board.release;
 	var current_branch = get_branch(version);
 	var advanced_mode =
 			uci.get_first('attendedsysupgrade', 'client', 'advanced_mode') || 0;
@@ -307,6 +308,7 @@ async function check_sysupgrade(server_url, system_board, packages, force) {
 	target: target,
 	version: candidates[0],
 	packages: Object.keys(packages).sort(),
+	partsize: distribution,
 			},
 		};
 
