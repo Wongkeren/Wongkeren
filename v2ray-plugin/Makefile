@@ -7,7 +7,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=v2ray-plugin
 PKG_VERSION:=5.0.2
-PKG_RELEASE:=56
+PKG_RELEASE:=57
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/teddysun/v2ray-plugin/tar.gz/v$(PKG_VERSION)?
@@ -45,7 +45,7 @@ endef
 
 ifeq ($(CONFIG_V2RAY_PLUGIN_INCLUDE_GOPROXY),y)
 export GO111MODULE=on
-export GOPROXY=https://goproxy.io
+export GOPROXY=https://goproxy.bj.bcebos.com
 #export GOPROXY=https://mirrors.aliyun.com/goproxy/
 endif
 
