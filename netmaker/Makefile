@@ -9,12 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=netmaker
 PKG_VERSION:=0.11.0
-PKG_RELEASE:=10
+PKG_RELEASE:=11
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/gravitl/netmaker.git
 PKG_SOURCE_VERSION:=d3e6c71809140f220818b5d67859965038cca8c8
-PKG_SOURCE_DATE:=20211214
+PKG_SOURCE_DATE:=20220225
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=MIT
@@ -82,7 +82,7 @@ define Package/netmaker/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netmaker $(1)/usr/bin/
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
-	$(CP) ./files/* $(1)/
+	$(CP) ./root/* $(1)/
 	$(LN) netclient $(1)/etc/netclient/netclient
 endef
 
