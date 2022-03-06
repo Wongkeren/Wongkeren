@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=luci-app-cloudflarespeedtest
 
 LUCI_TITLE:=LuCI support for Cloudflares Speed Test
-LUCI_DEPENDS:=+cdnspeedtest
+LUCI_DEPENDS:=+cdnspeedtest +openssl-util +curl
 LUCI_PKGARCH:=all
 PKG_LICENSE:=AGPL-3.0
 PKG_MAINTAINER:=mingxiaoyu <fengying0347@163.com>
