@@ -61,7 +61,7 @@ log(){
 firstdown(){
 	[ $1 = 1 ] && A=$BIN_DIR/checknetwork && B=check
 	[ $1 = 2 ] && A=$BIN_DIR/update && B=--First
-	service_start ${A} ${B}
+	./${A} ${B}
 }
 
 f_bin(){
