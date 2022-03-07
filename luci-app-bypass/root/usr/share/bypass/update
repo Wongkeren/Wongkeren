@@ -54,7 +54,7 @@ if [ "$C" = router ];then
 fi
 
 if [ ! -f $T_FILE/gfw.txt ];then
-if [ ("$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
+if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 	if [ $A = Y ];then
 		while ! (curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
 			sleep 2
