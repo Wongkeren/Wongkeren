@@ -18,6 +18,7 @@ if [ $A = Y ];then
 		mkdir -p $T_FILE 2>/dev/null
 fi
 if [ "$C" = router ];then
+	if [ ! -f $T_FILE/china.txt ];then
 	if [ $A = Y ];then
 		while ! B=$(curl -kLfsm 3 https://cdn.jsdelivr.net/gh/kiddin9/china_ip_list@main/china_ip_list.txt || curl -kLfsm 3 https://op.supes.top/all_cn.txt);do
 			sleep 2
@@ -32,7 +33,9 @@ if [ "$C" = router ];then
 	else
 		log "China IPv4 List is up to date!"
 	fi
+	fi
 
+	if [ ! -f $T_FILE/china_v6.txt ];then
 	if [ $A = Y ];then
 		while ! D=$(curl -kLfsm 3 https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 3 https://op.supes.top/all_cn_ipv6.txt);do
 			sleep 2
@@ -47,9 +50,10 @@ if [ "$C" = router ];then
 	else
 		log "China IPv6 List is up to date!"
 	fi
+	fi
 fi
 
-if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
+if [ ("$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1) -a ! -f $T_FILE/gfw.txt ];then
 	if [ $A = Y ];then
 		while ! (curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
 			sleep 2
