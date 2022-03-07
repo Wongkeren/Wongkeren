@@ -1,6 +1,5 @@
 #!/bin/sh
 # 防止重复启动
-[ -f /var/lock/bypass.lock ] && exit 1
 LOCK=/var/lock/bypass-update.lock
 [ -f $LOCK ] && exit 1
 touch $LOCK
@@ -14,7 +13,6 @@ log(){
 C=$(uci -q get bypass.@global[0].run_mode)
 
 mkdir -p $T_FILE 2>/dev/null
-
 if [ "$C" = router ];then
 	if [ ! -f $T_FILE/china.txt ];then
 		while ! B=$(curl -kLfsm 3 https://cdn.jsdelivr.net/gh/kiddin9/china_ip_list@main/china_ip_list.txt || curl -kLfsm 3 https://op.supes.top/all_cn.txt);do
@@ -28,7 +26,7 @@ if [ "$C" = router ];then
 	if ! cmp -s /tmp/china.txt $T_FILE/china.txt;then
 		log "Update China IP List!"
 		cp -f /tmp/china.txt $T_FILE/china.txt
-		[ $A = N ] && ipset list china_v4 >/dev/null 2>&1 && $DIR/chinaipset
+		ipset list china_v4 >/dev/null 2>&1 && $DIR/chinaipset
 	else
 		log "China IPv4 List is up to date!"
 	fi
@@ -46,7 +44,7 @@ if [ "$C" = router ];then
 	if ! cmp -s /tmp/china_v6.txt $T_FILE/china_v6.txt;then
 		log "Update China IPv6 List!"
 		cp -f /tmp/china_v6.txt $T_FILE/china_v6.txt
-		[ $A = N ] && ipset list china_v6 >/dev/null 2>&1 && $DIR/chinaipset v6
+		ipset list china_v6 >/dev/null 2>&1 && $DIR/chinaipset v6
 	else
 		log "China IPv6 List is up to date!"
 	fi
@@ -66,7 +64,6 @@ if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 	if ! cmp -s /tmp/gfwnew.txt $T_FILE/gfw.list;then
 		cp -f /tmp/gfwnew.txt $T_FILE/gfw.list
 		log "Update GFW List!"
-		[ $A = N ] && /etc/init.d/bypass restart >/dev/null 2>&1
 	else
 		log "GFW List is up to date!"
 	fi
@@ -74,3 +71,5 @@ if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 fi
 
 rm -f $LOCK /tmp/china*.txt /tmp/gfwnew.txt
+
+[ "$1" == "restart" ] && /etc/init.d/bypass restart &
