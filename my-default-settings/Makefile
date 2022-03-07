@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=my-default-settings
 PKG_VERSION:=1
-PKG_RELEASE:=66
+PKG_RELEASE:=67
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -24,7 +24,8 @@ define Package/$(PKG_NAME)
 endef
 
 define Package/$(PKG_NAME)/conffiles
-/etc/config/base_config
+/etc/config/
+/etc/nginx/
 endef
 
 define Build/Prepare
