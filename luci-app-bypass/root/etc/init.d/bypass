@@ -255,10 +255,8 @@ rules(){
 	check_net
 	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Download IP/GFW files...' || (log "Check network status successful!";log "Check IP/GFW files...")
 	mkdir -p /var/run $VAR
-	if [ $STATUS = Y -o -z "$GLOBAL_SERVER" ];then
 		log "Download IP/GFW files..."
 		firstdown 2;
-	fi
 	log "Check IP/GFW files successful!"
 	kcp_enable=$(uci_get_by_name $GLOBAL_SERVER kcp_enable 0)
 	UDP_RELAY_SERVER=$(uci_get_by_type global udp_relay_server)
