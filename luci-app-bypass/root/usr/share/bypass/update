@@ -53,7 +53,8 @@ if [ "$C" = router ];then
 	fi
 fi
 
-if [ ("$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1) -a ! -f $T_FILE/gfw.txt ];then
+if [ ! -f $T_FILE/gfw.txt ];then
+if [ ("$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 	if [ $A = Y ];then
 		while ! (curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
 			sleep 2
@@ -67,6 +68,7 @@ if [ ("$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1) -a ! -f $T_F
 	else
 		log "GFW List is up to date!"
 	fi
+fi
 fi
 rm -f $LOCK /tmp/china*.txt /tmp/gfwnew.txt
 [ $A = Y ] && /etc/init.d/bypass start &

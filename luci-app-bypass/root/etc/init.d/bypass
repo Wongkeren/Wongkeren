@@ -255,7 +255,7 @@ rules(){
 	check_net
 	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Download IP/GFW files...' || (log "Check network status successful!";log "Check IP/GFW files...")
 	mkdir -p /var/run $VAR
-	if ([ $run_mode = router ] && [ ! -s $T_FILE/china.txt -o ! -s $T_FILE/china_v6.txt ]) || ([ $run_mode = gfw -o $gfw_mode = 1 ] && [ ! -s $K/gfw.list ]);then
+	if ([ $run_mode = router ] && [ ! -s $T_FILE/china.txt -o ! -s $T_FILE/china_v6.txt ]) || ([ $run_mode = gfw -o $gfw_mode = 1 ] && [ ! -s $T_FILE/gfw.list ]);then
 		log "Download IP/GFW files..."
 		firstdown 2;exit 1
 	fi
@@ -783,7 +783,7 @@ gen_dns(){
 			awk '!/^$/&&!/^#/{printf("server=/%s/'"127.0.0.1#5335"'\n",$0)}' $O >$DNS_DIR/black.conf
 			if [ $run_mode = gfw ];then
 				[ "$dns_a" = 1 ] && echo "server=/$doh_o_dom/127.0.0.1#5335" >>$DNS_DIR/black.conf
-				cp -f $K/gfw.list $O
+				cp -f $T_FILE/gfw.list $O
 				awk '!/^$/&&!/^#/{printf("server=/%s/'"127.0.0.1#5335"'\n",$0)}' $O >>$DNS_DIR/black.conf
 			fi
 		fi
@@ -1024,8 +1024,6 @@ stop(){
 	kill -9 $(ps -w | grep $VAR | grep -v grep | awk '{print$1}') 2>/dev/null
 	killall -q -9 smartdns chinadns-ng kcptun-client microsocks
 	rm -rf $DNS_DIR $VAR $DNS_FILE $CON_T /var/lock/bypass-update.lock
-	[ $run_mode = gfw -o $gfw_mode = 1 ] || rm -f $K/gfw.list
-	[ $run_mode = router ] || rm -f $K/china_v6.txt
 	[ -z "$GLOBAL_SERVER" ] && grep -q bypass $CRON_FILE && sed -i '/bypass/d' $CRON_FILE && /etc/init.d/cron restart
 	if [ $STATUS = Y -o -z "$GLOBAL_SERVER" ];then
 		if [[ -f /etc/init.d/AdGuardHome && "$(uci -q get AdGuardHome.AdGuardHome.redirect)" == "exchange"  ]]; then
