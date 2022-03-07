@@ -19,7 +19,7 @@ if [ $A = Y ];then
 fi
 if [ "$C" = router ];then
 	if [ $A = Y ];then
-		while ! B=$(curl -kLfs https://cdn.jsdelivr.net/gh/kiddin9/china_ip_list@main/china_ip_list.txt || curl -kLfs https://op.supes.top/all_cn.txt);do
+		while ! B=$(curl -kLfsm 3 https://cdn.jsdelivr.net/gh/kiddin9/china_ip_list@main/china_ip_list.txt || curl -kLfsm 3 https://op.supes.top/all_cn.txt);do
 			sleep 2
 		done
 	fi
@@ -34,7 +34,7 @@ if [ "$C" = router ];then
 	fi
 
 	if [ $A = Y ];then
-		while ! D=$(curl -kLfsm 5 https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 5 https://op.supes.top/all_cn_ipv6.txt);do
+		while ! D=$(curl -kLfsm 3 https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 3 https://op.supes.top/all_cn_ipv6.txt);do
 			sleep 2
 		done
 	fi
@@ -51,7 +51,7 @@ fi
 
 if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 	if [ $A = Y ];then
-		while ! (curl -kLfsm 5 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -Lfso /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
+		while ! (curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
 			sleep 2
 		done
 	fi
