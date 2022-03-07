@@ -61,7 +61,7 @@ log(){
 firstdown(){
 	[ $1 = 1 ] && A=$BIN_DIR/checknetwork && B=check
 	[ $1 = 2 ] && A=$BIN_DIR/update && B=--First
-	./${A} ${B}
+	service_start ${A} ${B}
 }
 
 f_bin(){
@@ -214,9 +214,8 @@ preload(){
 
 check_net(){
 	if ! curl -so /dev/null -m 3 www.baidu.com;then
-		log "Wait for network to connect..."
 		/etc/init.d/dnsmasq restart
-		firstdown 1;
+		firstdown 1;exit 0;
 	fi
 }
 
@@ -225,7 +224,6 @@ get_soip(){
 		if [ "$1" = 1 ];then
 			cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Check network status...' || gen_log
 			check_net
-			cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Check network status successful!' || log "Check network status successful!"
 		fi
 		socks5_ip=$(uci_get_by_name $SO_SERVER server)
 		if ! echo $socks5_ip | grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null;then
@@ -253,11 +251,11 @@ rules(){
 	fi
 	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Check network status...\|Download IP/GFW files...' || gen_log
 	check_net
-	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Download IP/GFW files...' || (log "Check network status successful!";log "Check IP/GFW files...")
+	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Download IP/GFW files...' || (log "Check IP/GFW files...")
 	mkdir -p /var/run $VAR
-	if [ ! -f $PID ];then
+	if [[ ! -f $PID && "$STATUS" == N ]];then
 		log "Download IP/GFW files..."
-		firstdown 2;
+		firstdown 2;exit 0;
 	fi
 	log "Check IP/GFW files successful!"
 	kcp_enable=$(uci_get_by_name $GLOBAL_SERVER kcp_enable 0)

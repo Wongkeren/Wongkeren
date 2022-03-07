@@ -6,8 +6,8 @@ log(){
 	 echo "$(date +'%Y-%m-%d %H:%M:%S') : $*" >> /var/log/$NAME.log
 }
 
-sleep 2
 while ! curl -so /dev/null -m 3 www.baidu.com;do
+	log "请检查网络..."
 	sleep 2
 done
-log "Check network status successful!"
+/etc/init.d/$NAME start &
