@@ -846,7 +846,7 @@ add_cron(){
 	if [ $(uci_get_by_type server_subscribe auto_update 0) = 1 ];then
 		if ! grep -wq "$(uci_get_by_type server_subscribe auto_update_time 6) \* \* \* .*$BIN_DIR" $CRON_FILE;then
 			eval $CRON
-			echo "0 $(uci_get_by_type server_subscribe auto_update_time 6) * * * $BIN_DIR/update restart" >>$CRON_FILE
+			echo "0 $(uci_get_by_type server_subscribe auto_update_time 6) * * * $BIN_DIR/update" >>$CRON_FILE
 			echo "5 $(uci_get_by_type server_subscribe auto_update_time 6) * * * $BIN_DIR/subscribe" >>$CRON_FILE
 			A=1
 		fi
