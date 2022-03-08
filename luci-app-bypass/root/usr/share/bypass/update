@@ -49,11 +49,11 @@ fi
 
 if [ "$C" = gfw -o "$(uci -q get bypass.@global[0].gfw_mode)" = 1 ];then
 	if [ ! -f $T_FILE/gfw.txt ];then
-		while ! (curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
+		while ! (curl -kLfsm 5 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt);do
 			sleep 2
 		done
-	else
-		curl -kLfsm 3 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt
+	elif [ "$C" = gfw ];then
+		curl -kLfsm 5 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/gfwlist/gfwlist/gfwlist.txt || curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt
 	fi
 	$DIR/by-gfw
 	if ! cmp -s /tmp/gfwnew.txt $T_FILE/gfw.list;then
@@ -66,4 +66,4 @@ fi
 
 rm -f $LOCK /tmp/china*.txt /tmp/gfwnew.txt
 
-[ "$1" == "restart" ] && /etc/init.d/bypass restart || /etc/init.d/bypass start
+[ "$1" == "restart" ] && /etc/init.d/bypass restart || /etc/init.d/bypass updated
