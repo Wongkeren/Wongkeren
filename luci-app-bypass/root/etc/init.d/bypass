@@ -253,7 +253,7 @@ rules(){
 	check_net
 	cat $LOG 2>/dev/null | sed -n '$p' | grep -q 'Download IP/GFW files...' || (log "Check IP/GFW files...")
 	mkdir -p /var/run $VAR
-	if [[ ! -f $PID && "$update" != "updated" ]] || [ "$update" == "update" ] ;then
+	if [[ ! -f $PID && "$update" != "updated" ]];then
 		log "Download IP/GFW files..."
 		firstdown 2;exit 0;
 	fi
