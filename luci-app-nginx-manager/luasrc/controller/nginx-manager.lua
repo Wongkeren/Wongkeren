@@ -17,9 +17,6 @@ function index()
     x:set("nginx-manager", "config", "nginx")
     x:set("nginx-manager", "config", "name", "config")
     x:set("nginx-manager", "config", "filepath", "/etc/config/nginx")
-    x:set("nginx-manager", "main", "nginx")
-    x:set("nginx-manager", "main", "name", "main")
-    x:set("nginx-manager", "main", "filepath", "/etc/nginx/nginx.conf")
     for path in nixio.fs.dir("/etc/nginx/conf.d") do
         if path:find(".conf$") ~= nil then
             name = path:gsub(".conf", "")

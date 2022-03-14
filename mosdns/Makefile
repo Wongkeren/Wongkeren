@@ -5,8 +5,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mosdns
-PKG_VERSION:=d47126e
-PKG_RELEASE:=37
+PKG_VERSION:=b8dc845
+PKG_RELEASE:=38
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/IrineSistiana/mosdns/tar.gz/$(PKG_VERSION)?
@@ -56,7 +56,7 @@ endef
 
 ifeq ($(CONFIG_MOSDNS_COMPRESS_GOPROXY),y)
 	export GO111MODULE=on
-	export GOPROXY=https://goproxy.baidu.com
+	export GOPROXY=https://mirrors.aliyun.com/goproxy/
 endif
 
 define Build/Prepare
