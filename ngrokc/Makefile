@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngrokc
-PKG_VERSION:=1.54
-PKG_RELEASE:=14
+PKG_VERSION:=1.55
+PKG_RELEASE:=15
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/dosgo/ngrok-c.git
-PKG_SOURCE_DATE:=2019-11-02
+PKG_SOURCE_DATE:=2021-09-01
 PKG_SOURCE_VERSION:=08dc67cf14f64af96b7b042175f08db127902869
 PKG_MIRROR_HASH:=skip
 
@@ -23,7 +23,8 @@ define Package/ngrokc
   SUBMENU:=Web Servers/Proxies
   TITLE:=Secure tunnels to localhost (C++ port)
   URL:=https://github.com/dosgo/ngrok-c
-  DEPENDS:=+libc +libpthread +libopenssl +libstdcpp +zlib
+  DEPENDS:=+libc +libpthread +libopenssl +libstdcpp +zlib +zlib \
+    +USE_GLIBC:libatomic
 endef
 
 define Build/Prepare

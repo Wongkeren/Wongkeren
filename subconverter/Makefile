@@ -5,11 +5,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subconverter
-PKG_RELEASE:=38
+PKG_RELEASE:=39
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/tindy2013/subconverter.git
-PKG_SOURCE_DATE:=2021-10-27
+PKG_SOURCE_DATE:=2022-02-28
 PKG_SOURCE_VERSION:=7eb4abedc2802ea637b84f6b555882efb67b245e
 PKG_MIRROR_HASH:=skip
 PKG_VERSION:=0.7.1
@@ -18,8 +18,9 @@ PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
-PKG_BUILD_DEPENDS:=jpcre2 libcron quickjspp rapidjson toml11
+PKG_BUILD_DEPENDS:=jpcre2 rapidjson toml11
 PKG_BUILD_PARALLEL:=1
+PKG_INSTALL:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -29,17 +30,13 @@ define Package/subconverter
   CATEGORY:=Utilities
   TITLE:=Utility to convert between various proxy subscription format
   URL:=https://github.com/tindy2013/subconverter
-  DEPENDS:=+libatomic +libcurl +libevent2 +libpcre2 +libpthread \
-	+libstdcpp +libyaml-cpp +zlib
+  DEPENDS:=+libcron +libcurl +libevent2 +libpcre2 +libquickjs \
+    +libstdcpp +libyaml-cpp
 endef
 
-TARGET_CXXFLAGS := $(FPIC) $(filter-out -O%,$(TARGET_CXXFLAGS)) -O3
+TARGET_CXXFLAGS := $(filter-out -O%,$(TARGET_CXXFLAGS)) -O3
 TARGET_CXXFLAGS += -Wall -Wextra -ffunction-sections -fdata-sections -flto
 TARGET_LDFLAGS += -Wl,--gc-sections -flto
-
-CMAKE_OPTIONS += \
-	 -DCMAKE_BUILD_TYPE=Release \
-	 -DCMAKE_EXE_LINKER_FLAGS="-latomic"
 
 define Package/subconverter/install
 	$(INSTALL_DIR) $(1)/usr/bin
