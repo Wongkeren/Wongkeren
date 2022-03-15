@@ -283,12 +283,15 @@ return view.extend({
 			});
 	},
 
-	handleCheck: function (force) {
+	handleCheck: function () {
 		var { url, revision } = this.data
 		var { version, target } = this.firmware
 		var candidates = [];
 		var response;
-		var request_url = `${url}/api/v1/revision/${version}/${target}`;
+		var request_url = `${url}/api/overview`;
+		if (version.endsWith('SNAPSHOT')) {
+			request_url = `${url}/api/v1/revision/${version}/${target}`;
+		}
 
 		ui.showModal(_('Searching...'), [
 			E('p', { 'class': 'spinning' },
@@ -319,7 +322,7 @@ return view.extend({
 						request: {
 							profile: this.firmware.profile,
 							version: candidates[0][0],
-							packages: Object.keys(this.firmware.packages).sort(),
+							packages: Object.keys(this.firmware.packages).filter((value) => value.search(/(-zh-cn|-en)$/) == -1).sort(),
 							partsize: this.firmware.partsize
 						},
 					};
