@@ -322,7 +322,7 @@ return view.extend({
 						request: {
 							profile: this.firmware.profile,
 							version: candidates[0][0],
-							packages: Object.keys(this.firmware.packages).filter((value) => value.search(/(-zh-cn|-en)$/) == -1).sort(),
+							packages: Object.keys(this.firmware.packages).filter((value) => value.search("-zh-cn") == -1).sort(),
 							partsize: this.firmware.partsize
 						},
 					};
