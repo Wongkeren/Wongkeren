@@ -1,6 +1,6 @@
 --- a/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
 +++ b/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
-@@ -283,15 +283,12 @@ return view.extend({
+@ -283,15 +283,12 @@ return view.extend({
  			});
  	},
  
@@ -55,10 +55,12 @@
  
  				if (candidates.length) {
  					var m, s, o;
-@@ -348,6 +320,7 @@ return view.extend({
+@@ -347,7 +319,8 @@ return view.extend({
+ 						request: {
  							profile: this.firmware.profile,
  							version: candidates[0][0],
- 							packages: Object.keys(this.firmware.packages).sort(),
+-							packages: Object.keys(this.firmware.packages).sort(),
++							packages: Object.keys(this.firmware.packages).filter((value) => value.search(/(-zh-cn|-en)$/) == -1).sort(),
 +							partsize: this.firmware.partsize
  						},
  					};
