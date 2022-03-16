@@ -1,6 +1,15 @@
 --- a/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
 +++ b/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
-@ -283,15 +283,12 @@ return view.extend({
+@@ -99,7 +99,7 @@ return view.extend({
+ 		}
+ 
+ 		if (image.name != undefined) {
+-			var sysupgrade_url = `${this.data.url}/store/${res.bin_dir}/${image.name}`;
++			var sysupgrade_url = `${this.data.url}/store/${res.request_hash}/${image.name}`;
+ 
+ 			var keep = E('input', { type: 'checkbox' });
+ 			keep.checked = true;
+@@ -283,15 +283,12 @@ return view.extend({
  			});
  	},
  
@@ -60,7 +69,7 @@
  							profile: this.firmware.profile,
  							version: candidates[0][0],
 -							packages: Object.keys(this.firmware.packages).sort(),
-+							packages: Object.keys(this.firmware.packages).filter((value) => value.search("-zh-cn") == -1).sort(),
++							packages: Object.keys(this.firmware.packages).filter((value) => value.search(/(-zh-cn|-en)$/) == -1).sort(),
 +							partsize: this.firmware.partsize
  						},
  					};
