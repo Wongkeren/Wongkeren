@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=quickjspp
-PKG_RELEASE:=32
+PKG_RELEASE:=33
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/ftk/quickjspp.git
@@ -26,6 +26,8 @@ define Package/libquickjs
   CATEGORY:=Libraries
   URL:=https://bellard.org/quickjs/
   TITLE:=A small and embeddable Javascript engine
+  # mips(el) & glibc require it
+  DEPENDS:=+libatomic
 endef
 
 define Package/libquickjs/description
@@ -40,7 +42,8 @@ endef
 
 CMAKE_OPTIONS+= \
 	-DBUILD_SHARED_LIBS=ON \
-	-DBUILD_TESTING=OFF
+	-DBUILD_TESTING=OFF \
+	-DCMAKE_EXE_LINKER_FLAGS="-latomic"
 
 define Package/libquickjs/install
 	$(INSTALL_DIR) $(1)/usr/lib/

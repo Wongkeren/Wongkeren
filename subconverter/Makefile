@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subconverter
-PKG_RELEASE:=39
+PKG_RELEASE:=40
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/tindy2013/subconverter.git
@@ -30,9 +30,12 @@ define Package/subconverter
   CATEGORY:=Utilities
   TITLE:=Utility to convert between various proxy subscription format
   URL:=https://github.com/tindy2013/subconverter
-  DEPENDS:=+libcron +libcurl +libevent2 +libpcre2 +libquickjs \
-    +libstdcpp +libyaml-cpp
+  DEPENDS:=+libatomic +libcron +libcurl +libevent2 +libpcre2 \
+    +libquickjs +libstdcpp +libyaml-cpp
 endef
+
+# mips(el) & glibc require it
+CMAKE_OPTIONS+= -DCMAKE_EXE_LINKER_FLAGS="-latomic"
 
 TARGET_CXXFLAGS := $(filter-out -O%,$(TARGET_CXXFLAGS)) -O3
 TARGET_CXXFLAGS += -Wall -Wextra -ffunction-sections -fdata-sections -flto
