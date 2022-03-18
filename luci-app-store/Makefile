@@ -10,9 +10,10 @@ LUCI_DESCRIPTION:=luci-app-store is a ipk store developed by LinkEase team
 LUCI_DEPENDS:=+curl +opkg +luci-lib-ipkg +tar +coreutils +coreutils-stat +libuci-lua +mount-utils
 LUCI_PKGARCH:=all
 
+# PKG_RELEASE MUST be empty for luci.mk
 
 ISTORE_UI_VERSION:=1.0
-ISTORE_UI_RELEASE:=11
+ISTORE_UI_RELEASE:=12
 PKG_HASH:=skip
 
 PKG_SOURCE_URL_FILE:=v$(ISTORE_UI_VERSION)-$(ISTORE_UI_RELEASE).tar.gz
@@ -21,7 +22,7 @@ PKG_SOURCE_URL:=https://github.com/linkease/istore-ui/archive/refs/tags
 
 PKG_MAINTAINER:=jjm2473 <jjm2473@gmail.com>
 
-TARGET_CONFIGURE_OPTS= FRONTEND_DIST="$(BUILD_DIR)/istore-ui-$(ISTORE_UI_VERSION)-$(ISTORE_UI_RELEASE)/app-store-ui/src/dist" APP_STORE_VERSION="$(PKG_VERSION)-$(PKG_RELEASE)"
+TARGET_CONFIGURE_OPTS= FRONTEND_DIST="$(BUILD_DIR)/istore-ui-$(ISTORE_UI_VERSION)-$(ISTORE_UI_RELEASE)/app-store-ui/src/dist" APP_STORE_VERSION="$(PKG_VERSION)"
 TARGET_CONFIGURE_OPTS+= SED="$(SED)"
 
 define Package/luci-app-store/conffiles
