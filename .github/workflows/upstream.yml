@@ -142,6 +142,7 @@ jobs:
         svn export https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
         svn export https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest/trunk/applications/luci-app-cloudflarespeedtest
         svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall
+        svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
         ) &
         (
         svn export https://github.com/doushang/luci-app-shortcutmenu/trunk/luci-app-shortcutmenu
