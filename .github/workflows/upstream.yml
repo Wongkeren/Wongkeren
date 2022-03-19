@@ -159,7 +159,7 @@ jobs:
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
         net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx net/uwsgi net/ddns-scripts admin/netdata
-        git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" \
+        git_sparse_clone openwrt-21.02 "https://github.com/openwrt/openwrt" "openwrt" package/utils/ucode \
         package/base-files package/network/config/firewall package/system/opkg package/libs/mbedtls package/network/services/ppp package/network/services/dnsmasq
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-transmission applications/luci-app-opkg applications/luci-app-firewall \
