@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=appfilter
 PKG_VERSION:=5.0
-PKG_RELEASE:=29
+PKG_RELEASE:=30
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
