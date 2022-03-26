@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-dnscrypt-proxy2
 PKG_VERSION:=2.1.1
-PKG_RELEASE:=14
+PKG_RELEASE:=15
 
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
@@ -37,7 +37,6 @@ define Package/$(PKG_NAME)
 	TITLE:=DNSCrypt Proxy LuCI interface
 	URL:=https://github.com/peter-tank/luci-app-dnscrypt-proxy2
 	PKGARCH:=all
-	DEPENDS:=+PACKAGE_$(PKG_NAME)_INCLUDE_minisign:minisign
 endef
 
 define Package/$(PKG_NAME)/description
