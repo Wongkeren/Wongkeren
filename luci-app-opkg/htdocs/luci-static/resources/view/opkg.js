@@ -1060,6 +1060,7 @@ return view.extend({
 				E('div', {}, [
 					E('label', {}, _('Actions') + ':'), ' ',
 					E('span', { 'class': 'control-group' }, [
+						E('button', { 'class': 'btn cbi-button-negative', 'data-command': 'upgradeall', 'click': handleOpkg, 'disabled': isReadonlyView }, [ _('Upgrade all…') ]), ' ',
 						E('button', { 'class': 'btn cbi-button-positive', 'data-command': 'update', 'click': handleOpkg, 'disabled': isReadonlyView }, [ _('Update lists…') ]), ' ',
 						E('button', { 'class': 'btn cbi-button-action', 'click': handleUpload, 'disabled': isReadonlyView }, [ _('Upload Package…') ]), ' ',
 						E('button', { 'class': 'btn cbi-button-neutral', 'click': handleConfig }, [ _('Configure opkg…') ])
