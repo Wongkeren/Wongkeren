@@ -182,7 +182,7 @@ function parseList(s, dest)
 			val = RegExp.$2.trim();
 		}
 		else if (pkg) {
-			dest.pkgs[pkg.name] = pkg;
+			dest.pkgs[pkg.name] = dest.pkgs[pkg.name] ? dest.pkgs[pkg.name] : pkg;
 
 			var provides = dest.providers[pkg.name] ? [] : [ pkg.name ];
 
