@@ -93,8 +93,8 @@
  		this.data.revision = res[1].release.revision;
  		this.data.efi = res[2];
 
---- a/luci-app-opkg/htdocs/luci-static/resources/view/opkg.js
-+++ b/luci-app-opkg/htdocs/luci-static/resources/view/opkg.js
+--- a/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
++++ b/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
 @@ -263,3 +263,24 @@ msgstr "版本"
  #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:264
  msgid "Wrong checksum"
