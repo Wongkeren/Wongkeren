@@ -5,8 +5,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mosdns
-PKG_VERSION:=600a906
-PKG_RELEASE:=43
+PKG_VERSION:=017fddb
+PKG_RELEASE:=44
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/IrineSistiana/mosdns/tar.gz/$(PKG_VERSION)?
