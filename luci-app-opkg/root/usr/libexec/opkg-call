@@ -52,7 +52,7 @@ case "$action" in
 					code=$?
 				fi
 				if [[ $@ == luci-app-* && "$(opkg list | grep luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn)" ]]; then
-					$opkg install luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null || true
+					$opkg install luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null
 				fi
 				case "$action" in
 					install|upgrade)
