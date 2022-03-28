@@ -1002,7 +1002,7 @@ function updateLists(data)
 		    	.sort(function(a, b) { return a.mount > b.mount })[0] || { size: 0, free: 0 };
 
 		pg.firstElementChild.style.width = Math.floor(mount.size ? ((100 / mount.size) * (mount.size-mount.free)) : 100) + '%';
-		pg.setAttribute('title', '%s (%.1024mB)'.format(pg.firstElementChild.style.width, (mount.size-mount.free)));
+		pg.setAttribute('title', '%.1024mB / %.1024mB (%s)'.format((mount.size-mount.free), mount.size, pg.firstElementChild.style.width));
 
 		parseList(data[1], packages.available);
 		parseList(data[2], packages.installed);
