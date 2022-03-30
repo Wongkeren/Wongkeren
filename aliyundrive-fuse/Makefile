@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aliyundrive-fuse
 PKG_VERSION:=0.1.8
-PKG_RELEASE:=29
+PKG_RELEASE:=30
 
 PKG_LICENSE:=MIT
 PKG_MAINTAINER:=messense <messense@icloud.com>
