@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-autocore
 PKG_VERSION:=1
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -39,7 +39,7 @@ define Package/my-autocore-arm/description
 endef
 
 define Download/cpuinfo
-  URL:=https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/package/emortal/autocore/files/generic/cpuinfo
+  URL:=https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/package/emortal/autocore/files/generic
   URL_FILE:=cpuinfo
   FILE:=cpuinfo
   HASH:=skip
