@@ -161,6 +161,7 @@ jobs:
         (
         svn export https://github.com/messense/openwrt-wiretrustee/trunk/wiretrustee
         svn export https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu
+        svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
