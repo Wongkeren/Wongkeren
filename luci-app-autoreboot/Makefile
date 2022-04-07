@@ -6,7 +6,10 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for Scheduled Reboot
+LUCI_DEPENDS:=+luci
 LUCI_PKGARCH:=all
+
+PKG_NAME:=luci-app-autoreboot
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
