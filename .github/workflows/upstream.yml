@@ -129,39 +129,33 @@ jobs:
         git_clone https://github.com/esirplayground/luci-app-LingTiGameAcc
         git_clone https://github.com/zxlhhyccc/luci-app-v2raya
         git_clone https://github.com/jerrykuku/luci-app-go-aliyundrive-webdav
+        git_clone https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns && mv -n tencentcloud-openwrt-plugin-ddns/tencentcloud_ddns ./luci-app-tencentddns; rm -rf tencentcloud-openwrt-plugin-ddns
+        git_clone https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-cos && mv -n tencentcloud-openwrt-plugin-cos/tencentcloud_cos ./luci-app-tencentcloud-cos; rm -rf tencentcloud-openwrt-plugin-cos
+        git_clone https://github.com/doushang/luci-app-shortcutmenu luci-shortcutmenu && mv -n luci-shortcutmenu/luci-app-shortcutmenu ./ ; rm -rf luci-shortcutmenu
+        git_clone https://github.com/sirpdboy/netspeedtest && mv -n netspeedtest/luci-app-netspeedtest ./ ; rm -rf netspeedtest
+        git_clone https://github.com/messense/aliyundrive-webdav aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive
+        git_clone https://github.com/sbilly/netmaker-openwrt && mv -n netmaker-openwrt/netmaker ./; rm -rf netmaker-openwrt
+        git_clone https://github.com/lisaac/luci-app-dockerman dockerman && mv -n dockerman/applications/* ./; rm -rf dockerman
         ) &
         (
-        svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns/trunk/tencentcloud_ddns luci-app-tencentddns
-        svn export https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-cos/trunk/tencentcloud_cos luci-app-tencentcloud-cos
+        git_clone https://github.com/messense/openwrt-wiretrustee && mv -n openwrt-wiretrustee/wiretrustee ./;rm -rf openwrt-wiretrustee
+        git_clone https://github.com/ophub/luci-app-amlogic amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic
+        git_clone https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest cloudflarespeedtest && mv -n cloudflarespeedtest/applications/* ./;rm -rf cloudflarespeedtest
+        git_clone https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2
+        git clone --depth 1 -b luci https://github.com/xiaorouji/openwrt-passwall passwall && mv -n passwall/luci-app-passwall ./;rm -rf passwall
+        
+        git_clone https://github.com/messense/aliyundrive-fuse aliyundrive && mv -n aliyundrive/openwrt/* ./;rm -rf aliyundrive
+        git_clone https://github.com/linkease/nas-packages && mv -n nas-packages/network/services/* ./; rm -rf nas-packages
+        git_clone https://github.com/linkease/nas-packages-luci && mv -n nas-packages-luci/luci/* ./; rm -rf nas-packages-luci
+        git_clone https://github.com/linkease/luci-app-linkease
+        ) &
+        (
         svn export https://github.com/x-wrt/packages/trunk/net/nft-qos
         svn export https://github.com/x-wrt/luci/trunk/applications/luci-app-nft-qos
         svn export https://github.com/x-wrt/com.x-wrt/trunk/luci-app-macvlan
-        ) &
-        (
-        svn export https://github.com/doushang/luci-app-shortcutmenu/trunk/luci-app-shortcutmenu
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
-        svn export https://github.com/sirpdboy/netspeedtest/trunk/luci-app-netspeedtest
-        svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt aliyundrive && mvdir aliyundrive
-        svn export https://github.com/sbilly/netmaker-openwrt/trunk/netmaker
-        ) &
-        (
-        svn export https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
-        svn export https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest/trunk/applications/luci-app-cloudflarespeedtest
-        svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall
-        svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
-        svn export https://github.com/messense/aliyundrive-fuse/trunk/openwrt && mvdir openwrt
-        ) &
-        (
-        svn export https://github.com/Lienol/openwrt-package/branches/other/lean/luci-app-autoreboot
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
-        svn export https://github.com/linkease/nas-packages/trunk/network/services && mvdir services
-        svn export https://github.com/linkease/nas-packages-luci/trunk/luci && mvdir luci
-        ) &
-        (
-        svn export https://github.com/messense/openwrt-wiretrustee/trunk/wiretrustee
-        svn export https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu
-        svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
@@ -172,10 +166,6 @@ jobs:
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-transmission applications/luci-app-opkg applications/luci-app-firewall \
         applications/luci-app-ksmbd applications/luci-app-samba4 modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
-        ) &
-        (
-        git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
-        luci-app-packet-capture luci-app-mail msmtp
         ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/adguardhome net/mwol \
@@ -190,6 +180,8 @@ jobs:
         multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent libs/qtbase libs/qttools libs/rblibtorrent \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2
+        git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
+        luci-app-packet-capture luci-app-mail msmtp
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
