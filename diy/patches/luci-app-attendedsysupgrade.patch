@@ -1,6 +1,6 @@
 --- a/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
 +++ b/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js
-@@ -99,7 +99,7 @@ return view.extend({
+@@ -100,7 +100,7 @@ return view.extend({
  		}
  
  		if (image.name != undefined) {
@@ -9,7 +9,7 @@
  
  			var keep = E('input', { type: 'checkbox' });
  			keep.checked = true;
-@@ -283,15 +283,12 @@ return view.extend({
+@@ -284,15 +284,12 @@ return view.extend({
  			});
  	},
  
@@ -27,7 +27,7 @@
  
  		ui.showModal(_('Searching...'), [
  			E('p', { 'class': 'spinning' },
-@@ -310,35 +307,10 @@ return view.extend({
+@@ -311,35 +308,10 @@ return view.extend({
  					]);
  					return;
  				}
@@ -64,7 +64,7 @@
  
  				if (candidates.length) {
  					var m, s, o;
-@@ -347,7 +319,8 @@ return view.extend({
+@@ -348,7 +320,8 @@ return view.extend({
  						request: {
  							profile: this.firmware.profile,
  							version: candidates[0][0],
@@ -74,7 +74,7 @@
  						},
  					};
  
-@@ -390,6 +363,9 @@ return view.extend({
+@@ -391,6 +364,9 @@ return view.extend({
  						E('p', _('The device runs the latest firmware version %s - %s').format(version, revision)),
  						E('div', { class: 'right' }, [
  							E('div', { class: 'btn', click: ui.hideModal }, _('Close')),
@@ -92,6 +92,19 @@
  		this.data.branch = get_branch(res[1].release.version);
  		this.data.revision = res[1].release.revision;
  		this.data.efi = res[2];
+@@ -449,6 +426,12 @@ return view.extend({
+ 			E('p', _('The attended sysupgrade service allows to easily upgrade vanilla and custom firmware images.')),
+ 			E('p', _('This is done by building a new firmware on demand via an online service.')),
+ 			E('p', _('Currently running: %s - %s').format(this.firmware.version, this.data.revision)),
++			E('p', [_('更多个性化定制请使用网页版: '),
++					E('a', {
++				'class': '',
++				'href': 'https://supes.top',
++				'target': '_balank',
++			}, _('在线定制网页版'))]),
+ 			E('button', {
+ 				'class': 'btn cbi-button cbi-button-positive important',
+ 				'click': ui.createHandlerFn(this, this.handleCheck)
 
 --- a/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
 +++ b/luci-app-attendedsysupgrade/po/zh_Hans/attendedsysupgrade.po
