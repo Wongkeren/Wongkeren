@@ -426,6 +426,12 @@ return view.extend({
 			E('p', _('The attended sysupgrade service allows to easily upgrade vanilla and custom firmware images.')),
 			E('p', _('This is done by building a new firmware on demand via an online service.')),
 			E('p', _('Currently running: %s - %s').format(this.firmware.version, this.data.revision)),
+			E('p', [_('更多个性化定制请使用网页版: '),
+					E('a', {
+				'class': '',
+				'href': 'https://supes.top',
+				'target': '_balank',
+			}, _('在线定制网页版'))]),
 			E('button', {
 				'class': 'btn cbi-button cbi-button-positive important',
 				'click': ui.createHandlerFn(this, this.handleCheck)
