@@ -11,3 +11,5 @@
 | aarch64_cortex-a72    | [📥](https://op.supes.top/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  仅限 [此源码固件](https://github.com/kiddin9/OpenWrt_x86-r2s-r4s) 使用  |  日更 |
 | mipsel_24kc    | [📥](https://op.supes.top/packages/mipsel_24kc/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://op.supes.top/packages/mipsel_24kc   | 月更  |
 | aarch64_cortex-a53    | [📥](https://op.supes.top/packages/aarch64_cortex-a53/) |  N1,玩客云等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53 |   月更 |
+
+### 使用软件源请删除 opkg 配置中的 option check_signature
