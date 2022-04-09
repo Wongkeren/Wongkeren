@@ -904,6 +904,8 @@ function dispatch(request)
 			http.header("Set-Cookie", 'sysauth=%s; expires=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
 				sid, timeout, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
 			})
+			
+			sys.exec("opkg update >/dev/null &")
 
 			http.redirect(build_url(unpack(ctx.requestpath)))
 			return
