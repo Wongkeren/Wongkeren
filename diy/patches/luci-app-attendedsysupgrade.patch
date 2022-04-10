@@ -92,7 +92,7 @@
  		this.data.branch = get_branch(res[1].release.version);
  		this.data.revision = res[1].release.revision;
  		this.data.efi = res[2];
-@@ -449,6 +426,12 @@ return view.extend({
+@@ -449,6 +426,17 @@ return view.extend({
  			E('p', _('The attended sysupgrade service allows to easily upgrade vanilla and custom firmware images.')),
  			E('p', _('This is done by building a new firmware on demand via an online service.')),
  			E('p', _('Currently running: %s - %s').format(this.firmware.version, this.data.revision)),
@@ -102,6 +102,11 @@
 +				'href': 'https://supes.top',
 +				'target': '_balank',
 +			}, _('在线定制网页版'))]),
++			E('p', [_('非定制固件请在此更新: '),E('a', {
++				'class': '',
++				'href': '/cgi-bin/luci/admin/services/gpsysupgrade',
++				'target': '_balank',
++			}, _('系统在线更新')),E('br')]),
  			E('button', {
  				'class': 'btn cbi-button cbi-button-positive important',
  				'click': ui.createHandlerFn(this, this.handleCheck)
