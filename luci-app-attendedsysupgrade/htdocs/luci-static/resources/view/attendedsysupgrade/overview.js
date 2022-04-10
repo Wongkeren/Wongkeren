@@ -432,6 +432,11 @@ return view.extend({
 				'href': 'https://supes.top',
 				'target': '_balank',
 			}, _('在线定制网页版'))]),
+			E('p', [_('非定制固件请在此更新: '),E('a', {
+				'class': '',
+				'href': '/cgi-bin/luci/admin/services/gpsysupgrade',
+				'target': '_balank',
+			}, _('系统在线更新')),E('br')]),
 			E('button', {
 				'class': 'btn cbi-button cbi-button-positive important',
 				'click': ui.createHandlerFn(this, this.handleCheck)
