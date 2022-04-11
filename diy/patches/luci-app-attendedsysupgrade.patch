@@ -94,7 +94,7 @@
 +		if (this.data.efi) {
 +			this.firmware.efi = "efi";
 +		} else {
-+			this.firmware.efi = "no";
++			this.firmware.efi = "not";
 +		}
  		if (res[1].rootfs_type) {
  			this.firmware.filesystem = res[1].rootfs_type;
@@ -111,7 +111,7 @@
 +			}, _('在线定制网页版'))]),
 +			E('p', [_('非定制固件请在此更新: '),E('a', {
 +				'class': '',
-+				'href': '/luci/admin/services/gpsysupgrade',
++				'href': '/cgi-bin/luci/admin/services/gpsysupgrade',
 +				'target': '_balank',
 +			}, _('系统在线更新')),E('br')]),
  			E('button', {
