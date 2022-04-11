@@ -64,17 +64,16 @@
  
  				if (candidates.length) {
  					var m, s, o;
-@@ -348,7 +320,8 @@ return view.extend({
+@@ -348,7 +320,7 @@ return view.extend({
  						request: {
  							profile: this.firmware.profile,
  							version: candidates[0][0],
 -							packages: Object.keys(this.firmware.packages).sort(),
 +							packages: Object.keys(this.firmware.packages).filter((value) => value.search("-zh-cn") == -1).sort(),
-+							partsize: this.firmware.partsize
  						},
  					};
  
-@@ -391,6 +364,9 @@ return view.extend({
+@@ -391,6 +363,9 @@ return view.extend({
  						E('p', _('The device runs the latest firmware version %s - %s').format(version, revision)),
  						E('div', { class: 'right' }, [
  							E('div', { class: 'btn', click: ui.hideModal }, _('Close')),
@@ -84,7 +83,7 @@
  						]),
  					]);
  				}
-@@ -414,6 +390,7 @@ return view.extend({
+@@ -414,9 +389,15 @@ return view.extend({
  		this.firmware.profile = res[1].board_name;
  		this.firmware.target = res[1].release.target;
  		this.firmware.version = res[1].release.version;
@@ -92,7 +91,15 @@
  		this.data.branch = get_branch(res[1].release.version);
  		this.data.revision = res[1].release.revision;
  		this.data.efi = res[2];
-@@ -449,6 +426,17 @@ return view.extend({
++		if (this.data.efi) {
++			this.firmware.efi = "efi";
++		} else {
++			this.firmware.efi = "no";
++		}
+ 		if (res[1].rootfs_type) {
+ 			this.firmware.filesystem = res[1].rootfs_type;
+ 		} else {
+@@ -449,6 +430,17 @@ return view.extend({
  			E('p', _('The attended sysupgrade service allows to easily upgrade vanilla and custom firmware images.')),
  			E('p', _('This is done by building a new firmware on demand via an online service.')),
  			E('p', _('Currently running: %s - %s').format(this.firmware.version, this.data.revision)),
@@ -104,7 +111,7 @@
 +			}, _('在线定制网页版'))]),
 +			E('p', [_('非定制固件请在此更新: '),E('a', {
 +				'class': '',
-+				'href': '/cgi-bin/luci/admin/services/gpsysupgrade',
++				'href': '/luci/admin/services/gpsysupgrade',
 +				'target': '_balank',
 +			}, _('系统在线更新')),E('br')]),
  			E('button', {
