@@ -321,7 +321,6 @@ return view.extend({
 							profile: this.firmware.profile,
 							version: candidates[0][0],
 							packages: Object.keys(this.firmware.packages).filter((value) => value.search("-zh-cn") == -1).sort(),
-							partsize: this.firmware.partsize
 						},
 					};
 
@@ -394,6 +393,11 @@ return view.extend({
 		this.data.branch = get_branch(res[1].release.version);
 		this.data.revision = res[1].release.revision;
 		this.data.efi = res[2];
+		if (this.data.efi) {
+			this.firmware.efi = "efi";
+		} else {
+			this.firmware.efi = "no";
+		}
 		if (res[1].rootfs_type) {
 			this.firmware.filesystem = res[1].rootfs_type;
 		} else {
@@ -434,7 +438,7 @@ return view.extend({
 			}, _('在线定制网页版'))]),
 			E('p', [_('非定制固件请在此更新: '),E('a', {
 				'class': '',
-				'href': '/cgi-bin/luci/admin/services/gpsysupgrade',
+				'href': '/luci/admin/services/gpsysupgrade',
 				'target': '_balank',
 			}, _('系统在线更新')),E('br')]),
 			E('button', {
