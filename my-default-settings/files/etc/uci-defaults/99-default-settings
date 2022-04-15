@@ -80,10 +80,8 @@ test $version -lt 1 && {
 		
 		if [ "$(uci -q get wireless.${radio}.hwmode)" = "11a" ]; then
 			uci -q set wireless.${radio}.htmode='VHT80'
-			uci -q set wireless.${radio}.txpower='23'
 		else
 			uci -q set wireless.${radio}.htmode='VHT40'
-			uci -q set wireless.${radio}.txpower='20'
 		fi
 
 		obj=`uci -q add wireless wifi-iface`
