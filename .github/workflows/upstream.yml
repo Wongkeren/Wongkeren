@@ -293,7 +293,6 @@ jobs:
         sed -i -e '/^\/etc\/profile/d' \
         -e '/^\/etc\/shinit/d' \
         base-files/Makefile
-        sed -i "s/tty\(0\|1\)::askfirst/tty\1::respawn/g" base-files/files/etc/inittab
         cp -f base-files/files/sbin/sysupgrade my-default-settings/files/sbin/
         sed -i '$a cgi-timeout = 300' uwsgi/files-luci-support/luci-webui.ini
         sed -i '$a cgi-timeout = 60' uwsgi/files-luci-support/luci-cgi_io.ini
