@@ -105,8 +105,18 @@ test $version -lt 1 && {
 		}
 	}
 
+<<'COMMENT'
+	[ -f /etc/config/wireless ] && {
+		SSID=${DISTRIB_ID}
+		SSID_PASSWD=""
+		while uci delete wireless.@wifi-iface[0] >/dev/null 2>&1; do :; done
+		for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
+			wifi_setup_radio ${radio}
+		done
+		uci commit wireless
+	}
+COMMENT
 
-	
 	uci -q set upnpd.config.enabled='1'
 	uci commit upnpd
 	
