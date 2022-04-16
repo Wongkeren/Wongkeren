@@ -103,7 +103,6 @@ test $version -lt 1 && {
 		done
 		uci commit wireless
 		wifi up
-		) &
 	}
 
 	uci -q set upnpd.config.enabled='1'
