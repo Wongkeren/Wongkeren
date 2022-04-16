@@ -97,7 +97,7 @@ test $version -lt 1 && {
 	[ -f /etc/config/wireless ] && {
 		SSID=${DISTRIB_ID}
 		SSID_PASSWD=""
-		( sleep 3
+		( sleep 10
 		wifi reconf
 		for radio in radio0 radio1 radio2 radio3 wifi0 wifi1 wifi2 wifi3; do
 			wifi_setup_radio ${radio}
