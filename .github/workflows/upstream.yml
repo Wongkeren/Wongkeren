@@ -148,6 +148,7 @@ jobs:
         git_clone https://github.com/linkease/nas-packages-luci && mv -n nas-packages-luci/luci/* ./; rm -rf nas-packages-luci
         git_clone https://github.com/linkease/luci-app-linkease
         git_clone https://github.com/BH4EHN/openwrt-cloudflared
+        git_clone https://github.com/peter-tank/luci-app-fullconenat
         ) &
         (
         svn export https://github.com/x-wrt/packages/trunk/net/nft-qos
