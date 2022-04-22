@@ -13,7 +13,7 @@ location ~ /cgi-(backup|download|upload|exec) {
 		uwsgi_pass unix:////var/run/luci-cgi_io.socket;
 }
 location ~* ^/cgi-bin/(.*) {
-                return 307 $scheme://$http_host/$1$is_args$args;
+		return 307 $scheme://$http_host/$1$is_args$args;
 }
 
 location /luci-static {
