@@ -12,6 +12,9 @@ location ~ /cgi-(backup|download|upload|exec) {
 		uwsgi_modifier1 9;
 		uwsgi_pass unix:////var/run/luci-cgi_io.socket;
 }
+location ~* ^/cgi-bin/(.*) {
+                return 307 $scheme://$http_host/$1$is_args$args;
+}
 
 location /luci-static {
 		error_log stderr crit;
