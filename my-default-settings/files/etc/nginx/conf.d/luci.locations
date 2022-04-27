@@ -13,20 +13,13 @@ location ~ /cgi-(backup|download|upload|exec) {
 		uwsgi_pass unix:////var/run/luci-cgi_io.socket;
 }
 
-location ~* ^/cgi-bin/(.*) {
-		return 307 $scheme://$http_host/$1$is_args$args;
-}
-
-location = / {
-		return 301 $scheme://$http_host/luci/;
-}
-
 location /luci-static {
 		error_log stderr crit;
 }
 
-location /ubus {
-        ubus_interpreter;
-        ubus_socket_path /var/run/ubus/ubus.sock;
-        ubus_parallel_req 2;
+location ~* ^/cgi-bin/(.*) {
+		return 307 $scheme://$http_host/$1$is_args$args;
+}
+location = / {
+		return 301 $scheme://$http_host/luci/;
 }
