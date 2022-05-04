@@ -13,9 +13,58 @@ function index()
 
 	local page
 
+	if ui == "world" or ui == "simple" then
+	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap"), _("Natcap"))
+	page.i18n = "natcap"
+	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+	elseif ui == "sdwan" then
+	page = entry({"admin", "natcap_sdwan"}, firstchild(), _("SD-WAN"), 60)
+	page.dependent = false
+	page.acl_depends = { "luci-app-natcap" }
+	page = entry({"admin", "natcap_sdwan", "basic"}, cbi("natcap/natcap_sdwan"), _("Basic"))
+	page.i18n = "natcap"
+	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+	page = node("admin", "natcap_sdwan", "activation")
+	page.target = template("natcap/natcap_sdwan")
+	page.title  = _("TOP UP")
+	page = entry({"admin", "natcap_sdwan", "activation_sn"}, post("activation_sn"), nil)
+	page.leaf = true
+	page.acl_depends = { "luci-app-natcap" }
+	else
+	page = entry({"admin", "services", "natcap"}, cbi("natcap/natcap_simple"), _("Natcap"))
+	page.i18n = "natcap"
+	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+	end
+
+	entry({"admin", "services", "natcap", "get_natcap_flows0"}, call("get_natcap_flows0")).leaf = true
+	entry({"admin", "services", "natcap", "get_natcap_flows1"}, call("get_natcap_flows1")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client"}, call("get_openvpn_client")).leaf = true
+	entry({"admin", "services", "natcap", "get_openvpn_client_udp"}, call("get_openvpn_client_udp")).leaf = true
+	entry({"admin", "services", "natcap", "status"}, call("status")).leaf = true
+	entry({"admin", "services", "natcap", "change_server"}, call("change_server")).leaf = true
+
+	page = entry({"admin", "vpn", "natcapd_vpn"}, cbi("natcap/natcapd_vpn"), _("One Key VPN"))
+	page.i18n = "natcap"
+	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+
 	page = entry({"admin", "system", "natcapd_sys"}, cbi("natcap/natcapd_sys"), _("Advanced Options"))
 	page.i18n = "natcap"
 	page.dependent = true
+	page.acl_depends = { "luci-app-natcap" }
+
+	if ui == "simple" then
+	page = entry({"admin", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
+	page.i18n = "natcap"
+	page.dependent = true
+	elseif ui == "world" then
+	page = entry({"admin", "services", "natcap_route"}, cbi("natcap/natcap_route"), _("Route Setup"))
+	page.i18n = "natcap"
+	page.dependent = true
+	end
 	page.acl_depends = { "luci-app-natcap" }
 end
 
