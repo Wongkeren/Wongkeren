@@ -5,13 +5,12 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-app-brook-server
 LUCI_TITLE:=LuCI support for Brook Server
 LUCI_DEPENDS:=+brook 
 LUCI_PKGARCH:=all
 
+PKG_NAME:=luci-app-brook-server
+
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-
-
