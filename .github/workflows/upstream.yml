@@ -156,7 +156,6 @@ jobs:
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu
-        svn export https://github.com/openwrt/packages/trunk/admin/netdata
         ) &
         (
         git_sparse_clone openwrt-21.02 "https://github.com/openwrt/packages" "oppackages" \
