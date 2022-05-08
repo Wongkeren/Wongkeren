@@ -303,6 +303,10 @@ return view.extend({
 				opts.keep[0].addEventListener('change', function(ev) {
 					opts.skip_orig[0].disabled = !ev.target.checked;
 					opts.backup_pkgs[0].disabled = !ev.target.checked;
+					if (ev.target.checked == false){
+						opts.skip_orig[0].checked =false
+						opts.backup_pkgs[0].checked =false
+					}
 
 				});
 
