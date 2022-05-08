@@ -148,6 +148,7 @@
 				"/sbin/sysupgrade -k /tmp/firmware.bin": [ "exec" ],
 				"/sbin/sysupgrade -u /tmp/firmware.bin": [ "exec" ],
 				"/sbin/sysupgrade -u -k /tmp/firmware.bin": [ "exec" ],
+				"/sbin/sysupgrade -n -k /tmp/firmware.bin": [ "exec" ],
 				"/sbin/sysupgrade --restore-backup /tmp/backup.tar.gz": [ "exec" ],
 				"/sbin/sysupgrade --test /tmp/firmware.bin": [ "exec" ],
 				"/sbin/sysupgrade /tmp/firmware.bin": [ "exec" ],
