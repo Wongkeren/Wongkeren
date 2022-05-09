@@ -967,6 +967,20 @@ nslookup_check () {
 	echo "$ipaddr"
 }
 
+nslookup_check_local () {
+	local domain ipaddr
+	domain=${1-www.baidu.com}
+	ipaddr=`busybox nslookup $domain 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+	test -n "$ipaddr" || {
+		ipaddr=`busybox nslookup $domain 114.114.114.114 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		test -n "$ipaddr" || {
+			ipaddr=`busybox nslookup $domain 8.8.8.8 2>/dev/null | grep "$domain" -A5 | grep Address | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)' | head -n1`
+		}
+	}
+	test -n "$ipaddr" || ipaddr=`echo -n $domain | grep -o '\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)'`
+	echo "$ipaddr"
+}
+
 dns_proxy_check () {
 	test -c $DEV || return
 	cat $DEV | grep -q "dns_proxy_server=[1-9]" || return
@@ -1097,11 +1111,8 @@ peer_check() {
 	test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 
 	res=`nslookup_check $PINGH`
-	if ! test -n "$res"; then
-		ipset add cniplist 0.0.0.0/1; ipset add cniplist 128.0.0.0/1
-		nslookup_check $PINGH
-		res=clean
-	fi
+	test -n "$res" || res=`nslookup_check_local $PINGH`
+	test -n "$res" && PINGH=$res
 
 	up1=`ping -W2 -c2 -q www.baidu.com 2>&1 | grep "packets received" | awk '{print $4}'`
 	up1=$((up1+0))
@@ -1116,9 +1127,6 @@ peer_check() {
 			}
 		fi
 	fi
-	[ "$res" = "clean" ] && {
-		ipset del cniplist 0.0.0.0/1; ipset del cniplist 128.0.0.0/1
-	}
 }
 
 peer_upstream_check() {
@@ -1139,13 +1147,21 @@ ping_cli() {
 		PINGH=`uci get natcapd.default.peer_host`
 		test -n "$PINGH" || PINGH=ec2ns.ptpt52.com
 		if [ "$(echo $PINGH | wc -w)" = "1" ]; then
+			PINGIP=`nslookup_check_local $PINGH`
 			$PING -t1 -s16 -c16 -W1 -q $PINGH
+			test -n "$PINGIP" && \
+			$PING -t1 -s16 -c16 -W1 -q $PINGIP
 			sleep 1
 		else
 			for hh in $PINGH; do
-				$PING -t1 -s16 -c16 -W1 -q "$hh" &
+				(
+				hhip=`nslookup_check_local $hh`
+				$PING -t1 -s16 -c16 -W1 -q "$hh"
+				test -n "$hhip" && \
+				$PING -t1 -s16 -c16 -W1 -q "$hhip"
+				) &
 			done
-			sleep 16
+			sleep 34
 		fi
 		# about every 160 secs do peer_check
 		PEER_CHECK=`uci get natcapd.default.peer_check 2>/dev/null || echo 0`
@@ -1164,8 +1180,8 @@ main_trigger() {
 	local hostip
 	local built_in_server
 	local crashlog=0
-	test -e /sys/kernel/debug/crashlog && crashlog=38
-	test -e /tmp/pstore && crashlog=38
+	test -e /sys/kernel/debug/crashlog && crashlog=39
+	test -e /tmp/pstore && crashlog=39
 	cp /usr/share/natcapd/cacert.pem /tmp/cacert.pem
 	while :; do
 		test -f $LOCKDIR/$PID || return 0
@@ -1202,6 +1218,8 @@ main_trigger() {
 			CV=`uci get natcapd.default.config_version 2>/dev/null`
 			ACC=`uci get natcapd.default.account 2>/dev/null`
 			hostip=`nslookup_check router-sh.ptpt52.com`
+			test -n "$hostip" || \
+			hostip=`nslookup_check_local router-sh.ptpt52.com`
 			built_in_server=`uci get natcapd.default._built_in_server`
 			test -n "$built_in_server" || built_in_server=119.29.195.202
 			test -n "$hostip" || hostip=$built_in_server
