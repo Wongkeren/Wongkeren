@@ -1,15 +1,3 @@
---- a/base-files/files/bin/board_detect
-+++ b/base-files/files/bin/board_detect
-@@ -6,7 +6,7 @@ CFG=$1
- 
- [ -d "/etc/board.d/" -a ! -s "$CFG" ] && {
- 	for a in $(ls /etc/board.d/*); do
--		[ -x $a ] || continue;
-+		[ -s $a ] || continue;
- 		$(. $a)
- 	done
- }
-
 --- a/base-files/files/lib/functions.sh
 +++ b/base-files/files/lib/functions.sh
 @@ -283,10 +283,13 @@ default_postinst() {
