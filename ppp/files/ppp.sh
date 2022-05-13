@@ -232,7 +232,7 @@ proto_pppoe_setup() {
 	json_get_var host_uniq host_uniq
 	json_get_var padi_attempts padi_attempts
 	json_get_var padi_timeout padi_timeout
-	
+
 	syncppp_option=""
 	[ "$(uci get syncdial.config.enabled)" -eq "1" ] && {
 		ppp_if_cnt=$(uci show network | grep -c "\.proto=\'pppoe\'$")
@@ -242,7 +242,7 @@ proto_pppoe_setup() {
 
 	ppp_generic_setup "$config" \
 		$syncppp_option \
-		plugin rp-pppoe.so \
+		plugin pppoe.so \
 		${ac:+rp_pppoe_ac "$ac"} \
 		${service:+rp_pppoe_service "$service"} \
 		${host_uniq:+host-uniq "$host_uniq"} \
@@ -339,7 +339,7 @@ proto_pptp_teardown() {
 
 [ -n "$INCLUDE_ONLY" ] || {
 	add_protocol ppp
-	[ -f /usr/lib/pppd/*/rp-pppoe.so ] && add_protocol pppoe
+	[ -f /usr/lib/pppd/*/pppoe.so ] && add_protocol pppoe
 	[ -f /usr/lib/pppd/*/pppoatm.so ] && add_protocol pppoa
 	[ -f /usr/lib/pppd/*/pptp.so ] && add_protocol pptp
 }

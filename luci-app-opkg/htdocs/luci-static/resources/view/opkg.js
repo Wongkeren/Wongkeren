@@ -1011,13 +1011,13 @@ function updateLists(data)
 	});
 }
 
-var keyTimeout = null;
+var inputTimeout = null;
 
-function handleKeyUp(ev) {
-	if (keyTimeout !== null)
-		window.clearTimeout(keyTimeout);
+function handleInput(ev) {
+	if (inputTimeout !== null)
+		window.clearTimeout(inputTimeout);
 
-	keyTimeout = window.setTimeout(function() {
+	inputTimeout = window.setTimeout(function() {
 		display(ev.target.value);
 	}, 250);
 }
@@ -1044,7 +1044,7 @@ return view.extend({
 				E('div', {}, [
 					E('label', {}, _('Filter') + ':'),
 					E('span', { 'class': 'control-group' }, [
-						E('input', { 'type': 'text', 'name': 'filter', 'placeholder': _('Type to filter…'), 'value': 'luci-app-', 'keyup': handleKeyUp }),
+						E('input', { 'type': 'text', 'name': 'filter', 'placeholder': _('Type to filter…'), 'value': 'luci-app-', 'input': handleInput }),
 						E('button', { 'class': 'btn cbi-button', 'click': handleReset }, [ _('Clear') ])
 					])
 				]),

@@ -9,18 +9,18 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=ppp
-PKG_RELEASE:=8
+PKG_RELEASE:=9
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/paulusmack/ppp
-PKG_SOURCE_DATE:=2020-10-03
+PKG_SOURCE_DATE:=2021-01-04
 PKG_SOURCE_VERSION:=d7e62a8499c4032d79e05afbd8fd3efd51c5b148
 PKG_MIRROR_HASH:=skip
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
 PKG_LICENSE:=BSD-4-Clause
 PKG_CPE_ID:=cpe:/a:samba:ppp
 
-PKG_RELEASE_VERSION:=2.4.8
+PKG_RELEASE_VERSION:=2.4.9
 PKG_VERSION:=$(PKG_RELEASE_VERSION).git-$(PKG_SOURCE_DATE)
 
 PKG_BUILD_DEPENDS:=libpcap
@@ -242,7 +242,7 @@ endef
 
 define Package/ppp-mod-pppoe/install
 	$(INSTALL_DIR) $(1)/usr/lib/pppd/$(PKG_RELEASE_VERSION)
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/pppd/$(PKG_RELEASE_VERSION)/rp-pppoe.so \
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/pppd/$(PKG_RELEASE_VERSION)/pppoe.so \
 		$(1)/usr/lib/pppd/$(PKG_RELEASE_VERSION)/
 endef
 

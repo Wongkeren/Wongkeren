@@ -8,15 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mbedtls
-PKG_VERSION:=2.16.12
-PKG_RELEASE:=7
+PKG_VERSION:=2.28.0
+PKG_RELEASE:=8
 PKG_USE_MIPS16:=0
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ARMmbed/mbedtls/tar.gz/v$(PKG_VERSION)?
 PKG_HASH:=skip
 
-PKG_BUILD_PARALLEL:=1
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=gpl-2.0.txt
 PKG_CPE_ID:=cpe:/a:arm:mbed_tls
@@ -118,8 +117,6 @@ This package contains mbedtls helper programs for private key and
 CSR generation (gen_key, cert_req)
 endef
 
-PKG_INSTALL:=1
-
 TARGET_CFLAGS += -ffunction-sections -fdata-sections
 TARGET_CFLAGS := $(filter-out -O%,$(TARGET_CFLAGS))
 ifneq ($(CONFIG_LIBMBEDTLS_HAVE_ARMV8CE_AES),)
@@ -149,6 +146,9 @@ define Build/Configure
 	     END { exit(rc) }' $(PKG_BUILD_DIR)/include/mbedtls/config.h \
 	     >$(PKG_BUILD_DIR)/include/mbedtls/config.h.new && \
 	mv $(PKG_BUILD_DIR)/include/mbedtls/config.h.new $(PKG_BUILD_DIR)/include/mbedtls/config.h
+
+	sed -i '/fuzz/d' $(PKG_BUILD_DIR)/programs/CMakeLists.txt
+	sed -i '/test/d' $(PKG_BUILD_DIR)/programs/CMakeLists.txt
 endef
 
 define Build/InstallDev
