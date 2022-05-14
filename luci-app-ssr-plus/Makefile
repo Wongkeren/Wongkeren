@@ -104,7 +104,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray"
-	default y if aarch64||arm||i386||x86_64
+	default y
 endef
 
 define Package/$(PKG_NAME)/conffiles
