@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=firewall4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL=$(PROJECT_GIT)/project/firewall4.git
@@ -26,7 +26,7 @@ define Package/firewall4
 	+kmod-nft-nat +kmod-nft-nat6 \
 	+nftables-json \
 	+ucode +ucode-mod-fs +ucode-mod-ubus +ucode-mod-uci \
-	+iptables-mod-fullconenat +iptables-nft
+	+kmod-nft-fullcone +iptables-nft +ip6tables-nft
   EXTRA_DEPENDS:=ucode (>= 2022-03-22)
   PROVIDES:=uci-firewall
 endef
