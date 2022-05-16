@@ -32,11 +32,11 @@ if [ "$C" = router ];then
 	}
 
 	if [ ! -f $T_FILE/china_v6.txt ];then
-		while ! (curl -kLfsm 2 -o /tmp/china_v6.txt https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 2 -o /tmp/china_v6.txt https://supes.top/bypass/all_cn_ipv6.txt);do
+		while ! (curl -kLfsm 3 -o /tmp/china_v6.txt https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 3 -o /tmp/china_v6.txt https://supes.top/bypass/all_cn_ipv6.txt);do
 			sleep 1
 		done
 	elif [ $A = N ];then
-		curl -kLfsm 2 -o /tmp/china_v6.txt https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 2 -o /tmp/china_v6.txt https://supes.top/bypass/all_cn_ipv6.txt
+		curl -kLfsm 3 -o /tmp/china_v6.txt https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 3 -o /tmp/china_v6.txt https://supes.top/bypass/all_cn_ipv6.txt
 	fi
 	[[ -f /tmp/china_v6.txt && $? == 0 ]] && {
 	if ! cmp -s /tmp/china_v6.txt $T_FILE/china_v6.txt;then
