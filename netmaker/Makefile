@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=netmaker
-PKG_VERSION:=0.14.1-testing
-PKG_RELEASE:=26
+PKG_VERSION:=0.14.0
+PKG_RELEASE:=27
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/gravitl/netmaker.git
