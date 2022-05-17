@@ -257,6 +257,10 @@ return view.extend({
 		s.tab('hosts', _('Hostnames'));
 		s.tab('ipsets', _('IP Sets'));
 
+		s.taboption('general', form.Flag, 'dns_redirect',
+			_('DNS Redirect'),
+			_('Redirect client DNS to dnsmasq'));
+
 		s.taboption('general', form.Flag, 'domainneeded',
 			_('Domain required'),
 			_('Do not forward DNS queries without dots or domain parts.'));
