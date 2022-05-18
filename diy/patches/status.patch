@@ -170,3 +170,26 @@
  
  		for (var i = 0; i < fields.length; i += 3) {
  			table.appendChild(E('tr', { 'class': 'tr' }, [
+
+--- a/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
++++ b/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
+@@ -39,19 +39,6 @@
+ 		}
+ 	},
+ 
+-	"admin/status/nftables": {
+-		"title": "Firewall (nftables)",
+-		"order": 3,
+-		"action": {
+-			"type": "view",
+-			"path": "status/nftables"
+-		},
+-		"depends": {
+-			"acl": [ "luci-mod-status-firewall" ],
+-			"fs": { "/usr/sbin/nft": "executable" }
+-		}
+-	},
+-
+ 	"admin/status/logs": {
+ 		"title": "System Log",
+ 		"order": 4,
