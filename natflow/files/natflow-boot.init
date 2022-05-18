@@ -6,7 +6,7 @@ START=95
 start() {
 	test -c /dev/natflow_ctl && {
 	enable_natflow=1
-	enable_natflow_hw=1
+	enable_natflow_hw=0
 	if [ "x${enable_natflow}" = "x1" ]; then
 		if [ "x`uci get firewall.@defaults[0].flow_offloading 2>/dev/null`" = "x1" ]; then
 			uci set firewall.@defaults[0].flow_offloading=0
