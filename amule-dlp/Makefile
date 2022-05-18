@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aMule-DLP
 PKG_VERSION:=2.3.3
-PKG_RELEASE:=11
+PKG_RELEASE:=12
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/persmule/amule-dlp.git
@@ -33,8 +33,9 @@ define Package/amule-dlp
   CATEGORY:=Network
   TITLE:=A multi-platform eMule-like ed2k client
   URL:=http://www.amule.org/
-  DEPENDS:=+libpng +libpthread +libncurses +libreadline +libwxbase +libupnp +libbfd +antileech \
-	$(ICONV_DEPENDS) $(INTL_DEPENDS) +!AMULE_CRYPTOPP_STATIC_LINKING:libcryptopp
+  DEPENDS:=+antileech +libpng +libpthread +libncurses +libreadline +libwxbase \
+	+libupnp +libbfd $(ICONV_DEPENDS) $(INTL_DEPENDS) \
+	+!AMULE_CRYPTOPP_STATIC_LINKING:libcryptopp
 endef
 
 define Package/amule-dlp/config
