@@ -39,19 +39,6 @@
 		}
 	},
 
-	"admin/status/nftables": {
-		"title": "Firewall (nftables)",
-		"order": 3,
-		"action": {
-			"type": "view",
-			"path": "status/nftables"
-		},
-		"depends": {
-			"acl": [ "luci-mod-status-firewall" ],
-			"fs": { "/usr/sbin/nft": "executable" }
-		}
-	},
-
 	"admin/status/logs": {
 		"title": "System Log",
 		"order": 4,
