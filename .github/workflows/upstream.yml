@@ -164,7 +164,8 @@ jobs:
         net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx net/uwsgi net/ddns-scripts
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages" admin/netdata net/smartdns
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
-        package/base-files package/network/config/firewall4 package/network/config/firewall package/system/opkg package/libs/mbedtls package/network/services/ppp package/network/services/dnsmasq
+        package/base-files package/network/config/firewall4 package/network/config/firewall package/system/opkg package/libs/mbedtls package/network/services/ppp \
+        package/network/services/dnsmasq package/firmware/wireless-regdb
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-transmission applications/luci-app-opkg applications/luci-app-firewall \
         applications/luci-app-ksmbd applications/luci-app-samba4 modules/luci-base modules/luci-mod-network \
