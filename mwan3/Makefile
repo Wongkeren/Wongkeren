@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mwan3
-PKG_VERSION:=2.8.8
-PKG_RELEASE:=14
+PKG_VERSION:=3.8.8
+PKG_RELEASE:=15
 PKG_MAINTAINER:=Florian Eckert <fe@dev.tdt.de>
 PKG_LICENSE:=GPL-2.0
 
