@@ -294,7 +294,7 @@ jobs:
         sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D %C by Kiddin'\"" base-files/files/etc/openwrt_release
         sed -i 's?admin/status/channel_analysis??' luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
         sed -i "/--disable-https/d" netdata/Makefile
-        sed -i "/PKG_VERSION:=2/PKG_VERSION:=3/" mwan3/Makefile
+        sed -i "s/PKG_VERSION:=2/PKG_VERSION:=3/" mwan3/Makefile
         sed -i -e '$a /etc/bench.log' \
         -e '/\/etc\/profile/d' \
         -e '/\/etc\/shinit/d' \
