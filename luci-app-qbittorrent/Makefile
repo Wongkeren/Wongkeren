@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=qbittorrent-nox for LuCI
-LUCI_DEPENDS:=+qBittorrent-Enhanced-Edition
+LUCI_DEPENDS:=+qbittorrent
 LUCI_PKGARCH:=all
 
 PKG_NAME:=luci-app-qbittorrent
