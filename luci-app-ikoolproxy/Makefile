@@ -4,7 +4,7 @@ PKG_NAME:=luci-app-ikoolproxy
 
 PKG_MAINTAINER:=panda-mute <wxuzju@gmail.com>
 
-LUCI_TITLE:=LuCI support for koolproxy
+LUCI_TITLE:=LuCI support for ikoolproxy
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+koolproxy +openssl-util +ipset +dnsmasq-full +@BUSYBOX_CONFIG_DIFF +iptables-mod-nat-extra +wget
 
