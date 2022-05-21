@@ -178,7 +178,7 @@
  	},
  
 -	"admin/status/nftables": {
--		"title": "Firewall (nftables)",
+-		"title": "Firewall",
 -		"order": 3,
 -		"action": {
 -			"type": "view",
@@ -190,6 +190,6 @@
 -		}
 -	},
 -
- 	"admin/status/logs": {
- 		"title": "System Log",
- 		"order": 4,
+ 	"admin/status/nftables/iptables": {
+ 		"action": {
+ 			"type": "view",
