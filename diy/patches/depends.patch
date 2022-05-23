@@ -117,3 +117,15 @@
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria:hysteria \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat:ip6tables-mod-nat \
+
+--- a/ntfs3-oot/Makefile
++++ b/ntfs3-oot/Makefile
+@@ -27,7 +27,7 @@ define KernelPackage/fs-ntfs3-oot
+   TITLE:=Fully functional NTFS Read-Write driver
+   FILES:=$(PKG_BUILD_DIR)/ntfs3.ko
+   AUTOLOAD:=$(call AutoProbe,ntfs3)
+-  DEPENDS:=@!LINUX_5_15 +kmod-nls-utf8
++  DEPENDS:=@!LINUX_5_15 +nls-base +kmod-nls-utf8
+ endef
+ 
+ define KernelPackage/fs-ntfs3-oot/description
