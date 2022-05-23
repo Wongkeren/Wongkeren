@@ -118,14 +118,13 @@
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria:hysteria \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_IPv6_Nat:ip6tables-mod-nat \
 
---- a/ntfs3-oot/Makefile
-+++ b/ntfs3-oot/Makefile
-@@ -27,7 +27,7 @@ define KernelPackage/fs-ntfs3-oot
-   TITLE:=Fully functional NTFS Read-Write driver
-   FILES:=$(PKG_BUILD_DIR)/ntfs3.ko
-   AUTOLOAD:=$(call AutoProbe,ntfs3)
--  DEPENDS:=@!LINUX_5_15 +kmod-nls-utf8
-+  DEPENDS:=@!LINUX_5_15 +nls-base +kmod-nls-utf8
+--- a/ntfs3-mount/Makefile
++++ b/ntfs3-mount/Makefile
+@@ -10,7 +10,7 @@ define Package/ntfs3-mount
+   CATEGORY:=Utilities
+   SUBMENU:=Filesystem
+   TITLE:=NTFS mount script for Paragon NTFS3 driver
+-  DEPENDS:=+!LINUX_5_15:kmod-fs-ntfs3-oot +LINUX_5_15:kmod-fs-ntfs3
++  DEPENDS:=+!LINUX_5_15&&!TARGET_ramips:kmod-fs-ntfs3-oot +LINUX_5_15:kmod-fs-ntfs3
+   PKGARCH:=all
  endef
- 
- define KernelPackage/fs-ntfs3-oot/description
