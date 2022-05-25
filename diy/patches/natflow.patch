@@ -19,13 +19,6 @@
 
 --- a/natflow/files/natflow.config
 +++ b/natflow/files/natflow.config
-@@ -1,5 +1,5 @@
- config natflow 'main'
--	option hwnat '1'
-+	option hwnat '0'
- 	option enabled '1'
- 	option debug '3'
- 	option delay_pkts '0'
 @@ -13,7 +13,7 @@ config auth
  	option enabled '1'
  	option szone '0'
@@ -34,3 +27,4 @@
 +	option sipgrp '10.0.0.2-10.0.0.254'
  	option ipwhite ''
  	option macwhite ''
+ 
