@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ipt2socks
 PKG_VERSION:=1.1.3
-PKG_RELEASE:=13
+PKG_RELEASE:=14
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/zfl9/ipt2socks/tar.gz/v$(PKG_VERSION)?
@@ -25,6 +25,7 @@ define Package/ipt2socks
   CATEGORY:=Network
   TITLE:=Convert iptables to socks5
   URL:=https://github.com/zfl9/ipt2socks
+  DEPENDS:=+libpthread
 endef
 
 define Package/ipt2socks/description
@@ -33,7 +34,7 @@ endef
 
 TARGET_CFLAGS+= $(FPIC) -flto
 MAKE_FLAGS+= \
-	CFLAGS="-std=c99 $(TARGET_CFLAGS)" \
+	CFLAGS="-std=c99 -pthread $(TARGET_CFLAGS)" \
 	EVCFLAGS="$(TARGET_CFLAGS)"
 
 define Package/ipt2socks/install
