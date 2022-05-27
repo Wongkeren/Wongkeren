@@ -1,17 +1,40 @@
 --- a/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-@@ -257,6 +257,10 @@ return view.extend({
+@@ -256,6 +256,33 @@ return view.extend({
+ 		s.tab('leases', _('Static Leases'));
  		s.tab('hosts', _('Hostnames'));
  		s.tab('ipsets', _('IP Sets'));
- 
++		s.tab('custom_domain', _('Custom Redirect Domain'));
++
++		o = s.taboption('custom_domain', form.SectionValue, 'domain', form.GridSection, 'domain', null,
++			_('Define a custom domain name and the corresponding PTR record'));
++
++		ss = o.subsection;
++		ss.addremove = true;
++		ss.anonymous = true;
++
++		so = ss.option(form.Value, 'name', _('Domain Name'));
++		so.datatype = 'hostname';
++		so.rmempty  = true;
++
++		so = ss.option(form.Value, 'ip', _('<abbr title=\"Internet Protocol Version 4\">IPv4</abbr>-Address'));
++		so.datatype = 'or(ip4addr,"ignore")';
++		so.rmempty  = true;
++
++		so = ss.option(form.Value, 'comments', _('Comments'));
++		so.rmempty  = true;
++
 +		s.taboption('general', form.Flag, 'dns_redirect',
 +			_('DNS Redirect'),
 +			_('Redirect client DNS to dnsmasq'));
 +
++		s.taboption('general', form.Flag, 'dns_redirect',
++			_('DNS Redirect'),
++			_('Redirect client DNS to dnsmasq'));
+ 
  		s.taboption('general', form.Flag, 'domainneeded',
  			_('Domain required'),
- 			_('Do not forward DNS queries without dots or domain parts.'));
-@@ -368,6 +372,11 @@ return view.extend({
+@@ -368,6 +395,11 @@ return view.extend({
  		o.optional = true;
  		o.placeholder = '/etc/dnsmasq.hosts';
  
@@ -23,7 +46,7 @@
  		o = s.taboption('advanced', form.Flag, 'quietdhcp',
  			_('Suppress logging'),
  			_('Suppress logging of the routine operation for the DHCP protocol.'));
-@@ -475,6 +484,13 @@ return view.extend({
+@@ -475,6 +507,13 @@ return view.extend({
  		o.datatype = 'range(0,10000)';
  		o.placeholder = 150;
  
