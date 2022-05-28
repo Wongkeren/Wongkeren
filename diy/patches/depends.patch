@@ -149,3 +149,15 @@
  	--disable-dbengine \
  	--disable-compression \
  	--disable-plugin-nfacct \
+
+--- a/msmtp/Makefile
++++ b/msmtp/Makefile
+@@ -46,7 +46,7 @@ endef
+ 
+ define Package/msmtp
+ $(call Package/msmtp/Default)
+-  DEPENDS+= +libgnutls +ca-bundle
++  DEPENDS+= +libgnutls +ca-bundle +libopenssl
+   TITLE+= (with SSL support)
+   VARIANT:=ssl
+   DEFAULT_VARIANT:=1
