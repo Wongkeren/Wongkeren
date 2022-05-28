@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wiretrustee
-PKG_VERSION:=0.6.0
-PKG_RELEASE:=16
+PKG_VERSION:=0.6.1
+PKG_RELEASE:=17
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/wiretrustee/wiretrustee/tar.gz/v$(PKG_VERSION)?
