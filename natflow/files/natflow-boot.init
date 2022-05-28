@@ -14,6 +14,7 @@ disable_gro() {
 start() {
 	disable_gro
 	hwnat=$(uci get natflow.main.hwnat 2>/dev/null || echo 1)
+	[ "$(uci -q get network.lan.gateway)" ] && hwnat=0
 	enabled=$(uci get natflow.main.enabled 2>/dev/null || echo 1)
 	debug=$(uci get natflow.main.debug 2>/dev/null || echo 3)
 	delay_pkts=$(uci get natflow.main.delay_pkts 2>/dev/null || echo 0)
