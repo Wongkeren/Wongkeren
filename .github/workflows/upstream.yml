@@ -114,7 +114,7 @@ jobs:
         git_clone https://github.com/lvqier/luci-app-dnsmasq-ipset
         git_clone https://github.com/walkingsky/luci-wifidog luci-app-wifidog
         git_clone https://github.com/peter-tank/luci-app-autorepeater
-        git_clone https://github.com/CCnut/feed-netkeeper && mvdir feed-netkeeper
+        # git_clone https://github.com/CCnut/feed-netkeeper && mvdir feed-netkeeper
         git_clone https://github.com/brvphoenix/luci-app-wrtbwmon wrtbwmon1 && mvdir wrtbwmon1
         git_clone https://github.com/brvphoenix/wrtbwmon wrtbwmon2 && mvdir wrtbwmon2
         git_clone https://github.com/sensec/luci-app-udp2raw
@@ -137,7 +137,7 @@ jobs:
         git_clone https://github.com/lisaac/luci-app-dockerman dockerman && mv -n dockerman/applications/* ./; rm -rf dockerman
         ) &
         (
-        git_clone https://github.com/messense/openwrt-wiretrustee && mv -n openwrt-wiretrustee/wiretrustee ./;rm -rf openwrt-wiretrustee
+        #git_clone https://github.com/messense/openwrt-wiretrustee && mv -n openwrt-wiretrustee/wiretrustee ./;rm -rf openwrt-wiretrustee
         git_clone https://github.com/ophub/luci-app-amlogic amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic
         git_clone https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest cloudflarespeedtest && mv -n cloudflarespeedtest/applications/* ./;rm -rf cloudflarespeedtest
         git_clone https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2
@@ -152,6 +152,7 @@ jobs:
         ) &
         (
         git_clone https://github.com/fullcone-nat-nftables/nft-fullcone
+        git_clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -232,7 +233,7 @@ jobs:
              -H "Authorization: Bearer ${{ secrets.REPO_TOKEN }}" \
              -X POST -d '{ "query": "query {repository(owner: \"'"$1"'\", name: \"'"$2"'\"){latestRelease{tagCommit{oid}}refs(refPrefix:\"refs/tags/\",last:1,orderBy:{field:TAG_COMMIT_DATE,direction:ASC}){edges{node{name target{oid}}}}defaultBranchRef{target{...on Commit {oid}}}}}"}' https://api.github.com/graphql)
         }
-        for pkg in $(ls !(luci-*|natflow|ps3netsrv|rblibtorrent|shadowsocksr-libev|n2n_v2|netdata|mosdns|r8168|coremark|mbedtls|smartdns|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp|libcups)/Makefile); do
+        for pkg in $(ls !(luci-*|natflow|ps3netsrv|rblibtorrent|shadowsocksr-libev|n2n_v2|naiveproxy|netdata|mosdns|r8168|coremark|mbedtls|smartdns|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp|libcups)/Makefile); do
           repo="$(grep PKG_SOURCE_URL $pkg | grep github | cut -f 4-5 -d '/' | sed -e 's/.git//' | grep -E '[0-9a-zA-Z_-]+$')" || true
           if [ "$repo" ]; then
             owner="$(echo $repo | cut -f 1 -d '/')"
