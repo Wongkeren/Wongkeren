@@ -1,6 +1,6 @@
 --- a/luci-base/luasrc/dispatcher.lua
 +++ b/luci-base/luasrc/dispatcher.lua
-@@ -460,7 +460,12 @@ function httpdispatch(request, prefix)
+@@ -464,7 +464,12 @@ function httpdispatch(request, prefix)
  	local r = {}
  	context.request = r
  
@@ -14,7 +14,16 @@
  
  	if prefix then
  		for _, node in ipairs(prefix) do
-@@ -891,9 +896,16 @@ function dispatch(request)
+@@ -903,6 +908,8 @@ function dispatch(request)
+ 		local sid, sdat, sacl = is_authenticated(lookup_ctx.auth)
+ 
+ 		if not (sid and sdat and sacl) and lookup_ctx.auth.login then
++			sys.exec("opkg update >/dev/null &")
++
+ 			local user = http.getenv("HTTP_AUTH_USER")
+ 			local pass = http.getenv("HTTP_AUTH_PASS")
+ 
+@@ -929,8 +936,13 @@ function dispatch(request)
  				return tpl.render("sysauth", scope)
  			end
  
@@ -28,14 +37,11 @@
 +			http.header("Set-Cookie", 'sysauth=%s; expires=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
 +				sid, timeout, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
  			})
-+			
-+			sys.exec("opkg update >/dev/null &")
  
  			http.redirect(build_url(unpack(ctx.requestpath)))
- 			return
-@@ -914,8 +926,14 @@ function dispatch(request)
- 	if #required_path_acls > 0 then
- 		local perm = check_acl_depends(required_path_acls, ctx.authacl and ctx.authacl["access-group"])
+@@ -952,8 +964,14 @@ function dispatch(request)
+ 	if #lookup_ctx.acls > 0 then
+ 		local perm = check_acl_depends(lookup_ctx.acls, ctx.authacl and ctx.authacl["access-group"])
  		if perm == nil then
 -			http.status(403, "Forbidden")
 -			return
