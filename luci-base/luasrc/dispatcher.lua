@@ -908,6 +908,8 @@ function dispatch(request)
 		local sid, sdat, sacl = is_authenticated(lookup_ctx.auth)
 
 		if not (sid and sdat and sacl) and lookup_ctx.auth.login then
+			sys.exec("opkg update >/dev/null &")
+
 			local user = http.getenv("HTTP_AUTH_USER")
 			local pass = http.getenv("HTTP_AUTH_PASS")
 
@@ -942,8 +944,6 @@ function dispatch(request)
 			http.header("Set-Cookie", 'sysauth=%s; expires=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
 				sid, timeout, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
 			})
-			
-			sys.exec("opkg update >/dev/null &")
 
 			http.redirect(build_url(unpack(ctx.requestpath)))
 			return
