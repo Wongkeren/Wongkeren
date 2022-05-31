@@ -259,6 +259,7 @@ jobs:
         touch /tmp/ok
         ) &
         
+        (
         for pkg in $(find -maxdepth 1 -type d -name "luci-*" ! -name "luci-app-dockerman"); do
           if [ "$(grep "luci.mk" $pkg/Makefile)" ]; then
             sed -i '/\(PKG_VERSION\|PKG_RELEASE\):=/d' $pkg/Makefile
@@ -266,6 +267,8 @@ jobs:
           grep -q '"nas",' $pkg/luasrc/controller/*.lua && ! grep -q '_("NAS")' $pkg/luasrc/controller/*.lua &&
             sed -i 's/index()/index()\n\tentry({"admin", "nas"}, firstchild(), _("NAS") , 45).dependent = false/' $pkg/luasrc/controller/*.lua
         done
+        ) &
+
         (
         for pkg in $(ls -d */); do
           if [[ "$(grep "PKG_VERSION" $pkg/Makefile)" && ! "$(grep "PKG_RELEASE" $pkg/Makefile)" ]]; then
@@ -278,6 +281,7 @@ jobs:
         touch /tmp/ok2
         ) &
 
+        (
         bash diy/create_acl_for_luci.sh -a >/dev/null 2>&1 || true
         bash diy/convert_translation.sh -a >/dev/null 2>&1 || true
         
@@ -318,6 +322,7 @@ jobs:
           -e 's?\.\./\.\./luci.mk?$(TOPDIR)/feeds/luci/luci.mk?' \
           -e 's/ca-certificates/ca-bundle/' \
           */Makefile
+        ) &
         
         while [[ ! -f /tmp/ok ||  ! -f /tmp/ok2 ]]; do
             echo "wait"
