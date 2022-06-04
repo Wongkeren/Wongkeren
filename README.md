@@ -6,10 +6,10 @@
 
 | CPU架构           | 下载地址                                             | 适用设备    | 软件源    | 更新频率    |
 |----------------|-----------------------------------------------------|--------------------------------------|-----------|-----------|
-| X86_64         | [📥](https://op.supes.top/packages/x86_64/)         |          PC软路由    | 仅限 [此源码固件](https://github.com/kiddin9/OpenWrt_x86-r2s-r4s) 使用 | 日更  |
-| aarch64_generic    | [📥](https://op.supes.top/packages/aarch64_generic/)     |   R2S/R4S等        |  仅限 [此源码固件](https://github.com/kiddin9/OpenWrt_x86-r2s-r4s) 使用 | 日更  |
-| aarch64_cortex-a72    | [📥](https://op.supes.top/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  仅限 [此源码固件](https://github.com/kiddin9/OpenWrt_x86-r2s-r4s) 使用  |  日更 |
+| X86_64         | [📥](https://op.supes.top/packages/x86_64/)         |          PC软路由    | src/gz openwrt_kiddin9 https://op.supes.top/packages/x86_64 | 日更  |
+| aarch64_generic    | [📥](https://op.supes.top/packages/aarch64_generic/)     |   R2S/R4S等        |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_generic | 日更  |
+| aarch64_cortex-a72    | [📥](https://op.supes.top/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a72  |  日更 |
 | mipsel_24kc    | [📥](https://op.supes.top/packages/mipsel_24kc/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://op.supes.top/packages/mipsel_24kc   | 日更  |
-| aarch64_cortex-a53    | [📥](https://op.supes.top/packages/aarch64_cortex-a53/) |  N1,玩客云等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53 |   日更 |
+| aarch64_cortex-a53    | [📥](https://op.supes.top/packages/aarch64_cortex-a53/) |  N1,红米AX6,小米AX6S等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53 |   日更 |
 
-### 使用软件源请删除 opkg 配置中的 option check_signature
+### 使用软件源请删除 opkg配置(/etc/opkg.conf) 中的 option check_signature
