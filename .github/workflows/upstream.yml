@@ -153,6 +153,7 @@ jobs:
         (
         git_clone https://github.com/fullcone-nat-nftables/nft-fullcone
         git_clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
+        git_clone https://github.com/frainzy1477/luci-app-clash
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
