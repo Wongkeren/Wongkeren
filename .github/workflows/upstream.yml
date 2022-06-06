@@ -160,6 +160,7 @@ jobs:
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
+        svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
