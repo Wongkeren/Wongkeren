@@ -7,4 +7,9 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+[ -f /sys/module/shortcut_fe/refcnt ] && {
+uci -q del turboacc.config.sw_flow
+uci commit turboacc
+}
+
 exit 0
