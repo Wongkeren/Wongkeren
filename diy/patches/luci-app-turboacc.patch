@@ -29,12 +29,13 @@
 
 --- a/luci-app-turboacc/root/etc/uci-defaults/luci-turboacc
 +++ b/luci-app-turboacc/root/etc/uci-defaults/luci-turboacc
-@@ -7,7 +7,7 @@ uci -q batch <<-EOF >/dev/null
+@@ -7,4 +7,9 @@ uci -q batch <<-EOF >/dev/null
  	commit ucitrack
  EOF
  
--[ -f /sys/module/shortcut_fe* ] && {
 +ls /sys/module/shortcut_fe* >/dev/null 2>&1 && {
- uci -q del turboacc.config.sw_flow
- uci commit turboacc
- }
++uci -q del turboacc.config.sw_flow
++uci commit turboacc
++}
++
+ exit 0
