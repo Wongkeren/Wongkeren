@@ -127,11 +127,11 @@ function to_check()
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-xiaomi_mi-ac2100-squashfs-sysupgrade.bin"
     elseif model:match(".*RT-AC42U.*") then
-		model = "ipq40xx_generic/rt-acrh17"
+		model = "ipq40xx_generic/asus-rt-acrh17"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-asus_rt-ac42u-squashfs-sysupgrade.bin"
     elseif model:match(".*RT-AC58U.*") then
-		model = "ipq40xx_generic/rt-ac58u"
+		model = "ipq40xx_generic/asus-rt-ac58u"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-asus_rt-ac58u-squashfs-sysupgrade.bin"
     else
