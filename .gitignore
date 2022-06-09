@@ -13,10 +13,10 @@
 /luci-app-babeld
 /luci-app-siitwizard
 /luci-app-ttyd
-/luci-app-mentohust
 /luci-app-softethervpn
 /ddns-scripts_aliyun
 /ddns-scripts_dnspod
+/mentohust
 /subweb
 /wget
 /autosamba
