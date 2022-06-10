@@ -1,4 +1,4 @@
-module("luci.controller.ps3netsrv",package.seeall)
+module("luci.controller.ps3netsrv", package.seeall)
 
 function index()
 	entry({"admin", "nas"}, firstchild(), _("NAS") , 45).dependent = false
