@@ -156,13 +156,13 @@ jobs:
         git_clone https://github.com/frainzy1477/luci-app-clash
         git_clone https://github.com/BH4EHN/openwrt-cloudflared
         git_clone https://github.com/peter-tank/luci-app-fullconenat
-        git_clone https://github.com/xiangfeidexiaohuo/openwrt-packages  && mv -n openwrt-packages/op-homebox/* ./; rm -rf openwrt-packages
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
+        svn export https://github.com/xiangfeidexiaohuo/openwrt-packages/trunk/op-homebox && mv -f op-homebox/* ./;rm -rf op-homebox
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
