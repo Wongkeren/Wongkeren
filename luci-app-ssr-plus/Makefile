@@ -33,6 +33,8 @@ LUCI_DEPENDS:= \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Redsocks2:redsocks2 \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_SagerNet_Core:curl \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_SagerNet_Core:sagernet-core \
+	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray:curl \
+	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray:xray-core \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client:shadowsocks-libev-ss-local \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client:shadowsocks-libev-ss-redir \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server:shadowsocks-libev-ss-server \
@@ -48,6 +50,18 @@ LUCI_DEPENDS:= \
 define Package/$(PKG_NAME)/config
 select PACKAGE_luci-lib-ipkg if PACKAGE_$(PKG_NAME)
 
+choice
+	prompt "V2Ray Edition Selection"
+	default PACKAGE_$(PKG_NAME)_INCLUDE_Xray
+	
+	config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
+	bool "Include Xray Core"
+	
+	config PACKAGE_$(PKG_NAME)_INCLUDE_SagerNet_Core
+	bool "Include sagernet-core (An enhanced edition of v2ray-core)"
+		
+endchoice
+
 config PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun
 	bool "Include Kcptun"
 	default n
@@ -57,7 +71,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria
 	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_IPT2Socks
-	bool "Include ipt2socks"
+	bool "Include Ipt2socks"
 	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
@@ -68,10 +82,6 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
 config PACKAGE_$(PKG_NAME)_INCLUDE_Redsocks2
 	bool "Include Redsocks2"
 	default n
-
-config PACKAGE_$(PKG_NAME)_INCLUDE_SagerNet_Core
-	bool "Include sagernet-core (An enhanced edition of v2ray-core)"
-	default y
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client
 	bool "Include Shadowsocks Libev Client"
