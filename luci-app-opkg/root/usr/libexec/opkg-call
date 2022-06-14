@@ -58,13 +58,13 @@ case "$action" in
 					install|upgrade)
 						[ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $@)" ] && {
 							rm -f /tmp/opkg.err
-						. /etc/profile.d/opkg.sh; opkg save
+							. /etc/profile.d/opkg.sh; opkg save &
 						}
 					;;
 					remove)
 						[ ! "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $@)" ] && {
 							rm -f /tmp/opkg.err
-						. /etc/profile.d/opkg.sh; opkg save
+							. /etc/profile.d/opkg.sh; opkg save &
 						}
 					;;
 				esac
