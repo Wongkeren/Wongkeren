@@ -5,29 +5,29 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=v2ray-geodata
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 include $(INCLUDE_DIR)/package.mk
 
-GEOIP_VER:=202205260055
+GEOIP_VER:=202203020834
 GEOIP_FILE:=geoip.dat.$(GEOIP_VER)
 define Download/geoip
-  URL:=https://github.com/v2fly/geoip/releases/download/$(GEOIP_VER)/
-  URL_FILE:=geoip.dat
+  URL:=https://github.com/Loyalsoldier/geoip/releases/latest/download
+  URL_FILE:=geoip-only-cn-private.dat
   FILE:=$(GEOIP_FILE)
-  HASH:=c9eb7a4897a7bdafad5d4a71f966345674bd7f3f8ab487cb05599ed17b325106
+  HASH:=skip
 endef
 
-GEOSITE_VER:=20220528180904
-GEOSITE_FILE:=dlc.dat.$(GEOSITE_VER)
+GEOSITE_VER:=202203020836
+GEOSITE_FILE:=geosite.dat.$(GEOSITE_VER)
 define Download/geosite
-  URL:=https://github.com/v2fly/domain-list-community/releases/download/$(GEOSITE_VER)/
-  URL_FILE:=dlc.dat
+  URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download
+  URL_FILE:=geosite.dat
   FILE:=$(GEOSITE_FILE)
-  HASH:=d0c9f3cbf7925c33dfb8fb9578cdfa6733fc9f19c2ccfb4cba5a6415a14afe5c
+  HASH:=skip
 endef
 
 define Package/v2ray-geodata/template
