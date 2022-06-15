@@ -92,7 +92,7 @@ test $version -lt 1 && {
 				uci -q set wireless.${radio}.channel='44'
 			else
 				uci -q set wireless.${radio}.htmode="VHT80"
-				uci -q set wireless.${radio}.htmode="157"
+				uci -q set wireless.${radio}.channel="157"
 			fi
 		else
 			uci -q set wireless.${radio}.htmode="HT40"
