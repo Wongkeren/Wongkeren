@@ -89,11 +89,11 @@ test $version -lt 1 && {
 		if [ "$(uci -q get wireless.${radio}.band)" = "5g" ]; then
 			uci -q set wireless.default_${radio}.ssid="${SSID}_5G"
 			if test -z "${htmode##HE*}"; then
-				if [[ $htmode == "HE20" || $htmode == "HE40" ]]; then
-					uci -q set wireless.${radio}.htmode="HE80"
-				fi
+				uci -q set wireless.${radio}.htmode="HE160"
+				uci -q set wireless.${radio}.channel='44'
 			else
 				uci -q set wireless.${radio}.htmode="VHT80"
+				uci -q set wireless.${radio}.htmode="157"
 			fi
 		else
 			uci -q set wireless.${radio}.htmode="HT40"
