@@ -1,5 +1,5 @@
---- a/package/emortal/autocore/Makefile
-+++ b/package/emortal/autocore/Makefile
+--- a/autocore/Makefile
++++ b/autocore/Makefile
 @@ -6,7 +6,6 @@
  include $(TOPDIR)/rules.mk
  
