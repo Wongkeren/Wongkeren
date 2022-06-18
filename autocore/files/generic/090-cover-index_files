@@ -6,6 +6,4 @@
 	mv -f '/etc/rpcd_luci' '/usr/libexec/rpcd/luci'
 /etc/init.d/rpcd restart
 
-sed -i 's/cpu_arch="?"/cpu_arch="ARMv8 Processor"/' /sbin//cpuinfo
-
 exit 0
