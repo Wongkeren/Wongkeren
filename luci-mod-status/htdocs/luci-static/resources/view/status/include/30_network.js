@@ -100,7 +100,7 @@ return baseclass.extend({
 			]));
 			ctstatus.appendChild(E('div', { 'class': 'tr' }, [
 				E('div', { 'class': 'td left' }, _('Online Users')),
-				E('div', { 'class': 'td left' },  userinfo.result)
+				E('div', { 'class': 'td left' },  userinfo.onlineusers)
 			]));
 		}
 
