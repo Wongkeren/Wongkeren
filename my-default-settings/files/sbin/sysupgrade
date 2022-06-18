@@ -233,8 +233,7 @@ do_save_conffiles() {
 	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
 		. /etc/profile.d/opkg.sh && opkg save
 	else
-		uci -q del opkg.auto
-		uci commit opkg
+		rm -f /etc/config/opkg
 	fi
 
 	v "Saving config files..."
