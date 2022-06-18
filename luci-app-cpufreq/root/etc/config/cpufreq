@@ -1,3 +1,3 @@
-
-config settings 'cpufreq'
-
+config cpufreq 'settings'
+	option governor 'conservative'
+	option minfreq '600000'
