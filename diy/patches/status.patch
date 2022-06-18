@@ -14,7 +14,7 @@
  
 +var callUserInfo = rpc.declare({
 +    object: 'luci',
-+    method: 'getUserInfo'
++    method: 'getOnlineUsers'
 +});
 +
  return baseclass.extend({
