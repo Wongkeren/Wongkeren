@@ -9,9 +9,10 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=my-autocore
 PKG_VERSION:=1
-PKG_RELEASE:=8
+PKG_RELEASE:=9
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/target.mk
 
 define Package/my-autocore-arm
   SECTION:=libs
@@ -65,7 +66,7 @@ endef
 define Package/my-autocore-arm/install
 	$(call Package/autocore/install/Default,$(1))
 
-ifneq (, $(findstring $(BOARD), ipq40xx ipq806x ipq807x))
+ifneq ($(filter ipq% %mt7622, $(TARGETID)),)
 	$(INSTALL_BIN) ./files/arm/tempinfo $(1)/sbin/
 endif
 endef
