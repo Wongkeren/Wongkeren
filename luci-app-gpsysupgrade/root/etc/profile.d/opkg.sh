@@ -66,9 +66,9 @@ sed -e "s/$/\tipkg/" "${OPKG_WI}"
 fi
 {
 sed -e "s/$/\trpkg/" "${OPKG_UR}"
-sed -e "s/$/\trpkg/" "$(cat ${OPKG_CM}|grep "^-")"
+sed -e "s/$/\trpkg/" "${OPKG_CM}" | grep "^-"
 sed -e "s/$/\tipkg/" "${OPKG_UI}"
-sed -e "s/$/\tipkg/" "$(cat ${OPKG_CM}|grep "^[^-]")"
+sed -e "s/$/\trpkg/" "${OPKG_CM}" | grep "^[^-]"
 } | opkg uci "${OPKG_OPT}"
 rm -f "${OPKG_WR}" "${OPKG_WI}" "${OPKG_UR}" "${OPKG_UI}"
 }
