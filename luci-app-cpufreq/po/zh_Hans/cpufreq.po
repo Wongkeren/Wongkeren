@@ -1,92 +1,32 @@
-msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\n"
+msgid "CPU Freq"
+msgstr "CPU 性能优化调节"
 
-#: htdocs/luci-static/resources/view/status/include/19_cpu.js:48
-msgid "CPU"
-msgstr ""
+msgid "CPU Freq Settings"
+msgstr "CPU 性能优化调节设置"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:123
-msgid "CPU Governor"
-msgstr "CPU 调速器"
+msgid "Set CPU Scaling Governor to Max Performance or Balance Mode"
+msgstr "设置路由器的 CPU 性能模式（高性能/均衡省电）"
 
-#: htdocs/luci-static/resources/view/status/include/19_cpu.js:5
-msgid "CPU Load"
-msgstr "CPU 负载"
+msgid "CPU Scaling Governor"
+msgstr "CPU 工作模式"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:141
-msgid "CPU Maximum Frequency"
-msgstr "CPU 最高频率"
+msgid "CPU Freq from 48000 to 716000 (Khz)"
+msgstr "CPU 频率范围为 48000 到 716000 (Khz)"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:137
-msgid "CPU Minimum Frequency"
-msgstr "CPU 最低频率"
+msgid "Min Idle CPU Freq"
+msgstr "待机 CPU 最小频率"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:132
-msgid "CPU Sampling rate"
-msgstr "CPU 采样频率"
+msgid "Max Turbo Boost CPU Freq"
+msgstr "最大 Turbo Boost CPU 频率"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:117
-msgid "CPU Status"
-msgstr "CPU 状态"
+msgid "CPU Switching Sampling rate"
+msgstr "CPU 切换周期"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:127
+msgid "The sampling rate determines how frequently the governor checks to tune the CPU (ms)"
+msgstr "CPU 检查切换的周期 (ms)。注意：过于频繁的切换频率会引起网络延迟抖动"
+
 msgid "CPU Switching Threshold"
-msgstr "CPU 切换阈值"
+msgstr "CPU 切换频率触发阈值"
 
-#: htdocs/luci-static/resources/view/cpufreq.js:84
-msgid "Core"
-msgstr "核心"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:85
-msgid "Current Frequency"
-msgstr "实时频率"
-
-#: root/usr/share/rpcd/acl.d/luci-app-cpufreq.json:3
-msgid "Grant UCI access for luci-app-cpufreq"
-msgstr "为 luci-app-cpufreq 授予 UCI 的访问权限"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:77
-#: root/usr/share/luci/menu.d/luci-app-cpufreq.json:3
-msgid "Kernel Manager"
-msgstr "内核管理器"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:120
-msgid "Kernel Settings"
-msgstr "内核设置"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:77
-msgid "Kernel manager is an application which manages kernel parameters."
-msgstr "内核管理器是一个管理内核参数的应用。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:86
-msgid "Load %"
-msgstr "负载 %"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:132
-msgid "Set the frequency(us) which governor checks to tune the CPU"
-msgstr "设置 CPU 调速器调整 CPU 的采样频率（us）。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:141
-msgid "Set the maximum frequency the CPU scales up to."
-msgstr "设置 CPU 可达到的最高频率。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:137
-msgid "Set the minimum frequency the CPU scales down to."
-msgstr "设置 CPU 可达到的最低频率。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:127
-msgid "Set the threshold for stepping up to another frequency."
-msgstr "设置 CPU 提升频率的负载阈值。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:123
-msgid "The CPU governor determines how the CPU behaves in workload."
-msgstr "CPU 调速器决定 CPU 如何响应工作负载的变化。"
-
-#: htdocs/luci-static/resources/view/cpufreq.js:66
-#: htdocs/luci-static/resources/view/cpufreq.js:114
-msgid "There are no CPUs."
-msgstr "CPU 丢了"
-
-#: htdocs/luci-static/resources/view/status/include/19_cpu.js:48
-msgid "Total Load"
-msgstr "总负载"
+msgid "Kernel make a decision on whether it should increase the frequency (%)"
+msgstr "当 CPU 占用率超过 (%) 的情况下触发内核切换频率"
