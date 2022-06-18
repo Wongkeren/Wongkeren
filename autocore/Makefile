@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=autocore
-PKG_RELEASE:=34
+PKG_RELEASE:=35
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_TARGET_bcm27xx \
@@ -51,6 +51,7 @@ define Package/autocore/install/Default
 
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
 	$(INSTALL_DATA) ./files/generic/21_ethinfo.js $(1)/www/luci-static/resources/view/status/include/
+	$(INSTALL_DATA) ./files/generic/19_cpu.js $(1)/www/luci-static/resources/view/status/include/
 endef
 
 define Package/autocore-arm/install
