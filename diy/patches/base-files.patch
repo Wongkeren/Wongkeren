@@ -29,7 +29,7 @@
 
 --- a/base-files/files/sbin/sysupgrade
 +++ b/base-files/files/sbin/sysupgrade
-@@ -231,24 +231,9 @@ do_save_conffiles() {
+@@ -231,24 +231,13 @@ do_save_conffiles() {
  	ask_bool 0 "Edit config file list" && vi "$CONFFILES"
  
  	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
@@ -52,6 +52,10 @@
 -			\( -exec echo {} unknown \; \) \
 -			\) | sed -e 's,.*/,,;s/\.control /\t/' > ${INSTALLED_PACKAGES}
 +		. /etc/profile.d/opkg.sh && opkg save
++		[ -f /rom/etc/uci-defaults/zz-asu-defaults ] && {
++					cp -f /rom/etc/uci-defaults/zz-asu-defaults /etc/uci-defaults/zz-asu-defaults
++					echo "/etc/uci-defaults/zz-asu-defaults" >> $CONFFILES
++				}
 +	else
 +		rm -f /etc/config/opkg
  	fi
