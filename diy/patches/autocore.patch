@@ -42,3 +42,18 @@
  	# AMD
  	[ -n "${cpu_temp}" ] || cpu_temp="$(sensors "k*temp-*" 2>"/dev/null" | awk '/Tdie/ {print $2}' | head -n1 | tr -d "+")"
  	;;
+
+--- a/autocore/files/generic/luci
++++ b/autocore/files/generic/luci
+@@ -658,9 +658,8 @@ local methods = {
+ 	getETHInfo = {
+ 		call = function()
+ 			local sys = require "luci.sys"
+-			local rv = json.parse(sys.exec("/sbin/ethinfo")) or {}
+-
+-			return { ethinfo = rv }
++			local result = sys.exec("ethinfo 2>/dev/null")
++			return { result = result }
+ 		end
+ 	},
+ 
