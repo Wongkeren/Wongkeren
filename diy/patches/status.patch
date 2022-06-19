@@ -76,3 +76,15 @@
  
  		for (var i = 0; i < fields.length; i += 3) {
  			table.appendChild(E('tr', { 'class': 'tr' }, [
+
+--- a/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
++++ b/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
+@@ -3,7 +3,7 @@
+ 		"description": "Grant access to system configuration",
+ 		"read": {
+ 			"ubus": {
+-				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices" ],
++				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices", "getCPUInfo", "getETHInfo", "getTempInfo", "getCPUBench", "getCPUUsage", "getOnlineUsers" ],
+ 				"system": [ "info" ]
+ 			},
+ 			"uci": [ "luci", "system" ]
