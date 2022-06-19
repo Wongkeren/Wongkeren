@@ -233,9 +233,9 @@ do_save_conffiles() {
 	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
 		. /etc/profile.d/opkg.sh && opkg save
 		[ -f /rom/etc/uci-defaults/zz-asu-defaults ] && {
-			cp -f /rom/etc/uci-defaults/zz-asu-defaults /etc/uci-defaults/zz-asu-defaults
-			echo "/etc/uci-defaults/zz-asu-defaults" >> $CONFFILES
-		}
+					cp -f /rom/etc/uci-defaults/zz-asu-defaults /etc/uci-defaults/zz-asu-defaults
+					echo "/etc/uci-defaults/zz-asu-defaults" >> $CONFFILES
+				}
 	else
 		rm -f /etc/config/opkg
 	fi
