@@ -1,15 +1,13 @@
 --- a/autocore/Makefile
 +++ b/autocore/Makefile
-@@ -6,8 +6,7 @@
+@@ -6,7 +6,6 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=autocore
 -PKG_FLAGS:=nonshared
--PKG_RELEASE:=$(COMMITCOUNT)
-+PKG_RELEASE:=39
+ PKG_RELEASE:=$(COMMITCOUNT)
  
  PKG_CONFIG_DEPENDS:= \
- 	CONFIG_TARGET_bcm27xx \
 @@ -20,6 +19,7 @@ define Package/autocore-arm
    TITLE:=ARM auto core script.
    MAINTAINER:=CN_SZTL
