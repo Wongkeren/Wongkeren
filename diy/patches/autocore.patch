@@ -41,12 +41,11 @@
  
  case "$DISTRIB_TARGET" in
  "x86"/*)
-@@ -39,7 +39,7 @@ case "$DISTRIB_TARGET" in
- 	cpu_temp="$(vcgencmd measure_temp | awk -F '=' '{print $2}' | awk -F "'" '{print $1}')°C" ;;
+@@ -40,6 +40,7 @@ case "$DISTRIB_TARGET" in
  "x86"/*)
  	# Intel
--	cpu_temp="$(sensors "coretemp-*" 2>"/dev/null" | grep -E "(Package id |Core )" | grep -Eo "\+[0-9.]*°C" | head -n1 | tr -d "+")"
-+	cpu_temp="$(sensors 2>/dev/null | grep 'Core 0' | cut -c12-)"
+ 	cpu_temp="$(sensors "coretemp-*" 2>"/dev/null" | grep -E "(Package id |Core )" | grep -Eo "\+[0-9.]*°C" | head -n1 | tr -d "+")"
++	[ -n "${cpu_temp}" ] || cpu_temp="$(sensors 2>/dev/null | grep 'Core 0' | cut -c12-)"
  	# AMD
  	[ -n "${cpu_temp}" ] || cpu_temp="$(sensors "k*temp-*" 2>"/dev/null" | awk '/Tdie/ {print $2}' | head -n1 | tr -d "+")"
  	;;
