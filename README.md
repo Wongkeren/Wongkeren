@@ -1,19 +1,17 @@
-# luci-app-alist
+## 适用于基于官方源码的19.07及以上的分支.
+## 在lean源码中有些插件可能不适用,主要是network中 ifname, device 命名不同引起的.
+## 所有插件都为网上收集的开源插件,感谢作者们的付出.
 
-A file list program that supports multiple storage.
+### 本仓库所有插件已编译IPK下载
 
-## How to build
+| CPU架构           | 下载地址                                             | 适用设备    | 软件源    | 更新频率    |
+|----------------|-----------------------------------------------------|--------------------------------------|-----------|-----------|
+| X86_64         | [📥](https://op.supes.top/packages/x86_64/)         |          PC软路由    | src/gz openwrt_kiddin9 https://op.supes.top/packages/x86_64 | 日更  |
+| aarch64_generic    | [📥](https://op.supes.top/packages/aarch64_generic/)     |   R2S/R4S等        |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_generic | 日更  |
+| aarch64_cortex-a72    | [📥](https://op.supes.top/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a72  |  日更 |
+| mipsel_24kc    | [📥](https://op.supes.top/packages/mipsel_24kc/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://op.supes.top/packages/mipsel_24kc   | 日更  |
+| aarch64_cortex-a53    | [📥](https://op.supes.top/packages/aarch64_cortex-a53/) |  N1,红米AX6,小米AX6S等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53 |   日更 |
+| arm_cortex-a9    | [📥](https://op.supes.top/packages/arm_cortex-a9/) |  斐讯K3,华硕RT-AC68U,RT-AC88U等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/arm_cortex-a9 |   日更 |
+| arm_cortex-a7_neon-vfpv4    | [📥](https://op.supes.top/packages/arm_cortex-a7_neon-vfpv4/) |  华硕RT-ACRH17,RT-AC58U等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/arm_cortex-a7_neon-vfpv4 |   日更 |
 
-Enter in your openwrt/package/ or other
-
-### Openwrt official SnapShots
-
-```shell
-git clone https://github.com/sbwml/openwrt-alist --depth=1
-make menuconfig # choose LUCI -> Applications -> luci-app-alist
-make V=s
-```
-
---------------
-
-![](https://camo.githubusercontent.com/fae1a7e14a91f2d748e4999006c94ac5cb519f97f616f46051f6ae1006d212a6/68747470733a2f2f696d672e636f6f6c75632e636f6d2f696d67732f323032322f30352f643335326637306437626366313739302e706e67)
+### 使用软件源请删除 opkg配置(/etc/opkg.conf) 中的 option check_signature
