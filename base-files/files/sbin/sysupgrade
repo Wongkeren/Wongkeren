@@ -237,7 +237,9 @@ do_save_conffiles() {
 		 echo "/etc/uci-defaults/zz-asu-defaults" >> $CONFFILES
 		}
 	else
-		rm -f /etc/config/opkg
+		uci -q del opkg.auto
+		uci -q del opkg.custom
+		uci commit opkg
 	fi
 
 	v "Saving config files..."
