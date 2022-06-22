@@ -29,7 +29,7 @@
 
 --- a/base-files/files/sbin/sysupgrade
 +++ b/base-files/files/sbin/sysupgrade
-@@ -231,24 +231,13 @@ do_save_conffiles() {
+@@ -231,24 +231,15 @@ do_save_conffiles() {
  	ask_bool 0 "Edit config file list" && vi "$CONFFILES"
  
  	if [ "$SAVE_INSTALLED_PKGS" -eq 1 ]; then
@@ -57,7 +57,9 @@
 +		 echo "/etc/uci-defaults/zz-asu-defaults" >> $CONFFILES
 +		}
 +	else
-+		rm -f /etc/config/opkg
++		uci -q del opkg.auto
++		uci -q del opkg.custom
++		uci commit opkg
  	fi
  
  	v "Saving config files..."
