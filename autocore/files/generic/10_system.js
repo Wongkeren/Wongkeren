@@ -81,7 +81,6 @@ return baseclass.extend({
 		var fields = [
 			_('Hostname'),         boardinfo.hostname,
 			_('Model'),            boardinfo.model + cpubench.cpubench,
-			_('Architecture'),     cpuinfo.cpuinfo,
 			_('Target Platform'),  (L.isObject(boardinfo.release) ? boardinfo.release.target : ''),
 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
 			_('Kernel Version'),   boardinfo.kernel,
@@ -97,6 +96,10 @@ return baseclass.extend({
 		if (tempinfo.tempinfo) {
 			fields.splice(6, 0, _('Temperature'));
 			fields.splice(7, 0, tempinfo.tempinfo);
+		}
+		if (cpuinfo.cpuinfo) {
+			fields.splice(4, 0, _('Architecture'));
+			fields.splice(5, 0, cpuinfo.cpuinfo);
 		}
 
 		var table = E('table', { 'class': 'table' });
