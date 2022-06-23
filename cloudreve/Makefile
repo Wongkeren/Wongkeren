@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cloudreve
 PKG_VERSION:=3.5.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/cloudreve/Cloudreve.git
@@ -48,6 +48,10 @@ define Build/Compile
 		pushd $(PKG_BUILD_DIR)/assets ; \
 		yarn install ; \
 		yarn run build ; \
+		cd build ; \
+		find . -name "*.map" -type f -delete ; \
+		cd $(PKG_BUILD_DIR) ; \
+		zip -r - assets/build >assets.zip ; \
 		popd ; \
 		$(call GoPackage/Build/Compile) ; \
 	)

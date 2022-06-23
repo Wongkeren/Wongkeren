@@ -1,0 +1,41 @@
+#!/bin/sh /etc/rc.common
+START=99
+
+homedir="/etc/cloudreve"
+
+config_cloudreve()
+{
+	local port
+	config_get port "$1" "port"
+	mkdir -p "$homedir"
+	if [ -f "$homedir/cloudreve.ini" ]; then
+		sed -i "s/Listen = :[0-9]*/Listen = :$port/g" "$homedir/cloudreve.ini"
+	else
+		cat >"$homedir/cloudreve.ini"<<EOF
+[System]
+Debug = false
+Mode = master
+Listen = :${port}
+EOF
+	fi
+}
+
+run_cloudreve()
+{
+	config_get_bool enable "$1" enable 0
+	[ $enable -eq 0 ] && exit 0
+	config_foreach config_cloudreve "cloudreve"
+	cloudreve -c $homedir/cloudreve.ini &
+}
+
+start()
+{
+	stop
+	config_load "cloudreve"
+	config_foreach run_cloudreve "cloudreve"
+}
+
+stop()
+{
+	kill -9 $(ps -w | grep ${homedir} | grep -v grep | awk '{print$1}') 2>/dev/null
+}
