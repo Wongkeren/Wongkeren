@@ -165,7 +165,6 @@ jobs:
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
-        svn export https://github.com/immortalwrt/packages/trunk/net/cloudreve
         svn export https://github.com/xiangfeidexiaohuo/openwrt-packages/trunk/op-homebox && mvdir op-homebox
         ) &
         (
