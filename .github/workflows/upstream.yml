@@ -77,6 +77,7 @@ jobs:
         git_clone https://github.com/kiddin9/openwrt-amule-dlp && mvdir openwrt-amule-dlp
         git_clone https://github.com/kiddin9/luci-app-wizard
         git_clone https://github.com/kiddin9/openwrt-adguardhome && mvdir openwrt-adguardhome
+        git_clone https://github.com/kiddin9/openwrt-cloudreve && mvdir openwrt-cloudreve
         ) &
         (
         git_clone https://github.com/xiaorouji/openwrt-passwall
@@ -156,7 +157,7 @@ jobs:
         git_clone https://github.com/frainzy1477/luci-app-clash
         git_clone https://github.com/BH4EHN/openwrt-cloudflared
         git_clone https://github.com/peter-tank/luci-app-fullconenat
-        git_clone https://github.com/sbwml/openwrt-alist  && mv -n openwrt-alist/* ./;rm -rf openwrt-alist
+        git_clone https://github.com/sbwml/openwrt-alist && mvdir openwrt-alist
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -165,7 +166,7 @@ jobs:
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
         svn export https://github.com/immortalwrt/packages/trunk/net/cloudreve
-        svn export https://github.com/xiangfeidexiaohuo/openwrt-packages/trunk/op-homebox && mv -f op-homebox/* ./;rm -rf op-homebox
+        svn export https://github.com/xiangfeidexiaohuo/openwrt-packages/trunk/op-homebox && mvdir op-homebox
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
