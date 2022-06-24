@@ -1,6 +1,6 @@
 --- a/natflow/files/natflow-boot.init
 +++ b/natflow/files/natflow-boot.init
-@@ -14,11 +14,21 @@ disable_gro() {
+@@ -14,6 +14,7 @@ disable_gro() {
  start() {
  	disable_gro
  	hwnat=$(uci get natflow.main.hwnat 2>/dev/null || echo 1)
@@ -8,20 +8,6 @@
  	enabled=$(uci get natflow.main.enabled 2>/dev/null || echo 1)
  	debug=$(uci get natflow.main.debug 2>/dev/null || echo 3)
  	delay_pkts=$(uci get natflow.main.delay_pkts 2>/dev/null || echo 0)
- 	ifname_filter=$(uci get natflow.main.ifname_filter 2>/dev/null)
- 
-+	if [ "x${enabled}" = "x1" ]; then
-+		if [ "x`uci get firewall.@defaults[0].flow_offloading 2>/dev/null`" = "x1" ]; then
-+			uci set firewall.@defaults[0].flow_offloading=0
-+			uci set firewall.@defaults[0].flow_offloading_hw=0
-+			uci commit firewall
-+			/etc/init.d/firewall reload
-+		fi
-+	fi
-+
- 	echo debug=$debug >/dev/natflow_ctl
- 	echo disabled=$((!enabled)) >/dev/natflow_ctl
- 	echo hwnat=$hwnat >/dev/natflow_ctl
 
 --- a/natflow/files/natflow.config
 +++ b/natflow/files/natflow.config
