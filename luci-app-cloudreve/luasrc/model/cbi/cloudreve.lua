@@ -8,7 +8,7 @@ s.anonymous=true
 enabled = s:option(Flag, "enabled", translate("Enable"))
 enabled.rmempty = false
 
-port = s:option(Value,"port",translate("Port"),translate("WebUI listening port"))
+port = s:option(Value,"port",translate("Port"))
 port.default = "8052"
 port.placeholder = "8052"
 port.rmempty = false

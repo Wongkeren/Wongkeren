@@ -25,5 +25,3 @@ msgstr "启用"
 msgid "Port"
 msgstr "端口"
 
-msgid "WebUI listening port"
-msgstr "WebUI监听端口"

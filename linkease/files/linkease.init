@@ -25,7 +25,3 @@ start_service() {
 service_triggers() {
 	procd_add_reload_trigger "linkease"
 }
-
-service_triggers() {
-	procd_add_reload_trigger 'linkease'
-}

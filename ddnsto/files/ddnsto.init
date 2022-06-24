@@ -29,7 +29,3 @@ start_service() {
 service_triggers() {
         procd_add_reload_trigger "ddnsto"
 }
-
-service_triggers() {
-	procd_add_reload_trigger 'ddnsto'
-}
