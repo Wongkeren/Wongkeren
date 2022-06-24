@@ -11,11 +11,6 @@ LUCI_PKGARCH:=all
 
 PKG_NAME:=luci-app-cloudreve
 
-define Package/luci-app-cloudreve/conffiles
-/etc/config/cloudreve
-/etc/cloudreve/
-endef
-
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

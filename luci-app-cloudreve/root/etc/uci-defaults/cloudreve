@@ -1,7 +1,5 @@
 #!/bin/sh
 
-chmod +x /etc/init.d/cloudreve
-
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@cloudreve[-1]
 	add ucitrack cloudreve

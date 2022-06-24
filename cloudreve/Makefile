@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cloudreve
 PKG_VERSION:=3.5.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/cloudreve/Cloudreve.git
@@ -43,6 +43,11 @@ define Package/cloudreve/description
   storage providers.
 endef
 
+define Package/cloudreve/conffiles
+/etc/config/cloudreve
+/etc/cloudreve/
+endef
+
 define Build/Compile
 	( \
 		pushd $(PKG_BUILD_DIR)/assets ; \
@@ -62,6 +67,12 @@ define Package/cloudreve/install
 
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/Cloudreve $(1)/usr/bin/cloudreve
+	
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/cloudreve.init $(1)/etc/init.d/cloudreve
+
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) ./files/cloudreve.conf $(1)/etc/config/cloudreve
 endef
 
 $(eval $(call GoBinPackage,cloudreve))
