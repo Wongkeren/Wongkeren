@@ -3173,7 +3173,7 @@ input[name="nslookup"] {
 	}
 }
 /* other fix */
-input[type="checkbox"] {
+input+input[type="checkbox"] {
 	appearance: none !important;
 	-webkit-appearance: none !important;
 	border: 1px solid #dee2e6;
