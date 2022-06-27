@@ -149,3 +149,14 @@
    TITLE+= (with SSL support)
    VARIANT:=ssl
    DEFAULT_VARIANT:=1
+
+--- a/ntfs3-mount/Makefile
++++ b/ntfs3-mount/Makefile
+@@ -10,7 +10,7 @@ define Package/ntfs3-mount
+   CATEGORY:=Utilities
+   SUBMENU:=Filesystem
+   TITLE:=NTFS mount script for Paragon NTFS3 driver
+-  DEPENDS:=+!LINUX_5_15:kmod-fs-ntfs3-oot +LINUX_5_15:kmod-fs-ntfs3
++  DEPENDS:=+!LINUX_5_15:kmod-fs-ntfs +LINUX_5_15:kmod-fs-ntfs3
+   PKGARCH:=all
+ endef
