@@ -155,7 +155,7 @@ jobs:
         git_clone https://github.com/fullcone-nat-nftables/nft-fullcone
         git_clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
         git_clone https://github.com/frainzy1477/luci-app-clash
-        git_clone https://github.com/BH4EHN/openwrt-cloudflared
+        git_clone https://github.com/yichya/openwrt-cloudflared
         git_clone https://github.com/peter-tank/luci-app-fullconenat
         git_clone https://github.com/sbwml/openwrt-alist && mvdir openwrt-alist
         ) &
