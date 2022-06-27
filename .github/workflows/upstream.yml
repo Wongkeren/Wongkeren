@@ -73,6 +73,7 @@ jobs:
         git_clone https://github.com/kiddin9/autoshare && mvdir autoshare
         git_clone https://github.com/kiddin9/openwrt-openvpn && mvdir openwrt-openvpn
         git_clone https://github.com/kiddin9/luci-app-xlnetacc
+        git_clone https://github.com/kiddin9/qBittorrent-Enhanced-Edition
         git_clone https://github.com/kiddin9/openwrt-amule-dlp && mvdir openwrt-amule-dlp
         git_clone https://github.com/kiddin9/luci-app-wizard
         git_clone https://github.com/kiddin9/openwrt-adguardhome && mvdir openwrt-adguardhome
@@ -180,7 +181,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/mwol \
-        net/sub-web net/dnsproxy net/haproxy net/v2raya net/cdnspeedtest net/qBittorrent-Enhanced-Edition \
+        net/sub-web net/dnsproxy net/haproxy net/v2raya net/cdnspeedtest \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
         utils/cpulimit utils/filebrowser
