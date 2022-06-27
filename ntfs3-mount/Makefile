@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ntfs3-mount
-PKG_RELEASE:=11
+PKG_RELEASE:=13
 
 include $(INCLUDE_DIR)/package.mk
 
