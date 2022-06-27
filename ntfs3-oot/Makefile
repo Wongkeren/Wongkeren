@@ -27,7 +27,7 @@ define KernelPackage/fs-ntfs3-oot
   TITLE:=Fully functional NTFS Read-Write driver
   FILES:=$(PKG_BUILD_DIR)/ntfs3.ko
   AUTOLOAD:=$(call AutoProbe,ntfs3)
-  DEPENDS:=@!LINUX_5_15 +kmod-nls-utf8
+  DEPENDS:=@!LINUX_5_15 +nls-base +kmod-nls-utf8
 endef
 
 define KernelPackage/fs-ntfs3-oot/description
