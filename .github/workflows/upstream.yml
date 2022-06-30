@@ -168,7 +168,7 @@ jobs:
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
-        net/openvpn utils/cgroupfs-mount utils/coremark net/xray-core net/nginx net/uwsgi net/ddns-scripts net/smartdns \
+        utils/cgroupfs-mount utils/coremark net/xray-core net/nginx net/uwsgi net/ddns-scripts net/smartdns \
         net/ariang admin/netdata
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall4 package/network/config/firewall package/system/opkg package/libs/mbedtls package/network/services/ppp \
