@@ -1,10 +1,9 @@
 #!/bin/sh
 
 [ -e "/etc/openvpn.user" ] && {
-[ -e "/etc/openvpn/openvpn.user" ] && {
 	env -i ACTION="$ACTION" INSTANCE="$INSTANCE" \
 		/bin/sh \
-		/etc/openvpn/openvpn.user \
+		/etc/openvpn.user \
 		$*
 }
 
