@@ -6,6 +6,7 @@
 /luci-app-advancedsetting
 /luci-app-softether
 /luci-app-cifs
+/luci-app-frps
 /luci-app-cifsd
 /luci-app-smstool
 /luci-app-mosquitto
