@@ -70,7 +70,7 @@ function auto_get_model()
 		model = "x86_64"
 		else
         local boardinfo = luci.util.ubus("system", "board") or { }
-		model = boardinfo.model
+		board_name = boardinfo.board_name
 		end
     end
     return util.trim(model)
