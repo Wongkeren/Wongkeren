@@ -157,6 +157,7 @@ jobs:
         git_clone https://github.com/yichya/openwrt-cloudflared
         git_clone https://github.com/peter-tank/luci-app-fullconenat
         git_clone https://github.com/sbwml/openwrt-alist && mvdir openwrt-alist
+        git_clone https://github.com/gSpotx2f/luci-app-log
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
