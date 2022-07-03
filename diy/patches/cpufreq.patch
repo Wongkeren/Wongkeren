@@ -4,7 +4,7 @@
  			# RK3399
  			uci_write_config 0 schedutil 600000 1608000
  			uci_write_config 4 schedutil 600000 2016000
-+		else if [[ "$(board_name)" == *nanopi-r5s ]]; then
++		elif [[ "$(board_name)" == *nanopi-r5s ]]; then
 +			uci_write_config 0 schedutil 816000 1992000
  		else
  			# RK3328
