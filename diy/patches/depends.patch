@@ -34,18 +34,6 @@
  
  PKG_MAINTAINER:=Xingwang Liao <kuoruan@gmail.com>
 
---- a/luci-app-transmission/Makefile
-+++ b/luci-app-transmission/Makefile
-@@ -7,7 +7,7 @@
- include $(TOPDIR)/rules.mk
- 
- LUCI_TITLE:=LuCI Support for Transmission
--LUCI_DEPENDS:=+transmission-daemon
-+LUCI_DEPENDS:=+transmission-daemon +transmission-web-control
- 
- include ../../luci.mk
- 
-
 --- a/luci-app-samba4/Makefile
 +++ b//luci-app-samba4/Makefile
 @@ -3,7 +3,7 @@
