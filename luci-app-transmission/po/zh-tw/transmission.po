@@ -1,272 +1,277 @@
+#
+# Yangfl <mmyangfl@gmail.com>, 2017.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-01 23:27+0200\n"
-"PO-Revision-Date: 2014-07-17 23:50+0200\n"
-"Last-Translator: Alex <alexhenrie24@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ca\n"
+"POT-Creation-Date: 2013-10-08 14:06+0200\n"
+"PO-Revision-Date: 2017-10-29 15:56+0800\n"
+"Last-Translator: Yangfl <mmyangfl@gmail.com>\n"
+"Language-Team:  <debian-l10n-chinese@lists.debian.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.6\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 msgid "Alternative download speed"
-msgstr "Velocitat de baixada alternativa"
+msgstr "臨時下載限速"
 
 msgid "Alternative speed enabled"
-msgstr "Velocitat alternativa habilitada"
+msgstr "臨時限速已啟用"
 
 msgid "Alternative speed time begin"
-msgstr "Hora inicial de velocitat alternativa"
+msgstr "計劃限速始於"
 
 msgid "Alternative speed time day"
-msgstr "Dia de velocitat alternativa"
+msgstr "計劃限速日期"
 
 msgid "Alternative speed time end"
-msgstr "Hora final de velocitat alternativa"
+msgstr "計劃限速止於"
 
 msgid "Alternative speed timing enabled"
-msgstr "Temporització de velocitat alternativa habilitada"
+msgstr "計劃限速已啟用"
 
 msgid "Alternative upload speed"
-msgstr "Velocitat de pujada alternativa"
+msgstr "臨時上傳速度"
 
 msgid "Automatically start added torrents"
-msgstr "Comença automàticament els torrents afegits"
+msgstr "種子自動下載"
 
 msgid "Bandwidth settings"
-msgstr "Ajusts d'amplada de banda"
+msgstr "頻寬配置"
 
 msgid "Binding address IPv4"
-msgstr ""
+msgstr "繫結 IPv4 位址"
 
 msgid "Binding address IPv6"
-msgstr ""
+msgstr "繫結 IPv6 位址"
 
 msgid "Block list enabled"
-msgstr "Llista de bloqueig habilitada"
+msgstr "阻止列表已啟用"
 
 msgid "Blocklist URL"
-msgstr ""
+msgstr "URL阻止清單"
 
 msgid "Blocklists"
-msgstr "Llistes de bloqueig"
+msgstr "阻止清單"
 
 msgid "Cache size in MB"
-msgstr ""
+msgstr "快取大小（MB）"
 
 msgid "Config file directory"
-msgstr "Directori de fitxer de configuració"
+msgstr "配置檔案的目錄"
 
 msgid "DHT enabled"
-msgstr "DHT habilitat"
+msgstr "啟用 DHT"
 
 msgid "Debug"
-msgstr "Depuració"
+msgstr "除錯"
 
 msgid "Download directory"
-msgstr "Directori de baixada"
+msgstr "下載目錄"
 
 msgid "Download queue enabled"
-msgstr "Cua de baixada habilitada"
+msgstr "下載佇列已啟用"
 
 msgid "Download queue size"
-msgstr "Mida de cua de baixada"
+msgstr "下載佇列大小"
 
 msgid "Enable watch directory"
-msgstr ""
+msgstr "啟用種子輪詢目錄"
 
 msgid "Enabled"
-msgstr "Habilitat"
+msgstr "已啟用"
 
 msgid "Encryption"
-msgstr "Xifració"
+msgstr "加密"
 
 msgid "Error"
-msgstr "Error"
+msgstr "錯誤"
 
 msgid "Fast"
-msgstr "Ràpid"
+msgstr "快速"
 
 msgid "Files and Locations"
-msgstr "Fitxers i ubicacions"
+msgstr "檔案和位置"
 
 msgid "Forced"
-msgstr "Forçat"
+msgstr "強制"
 
 msgid "Full"
-msgstr "Ple"
+msgstr "全分配"
 
 msgid "Global peer limit"
-msgstr ""
+msgstr "全域性 Peer 限制"
 
 msgid "Global settings"
-msgstr "Ajusts globals"
+msgstr "全域性設定"
 
 msgid "Idle seeding limit"
-msgstr ""
+msgstr "空閒做種限時"
 
 msgid "Idle seeding limit enabled"
-msgstr ""
+msgstr "空閒做種時間已啟用"
 
 msgid "Incomplete directory"
-msgstr "Directori incomplet"
+msgstr "未完成目錄"
 
 msgid "Incomplete directory enabled"
-msgstr "Directori incomplet habilitat"
+msgstr "未完成目錄已啟用"
 
 msgid "Info"
-msgstr "Informació"
+msgstr "資訊"
 
 msgid "LPD enabled"
-msgstr "LPD habilitat"
+msgstr "LPD 已啟用"
 
 msgid "Lazy bitfield enabled"
-msgstr ""
+msgstr "位段延遲已啟用"
 
 msgid "Message level"
-msgstr ""
+msgstr "訊息級別"
 
 msgid "Miscellaneous"
-msgstr "Miscel·lani"
+msgstr "其他引數"
 
 msgid "None"
-msgstr "Cap"
+msgstr "空"
 
 msgid ""
 "Number/bitfield. Start with 0, then for each day you want the scheduler "
 "enabled, add a value. For Sunday - 1, Monday - 2, Tuesday - 4, Wednesday - "
 "8, Thursday - 16, Friday - 32, Saturday - 64"
 msgstr ""
+"生效日期是對應日期的算術加和值。對應關係：週日-1、週一-2、週二-4、週三-8、周"
+"四-16、週五-32、週六-64。"
 
 msgid "Off"
-msgstr "Desactivat"
+msgstr "關閉"
 
 msgid "Open Web Interface"
-msgstr ""
+msgstr "開啟 Web 管理介面"
 
 msgid "PEX enabled"
-msgstr "PEX habilitat"
+msgstr "PEX 已啟用"
 
 msgid "Peer Port settings"
-msgstr ""
+msgstr "Peer 埠設定"
 
 msgid "Peer congestion algorithm"
-msgstr ""
+msgstr "Peer 擁塞演算法"
 
 msgid "Peer limit per torrent"
-msgstr ""
+msgstr "每個種子 Peer 限制數"
 
 msgid "Peer port"
-msgstr ""
+msgstr "Peer 埠"
 
 msgid "Peer port random high"
-msgstr ""
+msgstr "Peer 隨機埠最大值"
 
 msgid "Peer port random low"
-msgstr ""
+msgstr "Peer 隨機埠最小值"
 
 msgid "Peer port random on start"
-msgstr ""
+msgstr "Peer 埠隨機"
 
 msgid "Peer settings"
-msgstr ""
+msgstr "Peer 設定"
 
 msgid "Peer socket tos"
-msgstr ""
+msgstr "Peer 套接字 tos 值"
 
 msgid "Port forwarding enabled"
-msgstr ""
+msgstr "埠轉發已啟用"
 
 msgid "Preferred"
-msgstr "Preferit"
+msgstr "優先"
 
 msgid "Prefetch enabled"
-msgstr "Precarrega habilitada"
+msgstr "預取快取已啟用"
 
 msgid "Queue stalled enabled"
-msgstr ""
+msgstr "佇列暫停已啟用"
 
 msgid "Queue stalled minutes"
-msgstr ""
+msgstr "佇列暫停分鐘"
 
 msgid "Queueing"
-msgstr ""
+msgstr "佇列"
 
 msgid "RPC URL"
-msgstr ""
+msgstr "RPC URL"
 
 msgid "RPC authentication required"
-msgstr "Autenticació RPC requerida"
+msgstr "RPC 授權驗證"
 
 msgid "RPC bind address"
-msgstr ""
+msgstr "RPC 繫結位址"
 
 msgid "RPC enabled"
-msgstr "RPC habilitat"
+msgstr "RPC 已啟用"
 
 msgid "RPC password"
-msgstr "Contrasenya RPC"
+msgstr "RPC 密碼"
 
 msgid "RPC port"
-msgstr "Port RPC"
+msgstr "RPC 埠"
 
 msgid "RPC settings"
-msgstr "Ajusts RPC"
+msgstr "RPC 配置"
 
 msgid "RPC username"
-msgstr "Nom d'usuari RPC"
+msgstr "RPC 使用者名稱"
 
 msgid "RPC whitelist"
-msgstr "Llista blanca RPC"
+msgstr "RPC 白名單"
 
 msgid "RPC whitelist enabled"
-msgstr "Llista blanca RPC habilitada"
+msgstr "RPC 白名單已啟用"
 
 msgid "Ratio limit"
-msgstr "Límit de ràtio"
+msgstr "分享率限值"
 
 msgid "Ratio limit enabled"
-msgstr "Límit de ràtio habilitat"
+msgstr "分享率限制已啟用"
 
 msgid "Rename partial files"
-msgstr ""
+msgstr "重新命名未完成檔案"
 
 msgid "Run daemon as user"
-msgstr "Executa el dimoni com l'usuari"
+msgstr "使用者組"
 
 msgid "Scheduling"
-msgstr "Programació"
+msgstr "計劃任務"
 
 msgid "Scrape paused torrents enabled"
-msgstr ""
+msgstr "忽略暫停種子已啟用"
 
 msgid "Script torrent done enabled"
-msgstr ""
+msgstr "種子完成時執行指令碼已啟用"
 
 msgid "Script torrent done filename"
-msgstr ""
+msgstr "指令碼檔名"
 
 msgid "Seed queue enabled"
-msgstr ""
+msgstr "做種佇列已啟用"
 
 msgid "Seed queue size"
-msgstr ""
+msgstr "做種佇列大小"
 
 msgid "Speed limit down"
-msgstr ""
+msgstr "下載限速"
 
 msgid "Speed limit down enabled"
-msgstr ""
+msgstr "下載限速已啟用"
 
 msgid "Speed limit up"
-msgstr ""
+msgstr "上傳限速"
 
 msgid "Speed limit up enabled"
-msgstr ""
+msgstr "上傳限速已啟用"
 
 msgid "Transmission"
 msgstr "Transmission"
@@ -274,24 +279,22 @@ msgstr "Transmission"
 msgid ""
 "Transmission daemon is a simple bittorrent client, here you can configure "
 "the settings."
-msgstr ""
-"El dimoni Transmission és un client de bittorrent senzill, aquí podeu "
-"configurar els ajusts."
+msgstr "Transmission 是一個簡單的 bittorrent 客戶端，在這裡您可以配置其設定。"
 
 msgid "Trash original torrent files"
-msgstr "Suprimeix els fitxers de torrent originals"
+msgstr "刪除種子原始檔"
 
 msgid "Upload slots per torrent"
-msgstr ""
+msgstr "每個種子上傳連線數"
 
 msgid "Watch directory"
-msgstr "Directori que vigilar"
+msgstr "輪詢種子目錄"
 
 msgid "in minutes from midnight"
-msgstr "en minuts des de la mitjanit"
+msgstr "從晚上 00:00 起的分鐘數，限速到臨時速度"
 
 msgid "preallocation"
-msgstr "preassignació"
+msgstr "磁碟預分配策略"
 
 msgid "uTP enabled"
-msgstr "uTP habilitat"
+msgstr "uTP 已啟用"
