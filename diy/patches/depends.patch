@@ -159,3 +159,13 @@
 +LUCI_DEPENDS:=+luci-app-dockerman +luci-lib-iform
  
  include $(TOPDIR)/feeds/luci/luci.mk
+
+--- a/transmission/files/transmission.init
++++ b/transmission/files/transmission.init
+@@ -143,3 +143,6 @@ start_service() {
+ 	config_foreach transmission 'transmission'
+ }
+ 
++service_triggers() {
++	procd_add_reload_trigger "transmission"
++}
