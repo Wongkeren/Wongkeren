@@ -202,7 +202,7 @@ jobs:
         rm -rf applications/luci-app-qbittorrent applications/luci-app-cpufreq
         svn co https://github.com/immortalwrt/luci/trunk/applications
 
-        for ipk in $(ls -d applications/!(luci-app-rclone|luci-app-mwan3)/); do
+        for ipk in $(ls -d applications/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
         	if [[ $(ls $ipk/po | wc -l) -gt 3 ]]; then
             rm -rf $ipk
         	fi
