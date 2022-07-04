@@ -22,7 +22,3 @@ extra_command "check" "Check haproxy config"
 check() {
 	$HAPROXY_BIN -c -q -V -f $HAPROXY_CONFIG
 }
-
-service_triggers() {
-	procd_add_reload_trigger "haproxy"
-}
