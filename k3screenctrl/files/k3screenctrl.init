@@ -10,5 +10,5 @@ start() {
 }
 
 stop() {
-    killall `which k3screenctrl`
+    killall -q `which k3screenctrl`
 }
