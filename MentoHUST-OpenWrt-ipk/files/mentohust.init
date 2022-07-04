@@ -18,3 +18,7 @@ start_service() {
 stop_service() {
 	"$PROG" -k
 }
+
+service_triggers() {
+	procd_add_reload_trigger "mentohust"
+}
