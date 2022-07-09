@@ -1323,7 +1323,7 @@ return view.extend({
 
 				var crypto_modes = [];
 
-				if (hwtype == 'mac80211') {
+				if (hwtype != 'broadcom') {
 					var has_supplicant = L.hasSystemFeature('wpasupplicant'),
 					    has_hostapd = L.hasSystemFeature('hostapd');
 
