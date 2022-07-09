@@ -222,7 +222,7 @@ jobs:
         mv -n applications/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy) ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
-        mv -n mt/luci-app-mtwifi; rm -rf mt
+        mv -n mt/luci-app-mtwifi ./ ; rm -rf mt
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
 
