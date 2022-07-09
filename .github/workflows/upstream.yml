@@ -170,6 +170,7 @@ jobs:
         svn export https://github.com/xiangfeidexiaohuo/openwrt-packages/trunk/op-homebox && mvdir op-homebox
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd
         svn export https://github.com/x-wrt/luci/trunk/applications/luci-app-upnp
+        svn export https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/mt-drivers
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
@@ -199,7 +200,7 @@ jobs:
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
-        package/kernel/r8125 package/kernel/mt-drivers package/kernel/r8168 package/emortal/autocore
+        package/kernel/r8125 package/kernel/r8168 package/emortal/autocore
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
