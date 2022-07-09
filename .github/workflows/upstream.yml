@@ -199,7 +199,7 @@ jobs:
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
-        package/kernel/r8125 package/kernel/r8168 package/emortal/autocore
+        package/kernel/r8125 package/kernel/mt-drivers package/kernel/r8168 package/emortal/autocore
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
@@ -213,7 +213,7 @@ jobs:
         done
 
         git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/kernel/rtl8821cu package/network/services/shellsync \
-        package/network/services/fullconenat package/network/utils/dpdk package/network/utils/iwinfo
+        package/network/services/fullconenat package/network/utils/dpdk
 
     - name: Delete duplicated packages
       run: |
@@ -222,6 +222,7 @@ jobs:
         mv -n applications/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy) ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
+        mv -n mt/luci-app-mtwifi; rm -rf mt
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
 
