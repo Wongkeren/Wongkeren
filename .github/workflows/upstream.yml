@@ -212,7 +212,8 @@ jobs:
         	fi
         done
 
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/kernel/rtl8821cu package/network/services/shellsync package/network/services/fullconenat package/network/utils/dpdk
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/kernel/rtl8821cu package/network/services/shellsync \
+        package/network/services/fullconenat package/network/utils/dpdk package/network/utils/iwinfo
 
     - name: Delete duplicated packages
       run: |
