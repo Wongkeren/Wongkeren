@@ -1,5 +1,5 @@
---- a/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_dev_cfg.htm
-+++ b/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_dev_cfg.htm
+--- a/mt/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_dev_cfg.htm
++++ b/mt/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_dev_cfg.htm
 @@ -472,7 +472,7 @@
      }
  
@@ -37,8 +37,8 @@
              {
                  console.log(x);
 
---- a/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_overview.htm
-+++ b/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_overview.htm
+--- a/mt/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_overview.htm
++++ b/mt/luci-app-mtwifi/luasrc/view/admin_mtk/mtk_wifi_overview.htm
 @@ -31,7 +31,7 @@ <h2><a name="content">无线概况</a></h2>
              <tbody>
                  <tr>
