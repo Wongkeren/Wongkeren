@@ -69,9 +69,7 @@ return view.extend({
 			p[i].value('ACCEPT', _('accept'));
 		}
 
-		if (L.hasSystemFeature('fullconenat')) {
 		o = s.option(form.Flag, 'fullcone', _('FullCone NAT'), _('Using FullCone NAT can improve gaming performance effectively'));
-		}
 
 		/* Netfilter flow offload support */
 
