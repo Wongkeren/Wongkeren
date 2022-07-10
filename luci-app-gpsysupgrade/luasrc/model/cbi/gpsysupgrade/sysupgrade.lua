@@ -115,6 +115,10 @@ function to_check()
 		model = "ramips_mt7621/lenovo_newifi-d1"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-lenovo_newifi-d1-squashfs-sysupgrade.bin"
+    elseif board_name:match("re%-sp%-01b") then
+		model = "ramips_mt7621/jdcloud_re-sp-01b"
+		check_update()
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-jdcloud_re-sp-01b-squashfs-sysupgrade.bin"
     elseif board_name:match("mi%-router%-cr660x") then
 		model = "ramips_mt7621/xiaomi_mi-router-cr660x"
 		check_update()
