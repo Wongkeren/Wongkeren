@@ -172,3 +172,13 @@
  LUCI_PKGARCH:=all
  
 
+--- a/luci-app-upnp/Makefile
++++ b/luci-app-upnp/Makefile
+@@ -7,7 +7,7 @@
+ include $(TOPDIR)/rules.mk
+ 
+ LUCI_TITLE:=Universal Plug & Play configuration module
+-LUCI_DEPENDS:=+miniupnpd
++LUCI_DEPENDS:=+miniupnpd-nftables
+ 
+ include $(TOPDIR)/feeds/luci/luci.mk
