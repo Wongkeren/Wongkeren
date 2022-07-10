@@ -131,7 +131,7 @@ test $version -lt 1 && {
 	grep -q log-facility /etc/dnsmasq.conf ||
 		echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
-	[[ "$(lsmod | grep fullcone)" ]] && {
+	[[ -f /sys/module/xt_FULLCONENAT/refcnt || -f /sys/module/nft_fullcone/refcnt ]] && {
 	uci -q set firewall.@defaults[0].fullcone='1'
 	uci commit firewall
 	}
