@@ -74,11 +74,11 @@ test $version -lt 1 && {
 	if [ "$DISTRIB_TARGET" == "ipq807x/generic" ]; then
 		uci -q set turboacc.config.sfe_flow='1'
 		uci commit turboacc
-	elif [[ "$DISTRIB_TARGET" != "x86/64" ]] && {
+	elif [[ "$DISTRIB_TARGET" != "x86/64" ]]; then
 		uci set firewall.@defaults[0].flow_offloading='1'
 		uci set firewall.@defaults[0].flow_offloading_hw='1'
 		uci commit firewall
-	}
+	fi
 
 	wifi_setup_radio(){
 	local radio=$1
