@@ -64,7 +64,7 @@
    CATEGORY:=Base system
    TITLE:=OpenWrt C Firewall
 -  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +kmod-ipt-nat
-+  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +kmod-ipt-nat +iptables-mod-fullconenat +iptables-legacy +ip6tables-legacy +kmod-ipt-offload
++  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +kmod-ipt-nat +iptables-mod-fullconenat +iptables-legacy +ip6tables-legacy +kmod-ipt-offload +miniupnpd-iptables
    PROVIDES:=uci-firewall
    CONFLICTS:=firewall4
  endef
@@ -77,7 +77,7 @@
  	+nftables-json \
 -	+ucode +ucode-mod-fs +ucode-mod-ubus +ucode-mod-uci
 +	+ucode +ucode-mod-fs +ucode-mod-ubus +ucode-mod-uci \
-+	+kmod-nft-fullcone +iptables-nft +ip6tables-nft +nftables +kmod-nft-offload
++	+kmod-nft-fullcone +iptables-nft +ip6tables-nft +nftables +kmod-nft-offload +miniupnpd-nftables
    EXTRA_DEPENDS:=ucode (>= 2022-03-22)
    PROVIDES:=uci-firewall
  endef
@@ -179,6 +179,6 @@
  
  LUCI_TITLE:=Universal Plug & Play configuration module
 -LUCI_DEPENDS:=+miniupnpd
-+LUCI_DEPENDS:=+PACKAGE_firewall4:miniupnpd-nftables +PACKAGE_firewall:miniupnpd
++LUCI_DEPENDS:=
  
  include $(TOPDIR)/feeds/luci/luci.mk
