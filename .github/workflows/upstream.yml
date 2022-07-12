@@ -159,6 +159,7 @@ jobs:
         git_clone https://github.com/sbwml/openwrt-alist && mvdir openwrt-alist
         git_clone https://github.com/gSpotx2f/luci-app-log
         git_clone https://github.com/KFERMercer/luci-app-tcpdump
+        git_clone https://github.com/koshev-msk/luci-app-modeminfo opmodeminfo && mvdir opmodeminfo
         git_clone https://github.com/ykxVK8yL5L/pikpak-webdav && mv -n pikpak-webdav/openwrt/* ./;rm -rf pikpak-webdav
         ) &
         (
