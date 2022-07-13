@@ -77,6 +77,17 @@
  		for (var i = 0; i < fields.length; i += 3) {
  			table.appendChild(E('tr', { 'class': 'tr' }, [
 
+--- a/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
++++ b/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
+@@ -669,7 +669,6 @@ return view.extend({
+ 	checkLegacyRules: function(ipt4save, ipt6save) {
+ 		if (ipt4save.match(/\n-A /) || ipt6save.match(/\n-A /)) {
+ 			ui.addNotification(_('Legacy rules detected'), [
+-				E('p', _('There are legacy iptables rules present on the system. Mixing iptables and nftables rules is discouraged and may lead to incomplete traffic filtering.')),
+ 				E('button', {
+ 					'class': 'btn cbi-button',
+ 					'click': function() { location.href = 'nftables/iptables' }
+
 --- a/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
 +++ b/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
 @@ -3,7 +3,7 @@
