@@ -13,5 +13,6 @@
 | aarch64_cortex-a53    | [📥](https://op.supes.top/packages/aarch64_cortex-a53/) |  N1,红米AX6,小米AX6S等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53 |   日更 |
 | arm_cortex-a9    | [📥](https://op.supes.top/packages/arm_cortex-a9/) |  斐讯K3,华硕RT-AC68U,RT-AC88U等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/arm_cortex-a9 |   日更 |
 | arm_cortex-a7_neon-vfpv4    | [📥](https://op.supes.top/packages/arm_cortex-a7_neon-vfpv4/) |  华硕RT-ACRH17,RT-AC58U等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/arm_cortex-a7_neon-vfpv4 |   日更 |
+| arm_cortex-a9_vfpv3-d16    | [📥](https://op.supes.top/packages/arm_cortex-a9_vfpv3-d16/) |  Linksys WRT1900ACS等 |  src/gz openwrt_kiddin9 https://op.supes.top/packages/arm_cortex-a9_vfpv3-d16 |   日更 |
 
 ### 使用软件源请删除 opkg配置(/etc/opkg.conf) 中的 option check_signature
