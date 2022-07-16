@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ntfs3-mount
-PKG_RELEASE:=14
+PKG_RELEASE:=15
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -10,7 +10,7 @@ define Package/ntfs3-mount
   CATEGORY:=Utilities
   SUBMENU:=Filesystem
   TITLE:=NTFS mount script for Paragon NTFS3 driver
-  DEPENDS:=+(LINUX_5_4||LINUX_5_10):kmod-fs-ntfs +(LINUX_5_15||LINUX_5_18):kmod-fs-ntfs3
+  DEPENDS:=+(LINUX_5_4||LINUX_5_10||LINUX_4_4):kmod-fs-ntfs +(LINUX_5_15||LINUX_5_18):kmod-fs-ntfs3
   PKGARCH:=all
 endef
 
