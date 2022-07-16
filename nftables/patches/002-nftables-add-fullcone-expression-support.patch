@@ -1,4 +1,4 @@
-From b6e3ad4c0bb845a05d73ef1be46ffb73517d1565 Mon Sep 17 00:00:00 2001
+From 58c89e8768711a959fdc6e953df3ea2254ff93c1 Mon Sep 17 00:00:00 2001
 From: Syrone Wong <wong.syrone@gmail.com>
 Date: Sat, 9 Apr 2022 00:38:51 +0800
 Subject: [PATCH] nftables: add fullcone expression support
@@ -14,12 +14,15 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  src/statement.c                     |  1 +
  7 files changed, 100 insertions(+), 2 deletions(-)
 
+diff --git a/include/linux/netfilter/nf_tables.h b/include/linux/netfilter/nf_tables.h
+index 75df968..beab9d8 100644
 --- a/include/linux/netfilter/nf_tables.h
 +++ b/include/linux/netfilter/nf_tables.h
-@@ -1410,6 +1410,22 @@ enum nft_masq_attributes {
+@@ -1409,6 +1409,22 @@ enum nft_masq_attributes {
+ };
  #define NFTA_MASQ_MAX		(__NFTA_MASQ_MAX - 1)
  
- /**
++/**
 + * enum nft_fullcone_attributes - nf_tables fullcone expression attributes
 + *
 + * @NFTA_FULLCONE_FLAGS: NAT flags (see NF_NAT_RANGE_* in linux/netfilter/nf_nat.h) (NLA_U32)
@@ -35,10 +38,11 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
 +};
 +#define NFTA_FULLCONE_MAX		(__NFTA_FULLCONE_MAX - 1)
 +
-+/**
+ /**
   * enum nft_redir_attributes - nf_tables redirect expression netlink attributes
   *
-  * @NFTA_REDIR_REG_PROTO_MIN: source register of proto range start (NLA_U32: nft_registers)
+diff --git a/include/statement.h b/include/statement.h
+index 2a2d300..cbd48dd 100644
 --- a/include/statement.h
 +++ b/include/statement.h
 @@ -122,6 +122,7 @@ enum nft_nat_etypes {
@@ -49,9 +53,11 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  	NFT_NAT_REDIR,
  };
  
+diff --git a/src/netlink_delinearize.c b/src/netlink_delinearize.c
+index 068c3bb..8513113 100644
 --- a/src/netlink_delinearize.c
 +++ b/src/netlink_delinearize.c
-@@ -1369,6 +1369,53 @@ out_err:
+@@ -1369,6 +1369,53 @@ static void netlink_parse_masq(struct netlink_parse_ctx *ctx,
  	stmt_free(stmt);
  }
  
@@ -105,7 +111,7 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  static void netlink_parse_redir(struct netlink_parse_ctx *ctx,
  				const struct location *loc,
  				const struct nftnl_expr *nle)
-@@ -1787,6 +1834,7 @@ static const struct expr_handler netlink
+@@ -1787,6 +1834,7 @@ static const struct expr_handler netlink_parsers[] = {
  	{ .name = "tproxy",	.parse = netlink_parse_tproxy },
  	{ .name = "notrack",	.parse = netlink_parse_notrack },
  	{ .name = "masq",	.parse = netlink_parse_masq },
@@ -113,9 +119,11 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  	{ .name = "redir",	.parse = netlink_parse_redir },
  	{ .name = "dup",	.parse = netlink_parse_dup },
  	{ .name = "queue",	.parse = netlink_parse_queue },
+diff --git a/src/netlink_linearize.c b/src/netlink_linearize.c
+index c8bbcb7..505eafa 100644
 --- a/src/netlink_linearize.c
 +++ b/src/netlink_linearize.c
-@@ -1140,6 +1140,13 @@ static void netlink_gen_nat_stmt(struct
+@@ -1140,6 +1140,13 @@ static void netlink_gen_nat_stmt(struct netlink_linearize_ctx *ctx,
  		nftnl_reg_pmin = NFTNL_EXPR_MASQ_REG_PROTO_MIN;
  		nftnl_reg_pmax = NFTNL_EXPR_MASQ_REG_PROTO_MAX;
  		break;
@@ -129,6 +137,8 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  	case NFT_NAT_REDIR:
  		nle = alloc_nft_expr("redir");
  
+diff --git a/src/parser_bison.y b/src/parser_bison.y
+index ca5c488..ec9fc9b 100644
 --- a/src/parser_bison.y
 +++ b/src/parser_bison.y
 @@ -571,6 +571,7 @@ int nft_lex(void *, void *, void *);
@@ -158,21 +168,10 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  			|	redir_stmt	close_scope_nat
  			|	dup_stmt	close_scope_dup
  			|	fwd_stmt	close_scope_fwd
-@@ -3742,6 +3744,28 @@ masq_stmt_args		:	TO 	COLON	stmt_expr
- 			{
- 				$<stmt>0->nat.proto = $3;
+@@ -3753,6 +3755,28 @@ masq_stmt_args		:	TO 	COLON	stmt_expr
  			}
-+			|	TO 	COLON	stmt_expr	nf_nat_flags
-+			{
-+				$<stmt>0->nat.proto = $3;
-+				$<stmt>0->nat.flags = $4;
-+			}
-+			|	nf_nat_flags
-+			{
-+				$<stmt>0->nat.flags = $1;
-+			}
-+			;
-+
+ 			;
+ 
 +fullcone_stmt		:	fullcone_stmt_alloc		fullcone_stmt_args
 +			|	fullcone_stmt_alloc
 +			;
@@ -184,12 +183,25 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
 +			{
 +				$<stmt>0->nat.proto = $3;
 +			}
- 			|	TO 	COLON	stmt_expr	nf_nat_flags
- 			{
- 				$<stmt>0->nat.proto = $3;
++			|	TO 	COLON	stmt_expr	nf_nat_flags
++			{
++				$<stmt>0->nat.proto = $3;
++				$<stmt>0->nat.flags = $4;
++			}
++			|	nf_nat_flags
++			{
++				$<stmt>0->nat.flags = $1;
++			}
++			;
++
+ redir_stmt		:	redir_stmt_alloc	redir_stmt_arg
+ 			|	redir_stmt_alloc
+ 			;
+diff --git a/src/scanner.l b/src/scanner.l
+index 2154281..c389860 100644
 --- a/src/scanner.l
 +++ b/src/scanner.l
-@@ -453,6 +453,7 @@ addrstring	({macaddr}|{ip4addr}|{ip6addr
+@@ -453,6 +453,7 @@ addrstring	({macaddr}|{ip4addr}|{ip6addr})
  "snat"			{ scanner_push_start_cond(yyscanner, SCANSTATE_STMT_NAT); return SNAT; }
  "dnat"			{ scanner_push_start_cond(yyscanner, SCANSTATE_STMT_NAT); return DNAT; }
  "masquerade"		{ scanner_push_start_cond(yyscanner, SCANSTATE_STMT_NAT); return MASQUERADE; }
@@ -197,9 +209,11 @@ Signed-off-by: Syrone Wong <wong.syrone@gmail.com>
  "redirect"		{ scanner_push_start_cond(yyscanner, SCANSTATE_STMT_NAT); return REDIRECT; }
  "random"		{ return RANDOM; }
  <SCANSTATE_STMT_NAT>{
+diff --git a/src/statement.c b/src/statement.c
+index 30caf9c..f4866c2 100644
 --- a/src/statement.c
 +++ b/src/statement.c
-@@ -650,6 +650,7 @@ const char *nat_etype2str(enum nft_nat_e
+@@ -650,6 +650,7 @@ const char *nat_etype2str(enum nft_nat_etypes type)
  		[NFT_NAT_SNAT]	= "snat",
  		[NFT_NAT_DNAT]	= "dnat",
  		[NFT_NAT_MASQ]	= "masquerade",
