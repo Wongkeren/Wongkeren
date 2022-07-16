@@ -46,20 +46,19 @@
 
 --- a/luci-app-turboacc/root/etc/init.d/turboacc
 +++ b/luci-app-turboacc/root/etc/init.d/turboacc
-@@ -22,10 +22,10 @@ inital_conf(){
+@@ -22,9 +22,9 @@ inital_conf(){
  	config_get "dns_caching_dns" "config" "dns_caching_dns"
  
  	[ -e "/lib/modules/$(uname -r)/mtkhnat.ko" ] && { sw_flow="0"; hw_flow="1"; }
 -	[ ! -e "/lib/modules/$(uname -r)/xt_FLOWOFFLOAD.ko" ] && { sw_flow="0"; hw_flow="0"; }
 +	[[ ! -e "/lib/modules/$(uname -r)/xt_FLOWOFFLOAD.ko" && ! -e "/lib/modules/$(uname -r)/nft_flow_offload.ko" ]] && { sw_flow="0"; hw_flow="0"; }
- 	[ ! -e "/lib/modules/$(uname -r)/shortcut-fe-cm.ko" ] && sfe_flow="0"
  	[ ! -e "/lib/modules/$(uname -r)/tcp_bbr.ko" ] && bbr_cca="0"
 -	[ ! -e "/lib/modules/$(uname -r)/xt_FULLCONENAT.ko" ] && fullcone_nat="0"
 +	[[ ! -e "/lib/modules/$(uname -r)/xt_FULLCONENAT.ko" && ! -e "/lib/modules/$(uname -r)/nft_fullcone.ko" ]] && fullcone_nat="0"
  }
  
  start_pdnsd() {
-@@ -329,10 +329,10 @@ restart(){
+@@ -327,10 +327,10 @@ restart(){
  check_status(){
  	case "$1" in
  	"fastpath")
@@ -72,7 +71,7 @@
  		    [ -e /sys/kernel/debug/hnat/hnat_version ]; then
  			echo -n "MediaTek HWNAT"
  			exit 0
-@@ -350,7 +350,7 @@ check_status(){
+@@ -351,7 +351,7 @@ check_status(){
  		fi
  		;;
  	"fullconenat")
