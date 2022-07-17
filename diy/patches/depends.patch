@@ -59,15 +59,17 @@
  
 --- a/firewall/Makefile
 +++ b/firewall/Makefile
-@@ -28,7 +28,7 @@ define Package/firewall
+@@ -28,9 +28,8 @@ define Package/firewall
    SECTION:=net
    CATEGORY:=Base system
    TITLE:=OpenWrt C Firewall
 -  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +kmod-ipt-nat
-+  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +iptables-mod-fullconenat +ip6tables-mod-fullconenat +iptables-zz-legacy +ip6tables-zz-legacy +kmod-ipt-offload +miniupnpd
++  DEPENDS:=+libubox +libubus +libuci +libip4tc +IPV6:libip6tc +libiptext +IPV6:libiptext6 +libxtables +kmod-ipt-core +kmod-ipt-conntrack +IPV6:kmod-nf-conntrack6 +iptables-mod-fullconenat +ip6tables-mod-fullconenat +iptables-zz-legacy +ip6tables-zz-legacy +kmod-ipt-offload
    PROVIDES:=uci-firewall
-   CONFLICTS:=firewall4
+-  CONFLICTS:=firewall4
  endef
+ 
+ define Package/firewall/description
 
 --- a/firewall4/Makefile
 +++ b/firewall4/Makefile
