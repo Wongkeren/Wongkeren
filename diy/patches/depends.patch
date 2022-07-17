@@ -182,3 +182,18 @@
 +LUCI_DEPENDS:=
  
  include $(TOPDIR)/feeds/luci/luci.mk
+
+--- a/miniupnpd/Makefile
++++ b/miniupnpd/Makefile
+@@ -48,9 +48,9 @@ endef
+ define Package/miniupnpd-iptables
+   $(call Package/miniupnpd/Default)
+   DEPENDS+= \
+-	+IPV6:ip6tables \
++	+IPV6:ip6tables-zz-legacy \
+ 	+IPV6:libip6tc \
+-	+iptables \
++	+iptables-zz-legacy \
+ 	+libip4tc \
+ 	+libnetfilter-conntrack
+   TITLE+= (iptables)
