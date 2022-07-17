@@ -169,8 +169,8 @@ jobs:
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
-        svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd
-        svn export https://github.com/x-wrt/luci/trunk/applications/luci-app-upnp
+        svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
+
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
@@ -193,7 +193,7 @@ jobs:
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
         (
-        git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/mwan3 multimedia/UnblockNeteaseMusic-Go \
+        git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
         multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent net/transmission libs/qtbase libs/qttools libs/rblibtorrent \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2 sound/forked-daapd
