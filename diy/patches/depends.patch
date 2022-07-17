@@ -183,8 +183,8 @@
  
  include $(TOPDIR)/feeds/luci/luci.mk
 
---- a/miniupnpd/Makefile
-+++ b/miniupnpd/Makefile
+--- a/miniupnpd-nft/Makefile
++++ b/miniupnpd-nft/Makefile
 @@ -48,9 +48,9 @@ endef
  define Package/miniupnpd-iptables
    $(call Package/miniupnpd/Default)
