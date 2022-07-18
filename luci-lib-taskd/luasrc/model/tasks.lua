@@ -83,7 +83,7 @@ taskd.docker_map = function(config, task_id, script_path, title, desc)
       cmd = string.format("\"%s\" %s", script_path, action)
     end
     if cmd then
-      if luci.sys.call("/etc/init.d/tasks task_add " .. task_id .. " '" .. cmd .. "' >/dev/null 2>&1") ~= 0 then
+      if luci.sys.call("/etc/init.d/tasks task_add " .. task_id .. " " .. luci.util.shellquote(cmd) .. " >/dev/null 2>&1") ~= 0 then
         self.task_start_failed = true
         self.message = translate("Config saved, but apply failed")
       end
