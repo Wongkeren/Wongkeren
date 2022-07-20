@@ -18,3 +18,115 @@
  PKG_HASH:=9677aeccadf73b4bf8bb9d832c32b5da8266b4d58eed888f3fd43d7656405643
  
  PKG_MAINTAINER:=Markus Stenberg <fingon@iki.fi>
+
+--- a/luci-app-upnp/root/usr/libexec/rpcd/luci.upnp
++++ b/luci-app-upnp/root/usr/libexec/rpcd/luci.upnp
+@@ -5,6 +5,7 @@ local UCI = require "luci.model.uci"
+ local fs   = require "nixio.fs"
+ local sys  = require "luci.sys"
+ 
++if [ "$(which nft)" ]; then
+ local methods = {
+ 	get_status = {
+ 		call = function()
+@@ -92,6 +93,93 @@ local methods = {
+ 		end
+ 	}
+ }
++else
++local methods = {
++	get_status = {
++		call = function()
++			local uci = UCI.cursor()
++			local lease_file = uci:get("upnpd", "config", "upnp_lease_file")
++
++			local ipv4_hints = sys.net.ipv4_hints()
++			local rule = { }
++
++			local ipt = io.popen("nft -a list chain inet fw4 dstnat | grep 'miniupnpd-.*-dstnat'")
++			if ipt then
++				while true do
++					local ln = ipt:read("*l")
++					if not ln then
++						break
++					elseif ln:match('.* "miniupnpd-.*-dstnat" .*') then
++						local proto, extport, intaddr, intport, num =
++							ln:match(".* nfproto ipv4 (%S-) dport (%d+) .* dnat ip to (%S-):(%d+) .* # handle (%d+)")
++						local descr = ""
++
++						if num and proto and extport and intaddr and intport then
++							extport = tonumber(extport)
++							intport = tonumber(intport)
++
++							if lease_file then
++								local fmt = string.format("^%s:%d:%s:%d:%%d*:(.*)$", proto:upper(), extport, intaddr, intport)
++								for uln in io.lines(lease_file) do
++									descr = uln:match(fmt)
++									if descr then
++										break
++									end
++								end
++								if not descr then descr = "" end
++							end
++
++							local host_hint, _, e
++
++							for _,e in pairs(ipv4_hints) do
++								if e[1] == intaddr then
++									host_hint = e[2]
++									break
++								end
++							end
++
++							rule[#rule+1] = {
++								num = num,
++								proto   = proto:upper(),
++								extport = extport,
++								intaddr = intaddr,
++								host_hint = host_hint,
++								intport = intport,
++								descr = descr
++							}
++						end
++					end
++				end
++
++				ipt:close()
++			end
++
++			return { rules = rule }
++		end
++	},
++	delete_rule = {
++		args = { token = "token" },
++		call = function(args)
++			local util = require "luci.util"
++			local idx = args and tonumber(args.token)
++			local res = {}
++
++			if idx and idx > 0 then
++				local uci = UCI.cursor()
++				local cmd = [[sh /usr/share/miniupnpd/core.sh delfwindex %d]]
++
++				sys.call(string.format(cmd, idx))
++
++				uci.unload()
++
++				return { result = "OK" }
++			end
++
++			return { result = "Bad request" }
++		end
++	}
++}
++fi
+ 
+ local function parseInput()
+ 	local parse = json.new()
+@@ -152,4 +240,4 @@ elseif arg[1] == "call" then
+ 	local result, code = method.call(args)
+ 	print((json.stringify(result):gsub("^%[%]$", "{}")))
+ 	os.exit(code or 0)
+-end
+\ No newline at end of file
++end
