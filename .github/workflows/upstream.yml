@@ -181,7 +181,7 @@ jobs:
         package/network/services/dnsmasq package/firmware/wireless-regdb package/libs/openssl
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-opkg applications/luci-app-firewall \
-        applications/luci-app-ksmbd applications/luci-app-samba4 modules/luci-base modules/luci-mod-network \
+        applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-upnp modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
         ) &
         (
