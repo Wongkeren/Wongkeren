@@ -123,10 +123,3 @@
  
  local function parseInput()
  	local parse = json.new()
-@@ -152,4 +240,4 @@ elseif arg[1] == "call" then
- 	local result, code = method.call(args)
- 	print((json.stringify(result):gsub("^%[%]$", "{}")))
- 	os.exit(code or 0)
--end
-\ No newline at end of file
-+end
