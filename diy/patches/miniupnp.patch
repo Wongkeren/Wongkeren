@@ -25,7 +25,7 @@
  local fs   = require "nixio.fs"
  local sys  = require "luci.sys"
  
-+if [ "$(which nft)" ]; then
++if [ ! "$(which nft)" ]; then
  local methods = {
  	get_status = {
  		call = function()
