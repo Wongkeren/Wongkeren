@@ -39,7 +39,6 @@ define Package/miniupnpd/Default
 	+libcap \
 	+libmnl \
 	+libuuid
-  PROVIDES:=miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=https://miniupnp.tuxfamily.org/
