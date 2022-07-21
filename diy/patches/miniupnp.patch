@@ -21,20 +21,22 @@
 
 --- a/luci-app-upnp/root/usr/libexec/rpcd/luci.upnp
 +++ b/luci-app-upnp/root/usr/libexec/rpcd/luci.upnp
-@@ -5,6 +5,7 @@ local UCI = require "luci.model.uci"
+@@ -5,7 +5,8 @@ local UCI = require "luci.model.uci"
  local fs   = require "nixio.fs"
  local sys  = require "luci.sys"
  
-+if [ ! "$(which nft)" ]; then
- local methods = {
+-local methods = {
++if not fs.access("/usr/sbin/nft") then
++methods = {
  	get_status = {
  		call = function()
+ 			local uci = UCI.cursor()
 @@ -92,6 +93,93 @@ local methods = {
  		end
  	}
  }
 +else
-+local methods = {
++methods = {
 +	get_status = {
 +		call = function()
 +			local uci = UCI.cursor()
@@ -119,7 +121,7 @@
 +		end
 +	}
 +}
-+fi
++end
  
  local function parseInput()
  	local parse = json.new()
