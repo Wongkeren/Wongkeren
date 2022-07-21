@@ -5,8 +5,8 @@ local UCI = require "luci.model.uci"
 local fs   = require "nixio.fs"
 local sys  = require "luci.sys"
 
-if [ ! "$(which nft)" ]; then
-local methods = {
+if not fs.access("/usr/sbin/nft") then
+methods = {
 	get_status = {
 		call = function()
 			local uci = UCI.cursor()
@@ -94,7 +94,7 @@ local methods = {
 	}
 }
 else
-local methods = {
+methods = {
 	get_status = {
 		call = function()
 			local uci = UCI.cursor()
@@ -179,7 +179,7 @@ local methods = {
 		end
 	}
 }
-fi
+end
 
 local function parseInput()
 	local parse = json.new()
