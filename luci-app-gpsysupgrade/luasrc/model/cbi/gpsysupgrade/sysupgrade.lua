@@ -143,8 +143,8 @@ function to_check()
 		model = "ramips_mt7621/xiaomi_mi-router-ac2100"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-xiaomi_mi-router-ac2100-squashfs-sysupgrade.bin"
-    elseif board_name:match("rt%-acrh17") then
-		model = "ipq40xx_generic/asus_rt-acrh17"
+    elseif board_name:match("rt%-ac42u") then
+		model = "ipq40xx_generic/asus_rt-ac42u"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ipq40xx-generic-asus_rt-ac42u-squashfs-sysupgrade.bin"
     elseif board_name:match("rt%-ac58u") then
