@@ -287,6 +287,18 @@ function to_check()
 		model = "bcm53xx_generic/asus_rt-ac88u"
 		check_update()
 		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-bcm53xx-generic-asus_rt-ac88u-squashfs.trx"
+    elseif board_name:match("edgerouter%-x$") then
+		model = "bcm53xx_generic/asus_rt-ac88u"
+		check_update()
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-ubnt_edgerouter-x-squashfs-sysupgrade.bin"
+    elseif board_name:match("edgerouter%-x%-sfp") then
+		model = "bcm53xx_generic/asus_rt-ac88u"
+		check_update()
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7621-ubnt_edgerouter-x-sfp-squashfs-sysupgrade.bin"
+    elseif board_name:match("wrt1200ac") then
+		model = "mvebu/cortexa9"
+		check_update()
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-mvebu-cortexa9-linksys_wrt1200ac-squashfs-sysupgrade.bin"
     else
 		local needs_update = false
 		return {
