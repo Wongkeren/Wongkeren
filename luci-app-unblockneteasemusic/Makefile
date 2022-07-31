@@ -13,6 +13,10 @@ PKG_NAME:=luci-app-unblockneteasemusic
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
+define Package/luci-app-unblockneteasemusic/conffiles
+/etc/config/unblockneteasemusic
+endef
+
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
