@@ -9,9 +9,19 @@ PKG_NAME:=luci-app-alist
 
 LUCI_TITLE:=LuCI support for alist
 LUCI_DEPENDS:=+alist
-LUCI_PKGARCH:=all
+
+define Package/$(PKG_NAME)/conffiles
+/etc/alist
+endef
+
+define Package/$(PKG_NAME)/postinst
+#!/bin/sh
+[ -n "${IPKG_INSTROOT}" ] || {
+	( . /etc/uci-defaults/luci-alist ) && rm -f /etc/uci-defaults/luci-alist
+	exit 0
+}
+endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-
