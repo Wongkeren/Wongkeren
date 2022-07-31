@@ -4,8 +4,8 @@
  		}
  
  		if (image.name != undefined) {
--			var sysupgrade_url = `${this.data.url}/store/${res.bin_dir}/${image.name}`;
-+			var sysupgrade_url = `${this.data.url}/store/${res.request_hash}/${image.name}`;
+-			var sysupgrade_url = `${this.data.url}/store/${response.bin_dir}/${image.name}`;
++			var sysupgrade_url = `${this.data.url}/store/${response.request_hash}/${image.name}`;
  
  			var keep = E('input', { type: 'checkbox' });
  			keep.checked = true;
@@ -62,9 +62,9 @@
 -					}
 -				}
  
- 				if (candidates.length) {
- 					var m, s, o;
-@@ -348,7 +320,7 @@ return view.extend({
+ 				// allow to re-install running firmware in advanced mode
+ 				if (this.data.advanced_mode == 1) {
+@@ -353,7 +325,7 @@ return view.extend({
  						request: {
  							profile: this.firmware.profile,
  							version: candidates[0][0],
@@ -73,7 +73,7 @@
  						},
  					};
  
-@@ -391,6 +363,9 @@ return view.extend({
+@@ -401,6 +373,9 @@ return view.extend({
  						E('p', _('The device runs the latest firmware version %s - %s').format(version, revision)),
  						E('div', { class: 'right' }, [
  							E('div', { class: 'btn', click: ui.hideModal }, _('Close')),
@@ -83,23 +83,20 @@
  						]),
  					]);
  				}
-@@ -414,9 +389,15 @@ return view.extend({
- 		this.firmware.profile = res[1].board_name;
- 		this.firmware.target = res[1].release.target;
- 		this.firmware.version = res[1].release.version;
-+		this.firmware.partsize = res[1].release.distribution;
- 		this.data.branch = get_branch(res[1].release.version);
- 		this.data.revision = res[1].release.revision;
- 		this.data.efi = res[2];
+@@ -429,6 +404,12 @@ return view.extend({
+ 		this.data.revision = response[1].release.revision;
+ 
+ 		this.data.efi = response[2];
++		this.firmware.partsize = response[1].release.distribution;
 +		if (this.data.efi) {
 +			this.firmware.efi = "efi";
 +		} else {
 +			this.firmware.efi = "not";
 +		}
- 		if (res[1].rootfs_type) {
- 			this.firmware.filesystem = res[1].rootfs_type;
- 		} else {
-@@ -449,6 +430,17 @@ return view.extend({
+ 
+ 		this.data.url = uci.get_first('attendedsysupgrade', 'server', 'url');
+ 		this.data.advanced_mode = uci.get_first('attendedsysupgrade', 'client', 'advanced_mode') || 0
+@@ -438,6 +419,17 @@ return view.extend({
  			E('p', _('The attended sysupgrade service allows to easily upgrade vanilla and custom firmware images.')),
  			E('p', _('This is done by building a new firmware on demand via an online service.')),
  			E('p', _('Currently running: %s - %s').format(this.firmware.version, this.data.revision)),
