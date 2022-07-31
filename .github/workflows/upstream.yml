@@ -170,6 +170,7 @@ jobs:
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
+        svn export https://github.com/koshev-msk/luci-app-atinout/branches/rafal/atinout
 
         ) &
         (
