@@ -313,11 +313,6 @@ return view.extend({
 						candidates.push([version, remote_revision]);
 					}
 
-				// allow to re-install running firmware in advanced mode
-				if (this.data.advanced_mode == 1) {
-					candidates.unshift([version, revision])
-				}
-
 				if (candidates.length) {
 					var m, s, o;
 
