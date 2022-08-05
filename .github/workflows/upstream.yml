@@ -207,7 +207,7 @@ jobs:
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
-        rm -rf applications/luci-app-qbittorrent applications/luci-app-cpufreq
+        rm -rf applications{luci-app-qbittorrent,luci-app-cpufreq,luci-app-zerotier}
         svn co https://github.com/immortalwrt/luci/trunk/applications
 
         for ipk in $(ls -d applications/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
