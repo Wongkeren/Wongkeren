@@ -70,15 +70,24 @@
 
 --- a/autocore/files/generic/luci
 +++ b/autocore/files/generic/luci
-@@ -214,6 +214,7 @@ local methods = {
+@@ -207,6 +207,8 @@ local methods = {
+ 	getFeatures = {
+ 		call = function()
+ 			local fs = require "nixio.fs"
++			local sys = require "luci.sys"
++			local kernel_version = sys.exec("echo -n $(uname -r)")
+ 			local rv = {}
+ 			local ok, fd
+ 
+@@ -214,6 +216,7 @@ local methods = {
  			rv.firewall4     = fs.access("/sbin/fw4")
  			rv.opkg          = fs.access("/bin/opkg")
  			rv.offloading    = fs.access("/sys/module/xt_FLOWOFFLOAD/refcnt") or fs.access("/sys/module/nft_flow_offload/refcnt")
-+			rv.fullconenat   = fs.access("/sys/module/xt_FULLCONENAT/refcnt") or fs.access("/sys/module/nft_fullcone/refcnt")
++			rv.fullconenat   = fs.access("/lib/modules/" .. kernel_version .. "/xt_FULLCONENAT.ko") or fs.access("/lib/modules/" .. kernel_version .. "/nft_fullcone.ko")
  			rv.br2684ctl     = fs.access("/usr/sbin/br2684ctl")
  			rv.swconfig      = fs.access("/sbin/swconfig")
  			rv.odhcpd        = fs.access("/usr/sbin/odhcpd")
-@@ -637,10 +638,6 @@ local methods = {
+@@ -637,10 +640,6 @@ local methods = {
  
  			cpuinfo.cpuinfo = sys.exec("/sbin/cpuinfo")
  
@@ -89,7 +98,7 @@
  			return cpuinfo
  		end
  	},
-@@ -658,9 +655,8 @@ local methods = {
+@@ -658,9 +657,8 @@ local methods = {
  	getETHInfo = {
  		call = function()
  			local sys = require "luci.sys"
