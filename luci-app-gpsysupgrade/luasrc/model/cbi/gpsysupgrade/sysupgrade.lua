@@ -338,47 +338,47 @@ function to_check()
     elseif board_name:match("gl%-mt300a") then
 		model = "ramips_mt7620/glinet_gl-mt300a"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-glinet_gl-mt300a-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-glinet_gl-mt300a-squashfs-sysupgrade.bin"
     elseif board_name:match("gl%-mt750") then
 		model = "ramips_mt7620/glinet_gl-mt750"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-glinet_gl-mt750-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-glinet_gl-mt750-squashfs-sysupgrade.bin"
     elseif board_name:match("hiwifi,hc5661") then
 		model = "ramips_mt7620/hiwifi_hc5661"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5661-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5661-squashfs-sysupgrade.bin"
     elseif board_name:match("hiwifi,hc5761") then
 		model = "ramips_mt7620/hiwifi_hc5761"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5761-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5761-squashfs-sysupgrade.bin"
     elseif board_name:match("hiwifi,hc5861") then
 		model = "ramips_mt7620/hiwifi_hc5861"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5861-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-hiwifi_hc5861-squashfs-sysupgrade.bin"
     elseif board_name:match("newifi%-y1") then
 		model = "ramips_mt7620/lenovo_newifi-y1"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-lenovo_newifi-y1-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-lenovo_newifi-y1-squashfs-sysupgrade.bin"
     elseif board_name:match("newifi%-y1s") then
 		model = "ramips_mt7620/lenovo_newifi-y1s"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-lenovo_newifi-y1s-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-lenovo_newifi-y1s-squashfs-sysupgrade.bin"
     elseif board_name:match("miwifi%-mini") then
 		model = "ramips_mt7620/xiaomi_miwifi-mini"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-xiaomi_miwifi-mini-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-xiaomi_miwifi-mini-squashfs-sysupgrade.bin"
     elseif board_name:match("yk%-l1$") then
 		model = "ramips_mt7620/youku_yk-l1"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-youku_yk-l1-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-youku_yk-l1-squashfs-sysupgrade.bin"
     elseif board_name:match("yk%-l1c") then
 		model = "ramips_mt7620/youku_yk-l1c"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-youku_yk-l1c-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-youku_yk-l1c-squashfs-sysupgrade.bin"
     elseif board_name:match("miwifi%-r3") then
 		model = "ramips_mt7620/xiaomi_miwifi-r3"
 		check_update()
-		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-xiaomi_miwifi-r3-squashfs-sysupgrade.bin
+		download_url = "https://op.supes.top/firmware/" ..model.. "/" ..remote_version.. "-openwrt-ramips-mt7620-xiaomi_miwifi-r3-squashfs-sysupgrade.bin"
     else
 		local needs_update = false
 		return {
