@@ -29,6 +29,9 @@ echo $(uci -q get uhttpd.main.index_page) | grep -q "cgi-bin/luci" ||
 
 /etc/init.d/wizard disable
 
+[[ -x /usr/bin/wget && ! -x /usr/bin/wget-ssl ]] && 	
+	ln -s /usr/bin/wget /usr/bin/wget-ssl
+
 sed -i "s/git-.*-\(.*\)/git-\1/g" /usr/lib/lua/luci/version.lua
 
 if [ -f /etc/uwsgi/vassals/luci-webui.ini ]; then
