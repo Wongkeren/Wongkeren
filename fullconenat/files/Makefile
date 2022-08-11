@@ -1,5 +1,4 @@
 all: libipt_FULLCONENAT.so libip6t_FULLCONENAT.so
-
 libipt_FULLCONENAT.so: libipt_FULLCONENAT.o
 	$(CC) -shared -lxtables -o $@ $^;
 libipt_FULLCONENAT.o: libipt_FULLCONENAT.c
