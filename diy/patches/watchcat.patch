@@ -10,6 +10,16 @@
  	config_get mode "$1" mode "ping_reboot"
  	config_get pinghosts "$1" pinghosts "8.8.8.8"
 
+--- a/watchcat/files/watchcat.config
++++ b/watchcat/files/watchcat.config
+@@ -1,5 +1,5 @@
+ config watchcat
+ 	option period '6h'
+ 	option mode 'ping_reboot'
+-	option pinghosts '8.8.8.8'
++	option pinghosts '114.114.114.114'
+ 	option forcedelay '30'
+
 --- a/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js
 +++ b/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js
 @@ -18,6 +18,9 @@ return view.extend({
