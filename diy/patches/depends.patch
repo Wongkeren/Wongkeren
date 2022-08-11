@@ -163,18 +163,6 @@
  LUCI_PKGARCH:=all
  
 
---- a/fullconenat/Makefile
-+++ b/fullconenat/Makefile
-@@ -36,7 +36,7 @@ define Package/ip6tables-mod-fullconenat
-   SECTION:=net
-   CATEGORY:=Network
-   TITLE:=FULLCONENAT ip6tables extension
--  DEPENDS:=ip6tables +kmod-nf-nat6 +kmod-ipt-fullconenat +ip6tables-mod-nat
-+  DEPENDS:=+ip6tables +kmod-nf-nat6 +kmod-ipt-fullconenat +ip6tables-mod-nat
- endef
- 
- define KernelPackage/ipt-fullconenat
-
 --- a/miniupnpd-nft/Makefile
 +++ b/miniupnpd-nft/Makefile
 @@ -39,7 +39,6 @@ define Package/miniupnpd/Default
