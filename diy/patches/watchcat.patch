@@ -17,7 +17,7 @@
  	option period '6h'
  	option mode 'ping_reboot'
 -	option pinghosts '8.8.8.8'
-+	option pinghosts '114.114.114.114'
++	option pinghosts '223.5.5.5'
  	option forcedelay '30'
 
 --- a/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js
@@ -32,3 +32,12 @@
  		o = s.taboption('general', form.ListValue, 'mode',
  			_('Mode'),
  			_("Ping Reboot: Reboot this device if a ping to a specified host fails for a specified duration of time. <br /> \
+@@ -51,7 +54,7 @@ return view.extend({
+ 
+ 		o = s.taboption('general', form.Value, 'pinghosts', _('Host To Check'), _(`IP address or hostname to ping.`));
+ 		o.datatype = 'host';
+-		o.default = '8.8.8.8';
++		o.default = '223.5.5.5';
+ 		o.depends({ mode: "ping_reboot" });
+ 		o.depends({ mode: "restart_iface" });
+ 		o.depends({ mode: "run_script" });
