@@ -89,8 +89,6 @@ jobs:
         git_clone https://github.com/iwrt/luci-app-ikoolproxy  && mv -f luci-app-ikoolproxy/ikoolproxy ikoolproxy
         git_clone https://github.com/BoringCat/luci-app-minieap
         git_clone https://github.com/rufengsuixing/luci-app-onliner
-        git_clone https://github.com/tty228/luci-app-serverchan
-        git_clone https://github.com/4IceG/luci-app-sms-tool smstool && mvdir smstool
         ) &
         (
         git_clone https://github.com/zzsj0928/luci-app-pushbot
@@ -164,10 +162,9 @@ jobs:
         git_clone https://github.com/4IceG/luci-app-3ginfo op3ginfo  && mv -n op3ginfo/{3ginfo,luci-app-3ginfo} ./;rm -rf op3ginfo
         ) &
         (
+        git_clone https://github.com/tty228/luci-app-serverchan
+        git_clone https://github.com/4IceG/luci-app-sms-tool smstool && mvdir smstool
         git_clone https://github.com/4IceG/luci-app-modemband modemb  && mv -n modemb/* ./;rm -rf modemb
-        git_clone https://github.com/rufengsuixing/luci-app-usb3disable
-        git_clone https://github.com/silime/luci-app-xunlei
-        git_clone https://github.com/ysc3839/luci-proto-minieap
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -213,7 +210,7 @@ jobs:
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications
         rm -rf applications/{luci-app-qbittorrent,luci-app-cpufreq,luci-app-zerotier}
-        svn co https://github.com/immortalwrt/luci/trunk/applications
+        git_sparse_clone master "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
 
         for ipk in $(ls -d applications/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
         	if [[ $(ls $ipk/po | wc -l) -gt 3 ]]; then
