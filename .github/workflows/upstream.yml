@@ -79,7 +79,8 @@ jobs:
         git_clone https://github.com/kiddin9/openwrt-cloudreve && mvdir openwrt-cloudreve
         ) &
         (
-        git_clone https://github.com/xiaorouji/openwrt-passwall
+        git_clone https://github.com/xiaorouji/openwrt-passwall && mvdir openwrt-passwall
+        git_clone https://github.com/fw876/helloworld && mvdir helloworld
         git_clone https://github.com/Lienol/openwrt-package
         git_clone https://github.com/ysc3839/openwrt-minieap
         git_clone https://github.com/rufengsuixing/luci-app-autoipsetadder
@@ -170,7 +171,6 @@ jobs:
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
-        svn export https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
@@ -226,7 +226,6 @@ jobs:
     - name: Delete duplicated packages
       run: |
         shopt -s extglob
-        mv -n openwrt-passwall/* ./ ; rm -Rf openwrt-passwall
         mv -n applications/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy) ./ ; rm -Rf applications
         mv -n lean/* ./ ; rm -Rf lean
         mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
