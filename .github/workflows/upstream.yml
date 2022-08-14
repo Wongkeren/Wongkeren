@@ -317,6 +317,7 @@ jobs:
         sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D %C by Kiddin'\"" base-files/files/etc/openwrt_release
         sed -i 's?admin/status/channel_analysis??' luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
         sed -i "s/PKG_VERSION:=2/PKG_VERSION:=3/" mwan3/Makefile
+        sed -i "s/default n/default y/" dockerd/Config.in
         sed -i "/+uhttpd/d" ariang/Makefile
         cp -f autocore/files/generic/10_system.js luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
         cp -f autocore/files/generic/luci luci-base/root/usr/libexec/rpcd/luci
