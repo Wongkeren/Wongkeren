@@ -27,7 +27,7 @@
 				if (nginx_status) {
 					var str = "";
 					if (json.nginx_status) {
-						document.getElementById("tips").innerHTML = '<%:If you need external network access, please open the port by yourself.%>';
+						document.getElementById("tips").innerHTML = '<%:If you need external network access, please open the port by yourself.%> <br/> 如报错, 请重启路由.';
 						str = '<font color="green"><%:RUNNING%> ✓</font><input type="button" class="cbi-button cbi-input-apply" value="<%:Enter interface%>" onclick="open_web()" />'
 					} else {
 						str = '<font color="red"><%:NOT RUNNING%> X</font>';
