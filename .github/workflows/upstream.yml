@@ -81,7 +81,7 @@ jobs:
         (
         git_clone https://github.com/xiaorouji/openwrt-passwall && mvdir openwrt-passwall
         git_clone https://github.com/fw876/helloworld && mvdir helloworld
-        git_clone https://github.com/Lienol/openwrt-package && mvdir openwrt-package
+        git_clone https://github.com/Lienol/openwrt-package liep
         git_clone https://github.com/ysc3839/openwrt-minieap
         git_clone https://github.com/rufengsuixing/luci-app-autoipsetadder
         git_clone https://github.com/NateLol/luci-app-beardropper
@@ -144,7 +144,7 @@ jobs:
         git_clone https://github.com/linkease/nas-packages-luci && mv -n nas-packages-luci/luci/* ./; rm -rf nas-packages-luci
         git_clone https://github.com/linkease/istore && mv -n istore/luci/* ./; rm -rf istore
         git_clone https://github.com/linkease/luci-app-linkease
-        git_clone https://github.com/linkease/openwrt-app-actions && mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
+        git_clone https://github.com/linkease/openwrt-app-actions
         git_clone https://github.com/AlexZhuo/luci-app-bandwidthd
         ) &
         (
@@ -226,6 +226,8 @@ jobs:
         shopt -s extglob
         mv -n luciapp/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy) ./ ; rm -Rf luciapp
         mv -n lean/* ./ ; rm -Rf lean
+        mv -n liep/* ./ ; rm -Rf liep
+        mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
 
