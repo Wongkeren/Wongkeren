@@ -69,6 +69,7 @@ start() {
 	open_basedir=$(config_t_get global open_basedir "/")
 	open_basedir=$(echo $open_basedir | sed "s/ /:/g")
 	gen_php_config
+	/etc/init.d/php8-fpm stop
 	/usr/bin/php8-fpm -c $PHP_CONFIG -R -y $PHP_FPM_CONFIG
 	gen_nginx_config $NGINX_CONFIG
 	[ -f /etc/nginx/conf.d/luci.locations ] && /etc/init.d/nginx reload || /usr/sbin/nginx -c $NGINX_CONFIG >/dev/null 2>&1 &
