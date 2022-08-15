@@ -36,11 +36,8 @@
  		
  	[ "$ipv6" = "0" ] && sed -i '/listen \[::\]:/d' $1
  }
-@@ -62,13 +69,14 @@ start() {
- 	open_basedir=$(config_t_get global open_basedir "/")
- 	open_basedir=$(echo $open_basedir | sed "s/ /:/g")
+@@ -64,11 +71,11 @@ start() {
  	gen_php_config
-+	/etc/init.d/php8-fpm stop
  	/usr/bin/php8-fpm -c $PHP_CONFIG -R -y $PHP_FPM_CONFIG
  	gen_nginx_config $NGINX_CONFIG
 -	/usr/sbin/nginx -c $NGINX_CONFIG >/dev/null 2>&1 &
@@ -53,3 +50,4 @@
  	[ -f "$TEMP_PATH/php-fpm.pid" ] && kill -2 $(cat $TEMP_PATH/php-fpm.pid) >/dev/null 2>&1
  	rm -rf $TEMP_PATH
  }
+
