@@ -81,7 +81,7 @@ jobs:
         (
         git_clone https://github.com/xiaorouji/openwrt-passwall && mvdir openwrt-passwall
         git_clone https://github.com/fw876/helloworld && mvdir helloworld
-        git_clone https://github.com/Lienol/openwrt-package
+        git_clone https://github.com/Lienol/openwrt-package && mvdir openwrt-package
         git_clone https://github.com/ysc3839/openwrt-minieap
         git_clone https://github.com/rufengsuixing/luci-app-autoipsetadder
         git_clone https://github.com/NateLol/luci-app-beardropper
@@ -226,7 +226,6 @@ jobs:
         shopt -s extglob
         mv -n luciapp/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy) ./ ; rm -Rf luciapp
         mv -n lean/* ./ ; rm -Rf lean
-        mv -n openwrt-package/* ./ ; rm -Rf openwrt-package
         cp -rf diy/.packages/* ./ || true
         rm -Rf */.git
 
