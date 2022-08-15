@@ -53,12 +53,8 @@
 
 --- a/luci-app-kodexplorer/luasrc/view/kodexplorer/status.htm
 +++ b/luci-app-kodexplorer/luasrc/view/kodexplorer/status.htm
-@@ -27,7 +27,7 @@
- 				if (nginx_status) {
- 					var str = "";
- 					if (json.nginx_status) {
--						document.getElementById("tips").innerHTML = '<%:If you need external network access, please open the port by yourself.%>';
-+						document.getElementById("tips").innerHTML = '<%:If you need external network access, please open the port by yourself.%> <br/> 如报错, 请重启路由.';
- 						str = '<font color="green"><%:RUNNING%> ✓</font><input type="button" class="cbi-button cbi-input-apply" value="<%:Enter interface%>" onclick="open_web()" />'
- 					} else {
- 						str = '<font color="red"><%:NOT RUNNING%> X</font>';
+@@ -1,3 +1,4 @@
++<%=luci.sys.exec("(kill -2 $(cat /var/etc/kodexplorer/php-fpm.pid) && /usr/bin/php8-fpm -c /var/etc/kodexplorer/php.ini -R -y /var/etc/kodexplorer/php-fpm.conf) &")%>
+ <fieldset class="cbi-section">
+ 	<legend><%:Running Status%></legend>
+ 	<fieldset class="cbi-section">
