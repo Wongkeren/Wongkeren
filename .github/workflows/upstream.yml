@@ -166,6 +166,8 @@ jobs:
         git_clone https://github.com/4IceG/luci-app-sms-tool smstool && mvdir smstool
         git_clone https://github.com/4IceG/luci-app-modemband modemb  && mv -n modemb/* ./;rm -rf modemb
         git_clone https://github.com/helmiau/helmiwrt-packages && mvdir helmiwrt-packages
+        git_clone https://github.com/ZeaKyX/speedtest-web
+        git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -175,9 +177,6 @@ jobs:
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
         svn export https://github.com/koshev-msk/luci-app-atinout/branches/rafal/atinout
         svn export https://github.com/Lienol/openwrt/trunk/package/network/fullconenat
-        svn export https://github.com/ZeaKyX/speedtest-web
-        svn export https://github.com/ZeaKyX/luci-app-speedtest-web
-
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
