@@ -165,7 +165,7 @@ jobs:
         git_clone https://github.com/tty228/luci-app-serverchan
         git_clone https://github.com/4IceG/luci-app-sms-tool smstool && mvdir smstool
         git_clone https://github.com/4IceG/luci-app-modemband modemb  && mv -n modemb/* ./;rm -rf modemb
-        git_clone https://github.com/helmiau/helmiwrt-packages && rm -rf helmiwrt-packages/{luci-app-v2raya,preview} && mvdir helmiwrt-packages
+        #git_clone https://github.com/helmiau/helmiwrt-packages && rm -rf helmiwrt-packages/{luci-app-v2raya,preview} && mvdir helmiwrt-packages
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
         ) &
