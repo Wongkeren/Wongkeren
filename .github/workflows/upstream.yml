@@ -175,6 +175,8 @@ jobs:
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
         svn export https://github.com/koshev-msk/luci-app-atinout/branches/rafal/atinout
         svn export https://github.com/Lienol/openwrt/trunk/package/network/fullconenat
+        svn export https://github.com/ZeaKyX/speedtest-web
+        svn export https://github.com/ZeaKyX/luci-app-speedtest-web
 
         ) &
         (
