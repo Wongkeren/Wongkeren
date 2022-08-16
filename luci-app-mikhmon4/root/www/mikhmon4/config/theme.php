@@ -1,1 +1,0 @@
-<?php $theme="light"; $themecolor="#008BC9";?>
