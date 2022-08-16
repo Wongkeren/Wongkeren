@@ -187,7 +187,7 @@
  						opkg="$opkg $1"
  						shift
  					;;
-@@ -33,10 +33,54 @@ case "$action" in
+@@ -33,10 +33,55 @@ case "$action" in
  			done
  
  			if flock -x 200; then
@@ -212,11 +212,12 @@
 +					$opkg $action "$@" </dev/null >/tmp/opkg.out 2>/tmp/opkg.err
 +					code=$?
 +				fi
++				pkgn="$(echo $@ | cut -d - -f 3-)"
 +				case "$action" in
 +					install|upgrade)
 +					if [ "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $@)" ]; then
-+							if [[ "$@" == luci-app-* && "$(opkg list | grep luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn)" ]]; then
-+								$opkg install luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null || true
++							if [[ "$@" == luci-app-* && "$(opkg list | grep luci-i18n-$pkgn-zh-cn)" && ! -f /usr/lib/lua/luci/i18n/$pkgn.zh-cn.lmo ]]; then
++								$opkg install luci-i18n-$pkgn-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null || true
 +							fi
 +							rm -f /tmp/opkg.err
 +							([ -f /etc/profile.d/opkg.sh ] && . /etc/profile.d/opkg.sh && opkg save) &
@@ -225,8 +226,8 @@
 +					remove)
 +						if [ ! "$(opkg list-installed | cut -f 1 -d ' ' | grep -w $@)" ]; then
 +							rm -f /tmp/opkg.err
-+							if [[ "$@" == luci-app-* && "$(opkg list-installed | grep luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn)" ]]; then
-+								$opkg remove luci-i18n-"$(echo $@ | cut -d - -f 3-)"-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null || true
++							if [[ "$@" == luci-app-* && "$(opkg list-installed | grep luci-i18n-$pkgn-zh-cn)" ]]; then
++								$opkg remove luci-i18n-$pkgn-zh-cn </dev/null >>/tmp/opkg.out 2>/dev/null || true
 +							fi
 +							([ -f /etc/profile.d/opkg.sh ] && . /etc/profile.d/opkg.sh && opkg save) &
 +						fi
@@ -245,7 +246,7 @@
  			else
  				code=255
  				stderr="Failed to acquire lock"
-@@ -53,7 +97,7 @@ case "$action" in
+@@ -53,7 +98,7 @@ case "$action" in
  	;;
  	*)
  		echo "Usage: $0 {list-installed|list-available}"       >&2
