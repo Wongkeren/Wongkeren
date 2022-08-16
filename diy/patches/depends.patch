@@ -199,7 +199,7 @@
 
 --- a/dockerd/Makefile
 +++ b/dockerd/Makefile
-@@ -95,10 +95,10 @@ define Build/Prepare
+@@ -95,14 +95,14 @@ define Build/Prepare
  	$(Build/Prepare/Default)
  
  	# Verify dependencies are the vendored version
@@ -214,3 +214,8 @@
  
  	# Verify CLI is the same version
  	( \
+-		CLI_MAKEFILE="../docker/Makefile"; \
++		CLI_MAKEFILE="../../packages/utils/docker/Makefile"; \
+ 		CLI_VERSION=$$$$( grep --only-matching --perl-regexp '(?<=PKG_VERSION:=)(.*)' "$$$${CLI_MAKEFILE}" ); \
+ 		if [ "$$$${CLI_VERSION}" != "$(PKG_VERSION)" ]; then \
+ 			echo "ERROR: Expected 'PKG_VERSION:=$(PKG_VERSION)' in '$$$${CLI_MAKEFILE}', found 'PKG_VERSION:=$$$${CLI_VERSION}'"; \
