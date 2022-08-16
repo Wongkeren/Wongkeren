@@ -101,3 +101,13 @@
 -	killall sysuh3c >/dev/null 2>&1
 +	killall -q `which sysuh3c`
  }
+
+--- a/luci-app-speedtest-web/root/etc/init.d/speedtest-web
++++ b/luci-app-speedtest-web/root/etc/init.d/speedtest-web
+@@ -15,5 +15,5 @@ start() {
+ }
+ 
+ stop() {
+-	killall speedtest-web >/dev/null 2>&1
++	killall -q -9 `which speedtest-web`
+ }
