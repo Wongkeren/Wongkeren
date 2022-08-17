@@ -211,7 +211,7 @@ jobs:
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications luciapp
-        rm -rf luciapp/{luci-app-qbittorrent,luci-app-cpufreq,luci-app-zerotier}
+        rm -rf luciapp/{luci-app-qbittorrent,luci-app-cpufreq}
         git_sparse_clone master "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
         mv -n applications/* luciapp/; rm -rf applications
 
