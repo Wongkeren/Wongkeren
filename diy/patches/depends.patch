@@ -151,8 +151,8 @@
  
  include $(TOPDIR)/feeds/luci/luci.mk
 
---- a/applications/luci-app-unblockneteasemusic/Makefile
-+++ b/applications/luci-app-unblockneteasemusic/Makefile
+--- a/luci-app-unblockneteasemusic/Makefile
++++ b/luci-app-unblockneteasemusic/Makefile
 @@ -5,7 +5,7 @@
  include $(TOPDIR)/rules.mk
  
