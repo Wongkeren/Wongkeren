@@ -213,7 +213,7 @@ jobs:
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications luciapp
         rm -rf luciapp/{luci-app-qbittorrent,luci-app-cpufreq,luci-app-zerotier}
         git_sparse_clone openwrt-21.02 "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
-        mv -n applications/* luciapp/; rm -rf applications
+        mv -f applications luciapp
 
         for ipk in $(ls -d luciapp/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
         	if [[ $(ls $ipk/po | wc -l) -gt 3 ]]; then
