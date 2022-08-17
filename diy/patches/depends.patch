@@ -151,14 +151,14 @@
  
  include $(TOPDIR)/feeds/luci/luci.mk
 
---- a/luci-app-unblockneteasemusic/Makefile
-+++ b/luci-app-unblockneteasemusic/Makefile
+--- a/applications/luci-app-unblockneteasemusic/Makefile
++++ b/applications/luci-app-unblockneteasemusic/Makefile
 @@ -5,7 +5,7 @@
  include $(TOPDIR)/rules.mk
  
  LUCI_TITLE:=LuCI support for UnblockNeteaseMusic
--LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +ucode \
-+LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +UnblockNeteaseMusic +uclient-fetch +ucode \
+-LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch \
++LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +UnblockNeteaseMusic \
  	@(PACKAGE_libustream-mbedtls||PACKAGE_libustream-openssl||PACKAGE_libustream-wolfssl)
  LUCI_PKGARCH:=all
  
