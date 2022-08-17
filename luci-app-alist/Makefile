@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=luci-app-alist
 
 LUCI_TITLE:=LuCI support for alist
-LUCI_DEPENDS:=+alist
+LUCI_DEPENDS:=+alist +luci-compat
 
 define Package/$(PKG_NAME)/conffiles
 /etc/alist
