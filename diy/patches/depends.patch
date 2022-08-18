@@ -174,17 +174,17 @@
    SUBMENU:=Firewall
    URL:=https://miniupnp.tuxfamily.org/
 
---- a/phicomm-k3screenctrl/Makefile
-+++ b/phicomm-k3screenctrl/Makefile
-@@ -28,7 +28,7 @@ TARGET_CFLAGS+= -D_GNU_SOURCE
- define Package/phicomm-k3screenctrl
+--- a/k3screenctrl/Makefile
++++ b/k3screenctrl/Makefile
+@@ -19,7 +19,7 @@ TARGET_CFLAGS+= -D_GNU_SOURCE
+ define Package/k3screenctrl
    SECTION:=utils
    CATEGORY:=Utilities
--  DEPENDS:=@(TARGET_bcm53xx_DEVICE_phicomm-k3||TARGET_bcm53xx_generic_DEVICE_phicomm_k3) \
-+  DEPENDS:=@(TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3||TARGET_bcm53xx_generic_DEVICE_phicomm_k3) \
-     +@KERNEL_DEVMEM +@BUSYBOX_CONFIG_ARPING +bc +bash +curl +coreutils +coreutils-od +jq
+-  DEPENDS:=@TARGET_bcm53xx_generic_DEVICE_phicomm_k3 +@KERNEL_DEVMEM
++  DEPENDS:=@(TARGET_bcm53xx_generic_DEVICE_phicomm_k3||TARGET_DEVICE_bcm53xx_generic_DEVICE_phicomm_k3) +@KERNEL_DEVMEM
    TITLE:=LCD screen controller on PHICOMM K3
-   URL:=https://github.com/lwz322/k3screenctrl.git
+   URL:=https://github.com/updateing/k3-screen-ctrl
+ endef
 
 --- a/ntfs3-mount/Makefile
 +++ b/ntfs3-mount/Makefile
