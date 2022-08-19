@@ -157,8 +157,8 @@
  include $(TOPDIR)/rules.mk
  
  LUCI_TITLE:=LuCI support for UnblockNeteaseMusic
--LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch \
-+LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +UnblockNeteaseMusic \
+-LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +ucode \
++LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +ucode +UnblockNeteaseMusic \
  	@(PACKAGE_libustream-mbedtls||PACKAGE_libustream-openssl||PACKAGE_libustream-wolfssl)
  LUCI_PKGARCH:=all
  
@@ -219,3 +219,14 @@
  		CLI_VERSION=$$$$( grep --only-matching --perl-regexp '(?<=PKG_VERSION:=)(.*)' "$$$${CLI_MAKEFILE}" ); \
  		if [ "$$$${CLI_VERSION}" != "$(PKG_VERSION)" ]; then \
  			echo "ERROR: Expected 'PKG_VERSION:=$(PKG_VERSION)' in '$$$${CLI_MAKEFILE}', found 'PKG_VERSION:=$$$${CLI_VERSION}'"; \
+
+--- a/transmission-web-control/Makefile
++++ b/transmission-web-control/Makefile
+@@ -19,7 +19,6 @@ define Package/transmission-web-control
+   SECTION:=net
+   CATEGORY:=Network
+   SUBMENU:=BitTorrent
+-  DEPENDS:=+transmission-daemon
+   CONFLICTS:=transmission-web
+   TITLE:=Transmission Web Control
+   URL:=https://github.com/ronggang/transmission-web-control
