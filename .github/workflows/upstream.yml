@@ -338,6 +338,7 @@ jobs:
         sed -i 's/	ip.neighbors/	luci.ip.neighbors/' luci-app-wifidog/luasrc/model/cbi/wifidog/wifidog_cfg.lua
         sed -i 's/ if aarch64||arm||i386||x86_64//' luci-app-ssr-plus/Makefile
         sed -i 's/PKG_SOURCE_DATE:=2021/PKG_SOURCE_DATE:=2023/' netifd/Makefile
+        sed -i '/PKG_SOURCE_DATE/d' transmission-web-control/Makefile
         
         sed -i \
           -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
