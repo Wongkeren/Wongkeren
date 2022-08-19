@@ -86,7 +86,7 @@ jobs:
         git_clone https://github.com/rufengsuixing/luci-app-autoipsetadder
         git_clone https://github.com/NateLol/luci-app-beardropper
         git_clone https://github.com/riverscn/openwrt-iptvhelper && mvdir openwrt-iptvhelper
-        git_clone https://github.com/iwrt/luci-app-ikoolproxy  && mv -f luci-app-ikoolproxy/ikoolproxy ikoolproxy
+        #git_clone https://github.com/iwrt/luci-app-ikoolproxy  && mv -f luci-app-ikoolproxy/koolproxy ./
         git_clone https://github.com/BoringCat/luci-app-minieap
         git_clone https://github.com/rufengsuixing/luci-app-onliner
         ) &
@@ -143,7 +143,6 @@ jobs:
         git_clone https://github.com/linkease/nas-packages && mv -n nas-packages/network/services/* ./; rm -rf nas-packages
         git_clone https://github.com/linkease/nas-packages-luci && mv -n nas-packages-luci/luci/* ./; rm -rf nas-packages-luci
         git_clone https://github.com/linkease/istore && mv -n istore/luci/* ./; rm -rf istore
-        git_clone https://github.com/linkease/luci-app-linkease
         git_clone https://github.com/linkease/openwrt-app-actions
         git_clone https://github.com/AlexZhuo/luci-app-bandwidthd
         ) &
@@ -212,7 +211,7 @@ jobs:
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications luciapp
         rm -rf luciapp/{luci-app-qbittorrent,luci-app-cpufreq}
-        git_sparse_clone openwrt-22.03 "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
+        git_sparse_clone master "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
         mv -n applications/* luciapp/; rm -rf applications
 
         for ipk in $(ls -d luciapp/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
