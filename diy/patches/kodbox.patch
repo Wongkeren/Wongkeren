@@ -36,7 +36,7 @@
  		
  	[ "$ipv6" = "0" ] && sed -i '/listen \[::\]:/d' $1
  }
-@@ -64,16 +71,16 @@ start() {
+@@ -64,13 +71,13 @@ start() {
  	gen_php_config
  	/usr/bin/php8-fpm -c $PHP_CONFIG -R -y $PHP_FPM_CONFIG
  	gen_nginx_config $NGINX_CONFIG
