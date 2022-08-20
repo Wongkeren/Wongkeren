@@ -167,6 +167,7 @@ jobs:
         #git_clone https://github.com/helmiau/helmiwrt-packages && rm -rf helmiwrt-packages/{luci-app-v2raya,preview} && mvdir helmiwrt-packages
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
+        git_clone https://github.com/Zxilly/UA2F
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
