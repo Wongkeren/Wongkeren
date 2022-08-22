@@ -168,6 +168,8 @@ jobs:
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
         git_clone https://github.com/Zxilly/UA2F
+        git_clone https://github.com/koshev-msk/luci-app-mmconfig
+        git_clone https://github.com/koshev-msk/xmm-modem
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
