@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# get cellular wwan iface name
+
+DEV=$(uci show network | awk -F [=] '/device/{gsub("'\''",""); print $2}')
+SLOTMM=$(mmcli -J -m $(uci get modemconfig.@modem[-1].device) | jsonfilter -e '@["modem"].*["device"]')
+
+for d in $DEV; do
+	if [ $SLOTMM = $d ]; then
+		WWIFACE=$(uci -q show network | grep $d | awk -F [=.] '{print $2}')
+	fi
+done
+
+
+sleep 10 && \
+	/usr/share/modeminfo/scripts/modemconfig && \
+	sleep 1 && ifdown $WWIFACE && \
+	sleep 1 && ifup $WWIFACE &
