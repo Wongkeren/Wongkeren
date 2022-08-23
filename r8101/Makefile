@@ -8,10 +8,10 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=r8101
 PKG_VERSION:=1.037.01
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=https://github.com/umarizulkifli/r8101/blob/main/r8101-1.037.01.tar.bz2
+PKG_SOURCE_URL:=https://github.com/umarizulkifli/r8101/raw/main/
 PKG_HASH:=skip
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 

@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=upx
-PKG_RELEASE:=11
+PKG_RELEASE:=12
 
 PKG_MAINTAINER:=Xingwang Liao <kuoruan@gmail.com>
 PKG_LICENSE:=GPL-2.0-only
@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=COPYING LICENSE
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2022-01-15
-PKG_SOURCE_VERSION:=bca5ea1cdc2ecff9f4edead445c4faf8aab93644
+PKG_SOURCE_VERSION:=null
 PKG_SOURCE_URL:=https://github.com/upx/upx.git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_DATE).tar.gz
 
